@@ -3,23 +3,14 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 export default function Input() {
-  const [savedData, setSavedData] = useState({
-    bl: '',
-    basal: '',
-    bolus: '',
-  });
+  const [savedData, setSavedData] = useState('bl, basal, bolus');
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // addData(savedData);
-    setSavedData({
-      [event.target.name]: event.target.value,
-      bl: '',
-      basal: '',
-      bolus: '',
-    });
-    console.log(savedData);
+    console.log(event.target.name.value);
+    console.log(setSavedData);
   };
-  const [data, updateData] = useState([]);
+  const [data, updateData] = useState('');
   const addData = (savedData) => {
     updateData([savedData, ...data]);
     console.log(addData);
@@ -37,7 +28,7 @@ export default function Input() {
             placeholder={`letzter Blutzuckerwert `}
             text="text"
             id="name"
-            value={savedData.name}
+            value={savedData.bl}
             required
           />
         </LabelBz>
@@ -45,7 +36,7 @@ export default function Input() {
         <LabelIu htmlFor="Basal Insulin">
           Basal Insulin <br /> Einheiten
           <DataInput
-            type="number"
+            type="decimal"
             name="basal"
             text="text"
             placeholder={`letzte Einheitmenge `}
@@ -57,7 +48,7 @@ export default function Input() {
         <LabelIu htmlFor="Bolus Insulin">
           Bolus Insulin <br /> Einheiten
           <DataInput
-            type="number"
+            type="decimal"
             text="text"
             name="bolus"
             placeholder={`letzte Einheitmenge `}
@@ -68,7 +59,7 @@ export default function Input() {
 
         <Button type="submit">bestätigen</Button>
       </EntryForm>
-      <DataForm addData="{addData}" />
+      <DataForm />
     </>
   );
 }

@@ -3,26 +3,26 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 export default function Home() {
-  const [data, updateData] = useState([]);
+  const [data, updateData] = useState({ Input });
   const addData = (savedData) => {
     updateData([...data, savedData]);
   };
 
   return (
     <Wrapper>
+      <Input onAddCard={addData} />
       <CardGrid>
-        {/* {savedData.map((data) => {
+        {[updateData].map((data) => {
           return (
-            <savedData
+            <updateData
               key={data.id}
-              blutzucker={data.bl}
+              bl={data.bl}
               basalInsulin={data.basal}
               bolusInsulin={data.bolus}
             />
           );
-        })} */}
+        })}
       </CardGrid>
-      <Input onAddCard={addData} />
     </Wrapper>
   );
 }
