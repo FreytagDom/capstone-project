@@ -1,10 +1,12 @@
 import Input from '../components/HomeInput';
 import styled from 'styled-components';
+import { useState } from 'react';
 
 export default function Home() {
-  function addData(newData) {
-    setSavedData([newData, ...savedData]);
-  }
+  const [data, updateData] = useState([]);
+  const addData = (savedData) => {
+    updateData([...data, savedData]);
+  };
 
   return (
     <Wrapper>
@@ -13,9 +15,9 @@ export default function Home() {
           return (
             <savedData
               key={data.id}
-              blutzucker={data.blutzucker}
-              basalInsulin={data.basalInsulin}
-              bolusInsulin={data.bolusInsulin}
+              blutzucker={data.bl}
+              basalInsulin={data.basal}
+              bolusInsulin={data.bolus}
             />
           );
         })} */}

@@ -1,27 +1,31 @@
 import styled from 'styled-components';
-import { nanoid } from 'nanoid';
-import { useState } from "react";
 
-export default function Input({ onAddCard }) {
-  function handleSubmit(event) {
+import { useState } from 'react';
+
+export default function Input() {
+  const [savedData, setSavedData] = useState({
+    bl: '',
+    basal: '',
+    bolus: '',
+  });
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const form = event.target;
-    const text = form.text.value;
-    const name = form.name.value;
-    
-    const newCard = {
-        id: nanoid(),
-        text: 'text',
-        name: 'name',
-    };
-    onAddCard(newCard);
-    
-    console.log(onAddCard);
-    form.reset();
-};
+    // addData(savedData);
+    setSavedData({
+      [event.target.name]: event.target.value,
+      bl: '',
+      basal: '',
+      bolus: '',
+    });
+    console.log(savedData);
+  };
+  const [data, updateData] = useState([]);
+  const addData = (savedData) => {
+    updateData([savedData, ...data]);
+    console.log(addData);
+  };
 
-
-return (
+  return (
     <>
       <EntryForm onSubmit={handleSubmit}>
         <LabelBz htmlFor="Blutzuckerwert">
@@ -29,7 +33,7 @@ return (
           mg/dl
           <DataInput
             type="number"
-            name='bl'
+            name="bl"
             placeholder={`letzter Blutzuckerwert `}
             text="text"
             id="name"
@@ -42,7 +46,7 @@ return (
           Basal Insulin <br /> Einheiten
           <DataInput
             type="number"
-            name='basal'
+            name="basal"
             text="text"
             placeholder={`letzte Einheitmenge `}
             id="name"
@@ -64,12 +68,10 @@ return (
 
         <Button type="submit">bestätigen</Button>
       </EntryForm>
-      <DataForm onSubmitData="{submitData}"/>
+      <DataForm addData="{addData}" />
     </>
-); 
-
+  );
 }
-
 
 const LabelBz = styled.label`
   color: #c92a2a;
@@ -97,6 +99,7 @@ const DataInput = styled.input`
 const Button = styled.button`
   background-color: skyblue;
   color: darkblue;
+  margin-top: 5px;
   border-radius: 15px;
   height: 20px;
 `;
@@ -109,4 +112,5 @@ const EntryForm = styled.form`
 const DataForm = styled.form`
   display: grid;
   justify-content: center;
+  color: black;
 `;
