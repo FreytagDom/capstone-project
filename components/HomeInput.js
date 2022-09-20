@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
+import { useState } from "react";
 
 export default function Input({ onAddCard }) {
   function handleSubmit(event) {
@@ -7,52 +8,89 @@ export default function Input({ onAddCard }) {
     const form = event.target;
     const text = form.text.value;
     const name = form.name.value;
-
+    
     const newCard = {
-      id: nanoid(),
-      text: text,
-      name: name,
+        id: nanoid(),
+        text: 'text',
+        name: 'name',
     };
     onAddCard(newCard);
-
-    console.log(newCard);
+    
+    console.log(onAddCard);
     form.reset();
-  }
+};
 
-  return (
+
+return (
     <>
       <EntryForm onSubmit={handleSubmit}>
-        <Label htmlFor="Blutzuckerwert">Blutzuckerwert</Label>
-        <DataInput
-          placeholder={`letzter Blutzuckerwert `}
-          name="name"
-          id="name"
-        />
+        <LabelBz htmlFor="Blutzuckerwert">
+          Blutzuckerwert <br />
+          mg/dl
+          <DataInput
+            type="number"
+            name='bl'
+            placeholder={`letzter Blutzuckerwert `}
+            text="text"
+            id="name"
+            value={savedData.name}
+            required
+          />
+        </LabelBz>
 
-        <Label htmlFor="Basal Insulin">Basal Insulin</Label>
-        <DataInput placeholder={`letzte Einheitmenge `} name="text" id="name" />
+        <LabelIu htmlFor="Basal Insulin">
+          Basal Insulin <br /> Einheiten
+          <DataInput
+            type="number"
+            name='basal'
+            text="text"
+            placeholder={`letzte Einheitmenge `}
+            id="name"
+            value={savedData.name}
+          />
+        </LabelIu>
 
-        <Label htmlFor="Bolus Insulin">Bolus Insulin</Label>
-        <DataInput placeholder={`letzte Einheitmenge `} name="text" id="name" />
+        <LabelIu htmlFor="Bolus Insulin">
+          Bolus Insulin <br /> Einheiten
+          <DataInput
+            type="number"
+            text="text"
+            name="bolus"
+            placeholder={`letzte Einheitmenge `}
+            id="name"
+            value={savedData.name}
+          />
+        </LabelIu>
 
-        <Button>bestätigen</Button>
+        <Button type="submit">bestätigen</Button>
       </EntryForm>
+      <DataForm onSubmitData="{submitData}"/>
     </>
-  );
+); 
+
 }
 
-const Label = styled.label`
-  color: red;
+
+const LabelBz = styled.label`
+  color: #c92a2a;
   background-color: beige;
-  border-top-left-radius: 13px;
-  border-top-right-radius: 13px;
+  border-radius: 8px;
   display: grid;
   text-align: center;
-  height: 35px;
+  height: 60px;
 `;
+
+const LabelIu = styled.label`
+  color: #5c940d;
+  background-color: beige;
+  border-radius: 8px;
+  display: grid;
+  text-align: center;
+  height: 60px;
+`;
+
 const DataInput = styled.input`
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border-radius: 8px;
   text-align: center;
 `;
 
@@ -66,6 +104,9 @@ const Button = styled.button`
 const EntryForm = styled.form`
   display: grid;
   justify-content: center;
-  width: 70px;
-  height: 40px;
+`;
+
+const DataForm = styled.form`
+  display: grid;
+  justify-content: center;
 `;

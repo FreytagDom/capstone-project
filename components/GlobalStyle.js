@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing:border-box;
 }
 body {
-    margin: 100px;
-    padding: 10px;
+    margin: 0;
+    padding: 0;
 }
 `;
