@@ -3,27 +3,29 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 export default function Home() {
-  // const [data, updateData] = useState([]);
-  // function addData(savedData) {
-  //   updateData([savedData, ...data]);
-  // }
+  // updateData muss setData sein
+  const [data, setData] = useState([]);
+  function addData(savedData) {
+    debugger;
+    setData([savedData, ...data]);
+  }
 
   return (
     <Wrapper>
-      <Input />
+      <Input onAddData={addData} />
       <CardGrid>
-        {/* {data.map((data) => {
+        {data.map((item) => {
           return (
-            <li key={data.id}> {data.value} </li>
+            <li key={item.id}>{item.bl}</li>
 
-            key={data.id}
-            id={data.id}
-            value={data.value}
-            bl={data.bl}
-            basal={data.basal}
-            bolus={data.bolus}
+            // key={data.id}
+            // id={data.id}
+            // value={data.value}
+            // bl={data.bl}
+            // basal={data.basal}
+            // bolus={data.bolus}
           );
-        })} */}
+        })}
       </CardGrid>
     </Wrapper>
   );
