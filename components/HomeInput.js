@@ -1,20 +1,37 @@
 import styled from 'styled-components';
-
+import { nanoid } from 'nanoid';
 import { useState } from 'react';
 
 export default function Input() {
-  const [savedData, setSavedData] = useState('bl, basal, bolus');
-
-  const handleSubmit = (event) => {
+  const [savedData, setSavedData] = useState([]);
+  console.log(useState);
+  function handleSubmit(event) {
     event.preventDefault();
-    console.log(event.target.name.value);
+    const form = event.target;
+    // const text = form.text;
+    // const name = form.name;
+    console.log(savedData);
+    const datacard = {
+      id: nanoid(),
+      text: '',
+      name: '',
+    };
+    setSavedData((savedData) => ({
+      ...savedData,
+      ...datacard,
+    }));
+    console.log(datacard);
+    // onAddCard(newCard);
+    // console.log(onAddCard);
+    form.reset();
+
     console.log(setSavedData);
-  };
-  const [data, updateData] = useState('');
-  const addData = (savedData) => {
-    updateData([savedData, ...data]);
-    console.log(addData);
-  };
+  }
+  // const [data, updateData] = useState([]);
+  // const addData = (savedData) => {
+  //   updateData([savedData, ...data]);
+  //   console.log(addData);
+  // };
 
   return (
     <>
@@ -23,11 +40,12 @@ export default function Input() {
           Blutzuckerwert <br />
           mg/dl
           <DataInput
+            key="id"
             type="number"
             name="bl"
-            placeholder={`letzter Blutzuckerwert `}
             text="text"
-            id="name"
+            placeholder={`letzter Blutzuckerwert `}
+            id="id"
             value={savedData.bl}
             required
           />
@@ -36,30 +54,34 @@ export default function Input() {
         <LabelIu htmlFor="Basal Insulin">
           Basal Insulin <br /> Einheiten
           <DataInput
+            key="id"
             type="decimal"
             name="basal"
             text="text"
             placeholder={`letzte Einheitmenge `}
-            id="name"
-            value={savedData.name}
+            id="id"
+            value={DataInput.name}
           />
         </LabelIu>
 
         <LabelIu htmlFor="Bolus Insulin">
           Bolus Insulin <br /> Einheiten
           <DataInput
+            key="id"
             type="decimal"
-            text="text"
             name="bolus"
+            text="text"
             placeholder={`letzte Einheitmenge `}
-            id="name"
+            id="id"
             value={savedData.name}
           />
         </LabelIu>
 
         <Button type="submit">bestätigen</Button>
       </EntryForm>
-      <DataForm />
+      <DataForm htmlFor="Letzten Werte" onChange={handleSubmit}>
+        {savedData}
+      </DataForm>
     </>
   );
 }
@@ -100,7 +122,7 @@ const EntryForm = styled.form`
   justify-content: center;
 `;
 
-const DataForm = styled.form`
+const DataForm = styled.li`
   display: grid;
   justify-content: center;
   color: black;
