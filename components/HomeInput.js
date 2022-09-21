@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
-// import { useState } from 'react';
 
 export default function Input({ onAddData }) {
-  // brauchen wir nicht const [savedData, setSavedData] = useState([]);
-  // console.log(useState);
-
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -20,15 +16,11 @@ export default function Input({ onAddData }) {
       basal: basal,
       bolus: bolus,
     };
+
     onAddData(cardData);
 
     form.reset();
   }
-  // const [data, updateData] = useState([]);
-  // const addData = (savedData) => {
-  //   updateData([savedData, ...data]);
-  //   console.log(addData);
-  // };
 
   return (
     <>
@@ -37,13 +29,10 @@ export default function Input({ onAddData }) {
           Blutzuckerwert <br />
           mg/dl
           <DataInput
-            // key="id" ??
             type="number"
             name="bl"
-            // text="text" ??
             placeholder={`letzter Blutzuckerwert `}
             id="bl"
-            // value={savedData.bl}
             required
           />
         </LabelBz>
@@ -51,34 +40,25 @@ export default function Input({ onAddData }) {
         <LabelIu htmlFor="basal">
           Basal Insulin <br /> Einheiten
           <DataInput
-            // key="id" ??
             type="decimal"
             name="basal"
-            // text="text" ??
-            placeholder={`letzte Einheitmenge `}
+            placeholder={`letzte Einheit 2,5 `}
             id="basal"
-            // value={DataInput.name}
           />
         </LabelIu>
 
         <LabelIu htmlFor="bolus">
           Bolus Insulin <br /> Einheiten
           <DataInput
-            // key="id" ??
             type="decimal"
             name="bolus"
-            // text="text" ?
-            placeholder={`letzte Einheitmenge`}
+            placeholder={`letzte Einheit 2,5`}
             id="bolus"
-            // value={savedData.name}
           />
         </LabelIu>
 
         <Button type="submit">bestätigen</Button>
       </EntryForm>
-      {/* <DataForm htmlFor="Letzten Werte" onChange={handleSubmit}>
-        {savedData}
-      </DataForm> */}
     </>
   );
 }
@@ -117,10 +97,4 @@ const Button = styled.button`
 const EntryForm = styled.form`
   display: grid;
   justify-content: center;
-`;
-
-const DataForm = styled.li`
-  display: grid;
-  justify-content: center;
-  color: black;
 `;

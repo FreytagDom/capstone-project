@@ -3,10 +3,8 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 export default function Home() {
-  // updateData muss setData sein
   const [data, setData] = useState([]);
   function addData(savedData) {
-    debugger;
     setData([savedData, ...data]);
   }
 
@@ -16,14 +14,13 @@ export default function Home() {
       <CardGrid>
         {data.map((item) => {
           return (
-            <li key={item.id}>{item.bl}</li>
-
-            // key={data.id}
-            // id={data.id}
-            // value={data.value}
-            // bl={data.bl}
-            // basal={data.basal}
-            // bolus={data.bolus}
+            <Saved key={item.id}>
+              <BloodSugar> Blutzuckerwert: {item.bl} mg/dl </BloodSugar>
+              <br />
+              <Insulin> Basal Insulin: {item.basal} Einheiten </Insulin>
+              <br />
+              <Insulin> Bolus Insulin: {item.bolus} Einheiten </Insulin>
+            </Saved>
           );
         })}
       </CardGrid>
@@ -46,4 +43,25 @@ const CardGrid = styled.ul`
   padding: 0;
   overflow-y: auto;
   border-radius: 10px;
+`;
+const Saved = styled.li`
+  display: grid;
+  background-color: beige;
+  border-radius: 8px;
+  text-align: center;
+  height: 100px;
+  align-items: center;
+  margin: 20px;
+`;
+
+const BloodSugar = styled.span`
+  color: #c92a2a;
+  margin: 0;
+  padding: 0;
+`;
+
+const Insulin = styled.span`
+  color: #5c940d;
+  margin: 0;
+  padding: 0;
 `;
