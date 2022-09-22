@@ -25,7 +25,7 @@ export default function Input({ onAddData }) {
   return (
     <>
       <EntryForm onSubmit={handleSubmit}>
-        <LabelBz htmlFor="bl">
+        <LabelBz htmlFor="bloodsugar">
           Blutzuckerwert <br />
           mg/dl
           <DataInput
