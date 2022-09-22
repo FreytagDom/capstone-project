@@ -17,9 +17,13 @@ export default function Home() {
             <Saved key={item.id}>
               <BloodSugar> Blutzuckerwert: {item.bloodsugar} mg/dl </BloodSugar>
               <br />
-              <Insulin> Basal Insulin: {item.basal} Einheiten </Insulin>
+              <Carbohydrates>
+                Kohlenhydrate: {item.carbohydrates} g (Gramm)
+              </Carbohydrates>
               <br />
-              <Insulin> Bolus Insulin: {item.bolus} Einheiten </Insulin>
+              <Insulin> Welches Insulin: {item.insulin} verwendet </Insulin>
+              <br />
+              <Factor> Insulin Faktor: {item.factor} </Factor>
             </Saved>
           );
         })}
@@ -37,7 +41,7 @@ const Wrapper = styled.section`
 
 const CardGrid = styled.ul`
   display: grid;
-  gap: 20px;
+  gap: 5rem;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   align-content: start;
   margin: 0;
@@ -51,19 +55,23 @@ const Saved = styled.li`
   background-color: beige;
   border-radius: 8px;
   text-align: center;
-  height: 100px;
+  height: auto;
   align-items: center;
-  margin: 20px;
+  margin: 1rem;
 `;
 
 const BloodSugar = styled.span`
   color: #c92a2a;
-  margin: 0;
-  padding: 0;
 `;
 
 const Insulin = styled.span`
   color: #5c940d;
-  margin: 0;
-  padding: 0;
+`;
+
+const Carbohydrates = styled.span`
+  color: #e67700;
+`;
+
+const Factor = styled.span`
+  color: #2b8a3e;
 `;

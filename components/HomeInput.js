@@ -7,14 +7,16 @@ export default function Input({ onAddData }) {
 
     const form = event.target;
     const bloodsugar = form.bloodsugar.value;
-    const basal = form.basal.value;
-    const bolus = form.bolus.value;
+    const carbohydrates = form.carbohydrates.value;
+    const insulin = form.insulin.value;
+    const factor = form.factor.value;
 
     const cardData = {
       id: nanoid(),
       bloodsugar: bloodsugar,
-      basal: basal,
-      bolus: bolus,
+      carbohydrates: carbohydrates,
+      insulin: insulin,
+      factor: factor,
     };
 
     onAddData(cardData);
@@ -37,25 +39,35 @@ export default function Input({ onAddData }) {
           />
         </LabelBz>
 
-        <LabelIu htmlFor="basal">
-          Basal Insulin <br /> Einheiten
+        <LabelCa htmlFor="carbohydrates">
+          Kohlenhydrate (Khd) <br /> g (Gramm)
           <DataInput
             type="decimal"
-            name="basal"
-            placeholder="letzte Einheit 2,5"
-            id="basal"
+            name="carbohydrates"
+            placeholder="wieviele Khd 65g"
+            id="carbohydrates"
+          />
+        </LabelCa>
+
+        <LabelIu htmlFor="insulin">
+          Welches Insulin <br /> wird genommen
+          <DataInput
+            type="text"
+            name="insulin"
+            placeholder="Basal / Bolus"
+            id="insulin"
           />
         </LabelIu>
 
-        <LabelIu htmlFor="bolus">
-          Bolus Insulin <br /> Einheiten
+        <LabelFa htmlFor="factor">
+          Welcher Tageszeit <br /> Faktor
           <DataInput
             type="decimal"
-            name="bolus"
-            placeholder="letzte Einheit 2,5"
-            id="bolus"
+            name="factor"
+            placeholder="Tagezeit Faktor"
+            id="factor"
           />
-        </LabelIu>
+        </LabelFa>
 
         <Button type="submit">bestätigen</Button>
       </EntryForm>
@@ -68,13 +80,20 @@ const Label = styled.label`
   border-radius: 8px;
   display: grid;
   text-align: center;
-  height: 60px;
+  height: 4rem;
 `;
 const LabelBz = styled(Label)`
   color: #c92a2a;
 `;
 const LabelIu = styled(Label)`
   color: #5c940d;
+`;
+const LabelCa = styled(Label)`
+  color: #e67700;
+`;
+
+const LabelFa = styled(Label)`
+  color: #2b8a3e;
 `;
 
 const DataInput = styled.input`
