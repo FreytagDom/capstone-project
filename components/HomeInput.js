@@ -6,13 +6,13 @@ export default function Input({ onAddData }) {
     event.preventDefault();
 
     const form = event.target;
-    const bl = form.bl.value;
+    const bloodsugar = form.bloodsugar.value;
     const basal = form.basal.value;
     const bolus = form.bolus.value;
 
     const cardData = {
       id: nanoid(),
-      bl: bl,
+      bloodsugar: bloodsugar,
       basal: basal,
       bolus: bolus,
     };
@@ -30,9 +30,9 @@ export default function Input({ onAddData }) {
           mg/dl
           <DataInput
             type="number"
-            name="bl"
-            placeholder={`letzter Blutzuckerwert `}
-            id="bl"
+            name="bloodsugar"
+            placeholder="letzter Blutzuckerwert"
+            id="bloodsugar"
             required
           />
         </LabelBz>
@@ -42,7 +42,7 @@ export default function Input({ onAddData }) {
           <DataInput
             type="decimal"
             name="basal"
-            placeholder={`letzte Einheit 2,5 `}
+            placeholder="letzte Einheit 2,5"
             id="basal"
           />
         </LabelIu>
@@ -52,7 +52,7 @@ export default function Input({ onAddData }) {
           <DataInput
             type="decimal"
             name="bolus"
-            placeholder={`letzte Einheit 2,5`}
+            placeholder="letzte Einheit 2,5"
             id="bolus"
           />
         </LabelIu>
@@ -63,22 +63,18 @@ export default function Input({ onAddData }) {
   );
 }
 
-const LabelBz = styled.label`
-  color: #c92a2a;
+const Label = styled.label`
   background-color: beige;
   border-radius: 8px;
   display: grid;
   text-align: center;
   height: 60px;
 `;
-
-const LabelIu = styled.label`
+const LabelBz = styled(Label)`
+  color: #c92a2a;
+`;
+const LabelIu = styled(Label)`
   color: #5c940d;
-  background-color: beige;
-  border-radius: 8px;
-  display: grid;
-  text-align: center;
-  height: 60px;
 `;
 
 const DataInput = styled.input`

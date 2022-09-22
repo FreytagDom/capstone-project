@@ -15,7 +15,7 @@ export default function Home() {
         {data.map((item) => {
           return (
             <Saved key={item.id}>
-              <BloodSugar> Blutzuckerwert: {item.bl} mg/dl </BloodSugar>
+              <BloodSugar> Blutzuckerwert: {item.bloodsugar} mg/dl </BloodSugar>
               <br />
               <Insulin> Basal Insulin: {item.basal} Einheiten </Insulin>
               <br />
