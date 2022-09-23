@@ -7,7 +7,7 @@ export default function Home() {
   function addData(savedData) {
     setData([savedData, ...data]);
   }
-
+  console.log(data);
   return (
     <Wrapper>
       <Input onAddData={addData} />
@@ -17,6 +17,7 @@ export default function Home() {
             <Saved key={item.id}>
               <BloodSugar>
                 Blutzuckerwert: <br /> {item.bloodsugar} mg/dl
+                {item.calculateUnit}
               </BloodSugar>
               <br />
               <Carbohydrates>
@@ -24,7 +25,7 @@ export default function Home() {
               </Carbohydrates>
               <br />
               <Insulin>
-                Welches Insulin: <br /> {item.insulin} verwendet
+                Verwendetes Insulin: <br /> {item.insulin}
               </Insulin>
               <br />
               <Factor>

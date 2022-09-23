@@ -12,20 +12,20 @@ export default function Input({ onAddData }) {
     const insulin = form.insulin.value;
     const factor = form.factor.value;
     InsulinUnit(bloodsugar, carbohydrates, factor);
-    const calculateUnit = InsulinUnit;
+
     const cardData = {
       id: nanoid(),
       bloodsugar: bloodsugar,
       carbohydrates: carbohydrates,
       insulin: insulin,
       factor: factor,
-      calculateUnit: calculateUnit,
+      calculateUnit: value,
     };
 
     onAddData(cardData);
     form.reset();
   }
-  let [value, setValue] = useState();
+  const [value, setValue] = useState();
   function InsulinUnit(bloodsugar, carbohydrates, factor) {
     const targetValue = 100;
     const corretionValue = 60;
@@ -34,6 +34,7 @@ export default function Input({ onAddData }) {
       (bloodsugar - targetValue) / corretionValue + carbohydrates / factor;
     setValue(calculateUnit);
   }
+
   return (
     <>
       <EntryForm onSubmit={handleSubmit}>
@@ -66,6 +67,7 @@ export default function Input({ onAddData }) {
             name="insulin"
             placeholder="Basal / Bolus"
             id="insulin"
+            maxLength={8}
           />
         </LabelIu>
 
