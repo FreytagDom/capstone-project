@@ -15,15 +15,21 @@ export default function Home() {
         {data.map((item) => {
           return (
             <Saved key={item.id}>
-              <BloodSugar> Blutzuckerwert: {item.bloodsugar} mg/dl </BloodSugar>
+              <BloodSugar>
+                Blutzuckerwert: <br /> {item.bloodsugar} mg/dl
+              </BloodSugar>
               <br />
               <Carbohydrates>
-                Kohlenhydrate: {item.carbohydrates} g (Gramm)
+                Kohlenhydrate: <br /> {item.carbohydrates} g (Gramm)
               </Carbohydrates>
               <br />
-              <Insulin> Welches Insulin: {item.insulin} verwendet </Insulin>
+              <Insulin>
+                Welches Insulin: <br /> {item.insulin} verwendet
+              </Insulin>
               <br />
-              <Factor> Insulin Faktor: {item.factor} </Factor>
+              <Factor>
+                Insulin Faktor: <br /> {item.factor}
+              </Factor>
             </Saved>
           );
         })}
@@ -58,6 +64,7 @@ const Saved = styled.li`
   height: auto;
   align-items: center;
   margin: 1rem;
+  padding: 0.5rem;
 `;
 
 const BloodSugar = styled.span`

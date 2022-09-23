@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
+import { useState } from 'react';
 
 export default function Input({ onAddData }) {
   function handleSubmit(event) {
@@ -10,20 +11,29 @@ export default function Input({ onAddData }) {
     const carbohydrates = form.carbohydrates.value;
     const insulin = form.insulin.value;
     const factor = form.factor.value;
-
+    InsulinUnit(bloodsugar, carbohydrates, factor);
+    const calculateUnit = InsulinUnit;
     const cardData = {
       id: nanoid(),
       bloodsugar: bloodsugar,
       carbohydrates: carbohydrates,
       insulin: insulin,
       factor: factor,
+      calculateUnit: calculateUnit,
     };
 
     onAddData(cardData);
-
     form.reset();
   }
+  let [value, setValue] = useState();
+  function InsulinUnit(bloodsugar, carbohydrates, factor) {
+    const targetValue = 100;
+    const corretionValue = 60;
 
+    const calculateUnit =
+      (bloodsugar - targetValue) / corretionValue + carbohydrates / factor;
+    setValue(calculateUnit);
+  }
   return (
     <>
       <EntryForm onSubmit={handleSubmit}>
@@ -70,6 +80,9 @@ export default function Input({ onAddData }) {
         </LabelFa>
 
         <Button type="submit">bestätigen</Button>
+        <p>
+          {value} Einheiten <br /> Insulin spritzen
+        </p>
       </EntryForm>
     </>
   );
