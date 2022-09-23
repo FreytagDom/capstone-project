@@ -54,6 +54,13 @@ export default function Input({ onAddData }) {
     }
   }
 
+  const [num, setNum] = useState('');
+
+  const handleNumChange = (event) => {
+    const maxLength = 3;
+    setNum(event.target.value.slice(0, maxLength));
+  };
+
   return (
     <>
       <EntryForm onSubmit={handleSubmit}>
@@ -65,6 +72,8 @@ export default function Input({ onAddData }) {
             name="bloodsugar"
             placeholder="letzter Blutzuckerwert"
             id="bloodsugar"
+            value={num}
+            onChange={handleNumChange}
             required
           />
         </LabelBz>
@@ -76,6 +85,7 @@ export default function Input({ onAddData }) {
             name="carbohydrates"
             placeholder="wieviele Khd 65g"
             id="carbohydrates"
+            maxLength={'3'}
           />
         </LabelCa>
 
@@ -97,18 +107,21 @@ export default function Input({ onAddData }) {
             name="morningfactor"
             placeholder="Faktor morgens"
             id="morningfactor"
+            maxLength={'3'}
           />
           <DataInput
             type="decimal"
             name="lunchfactor"
             placeholder="Faktor mittags"
             id="lunchfactor"
+            maxLength={'3'}
           />
           <DataInput
             type="decimal"
             name="eveningfactor"
             placeholder="Faktor abends"
             id="eveningfactor"
+            maxLength={'3'}
           />
         </LabelFa>
         <Button type="submit">bestätigen</Button>
