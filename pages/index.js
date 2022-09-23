@@ -29,8 +29,12 @@ export default function Home() {
               </Insulin>
               <br />
               <Factor>
-                Insulin Faktor: <br /> {item.factor}
+                Insulin Faktor: <br /> {item.morningfactor} {item.lunchfactor}{' '}
+                {item.eveningfactor}
               </Factor>
+              <InsulinUnits>
+                gepritzte Insulin <br /> Menge: {item.calculateUnit}
+              </InsulinUnits>
             </Saved>
           );
         })}
@@ -48,7 +52,7 @@ const Wrapper = styled.section`
 
 const CardGrid = styled.ul`
   display: grid;
-  gap: 5rem;
+  gap: auto;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   align-content: start;
   margin: 0;
@@ -82,4 +86,8 @@ const Carbohydrates = styled.span`
 
 const Factor = styled.span`
   color: #2b8a3e;
+`;
+
+const InsulinUnits = styled.span`
+  color: #364fc7;
 `;

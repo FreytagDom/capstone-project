@@ -10,15 +10,25 @@ export default function Input({ onAddData }) {
     const bloodsugar = form.bloodsugar.value;
     const carbohydrates = form.carbohydrates.value;
     const insulin = form.insulin.value;
-    const factor = form.factor.value;
-    InsulinUnit(bloodsugar, carbohydrates, factor);
+    const morningfactor = form.morningfactor.value;
+    const lunchfactor = form.lunchfactor.value;
+    const eveningfactor = form.eveningfactor.value;
+    InsulinUnit(
+      bloodsugar,
+      carbohydrates,
+      morningfactor,
+      lunchfactor,
+      eveningfactor
+    );
 
     const cardData = {
       id: nanoid(),
       bloodsugar: bloodsugar,
       carbohydrates: carbohydrates,
       insulin: insulin,
-      factor: factor,
+      morningfactor: morningfactor,
+      lunchfactor: lunchfactor,
+      eveningfactor: eveningfactor,
       calculateUnit: value,
     };
 
@@ -26,13 +36,22 @@ export default function Input({ onAddData }) {
     form.reset();
   }
   const [value, setValue] = useState();
-  function InsulinUnit(bloodsugar, carbohydrates, factor) {
+  function InsulinUnit(
+    bloodsugar,
+    carbohydrates,
+    morningfactor,
+    lunchfactor,
+    eveningfactor
+  ) {
     const targetValue = 100;
     const corretionValue = 60;
-
     const calculateUnit =
-      (bloodsugar - targetValue) / corretionValue + carbohydrates / factor;
-    setValue(calculateUnit);
+      (bloodsugar - targetValue) / corretionValue +
+      carbohydrates / (morningfactor || lunchfactor || eveningfactor);
+    setValue(calculate);
+    function calculate() {
+      return Number.parseFloat(calculateUnit).toFixed(1);
+    }
   }
 
   return (
@@ -75,16 +94,27 @@ export default function Input({ onAddData }) {
           Welcher Tageszeit <br /> Faktor
           <DataInput
             type="decimal"
-            name="factor"
-            placeholder="Tagezeit Faktor"
-            id="factor"
+            name="morningfactor"
+            placeholder="Faktor morgens"
+            id="morningfactor"
+          />
+          <DataInput
+            type="decimal"
+            name="lunchfactor"
+            placeholder="Faktor mittags"
+            id="lunchfactor"
+          />
+          <DataInput
+            type="decimal"
+            name="eveningfactor"
+            placeholder="Faktor abends"
+            id="eveningfactor"
           />
         </LabelFa>
-
         <Button type="submit">bestätigen</Button>
-        <p>
+        <InsulinUnits htmlFor="insulinunits">
           {value} Einheiten <br /> Insulin spritzen
-        </p>
+        </InsulinUnits>
       </EntryForm>
     </>
   );
@@ -95,7 +125,7 @@ const Label = styled.label`
   border-radius: 8px;
   display: grid;
   text-align: center;
-  height: 4rem;
+  height: min 4rem;
 `;
 const LabelBz = styled(Label)`
   color: #c92a2a;
@@ -120,11 +150,30 @@ const Button = styled.button`
   background-color: skyblue;
   color: darkblue;
   margin-top: 5px;
+  margin-bottom: 5px;
   border-radius: 15px;
   height: 20px;
 `;
 
+const InsulinUnits = styled.li`
+  color: #364fc7;
+  background-color: beige;
+  border-radius: 8px;
+  display: grid;
+  text-align: center;
+  height: 4rem;
+  position: inherit;
+`;
+
 const EntryForm = styled.form`
   display: grid;
+  justify-content: center;
+  display: grid;
+  gap: auto;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  align-content: start;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
   justify-content: center;
 `;
