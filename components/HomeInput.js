@@ -48,9 +48,10 @@ export default function Input({ onAddData }) {
     const corretionValue = 60;
     const calculateUnit =
       (bloodsugar - targetValue) / corretionValue +
-      carbohydrates / (morningfactor || lunchfactor || eveningfactor);
+      carbohydrates / (morningfactor || lunchfactor || eveningfactor) -
+      0.1;
     function calculate() {
-      return Number.parseFloat(calculateUnit).toFixed(1);
+      return Number(calculateUnit).toFixed(1);
     }
     setValue(calculate);
   }
@@ -62,7 +63,7 @@ export default function Input({ onAddData }) {
           Blutzuckerwert <br />
           mg/dl
           <DataInput
-            type="number"
+            type="decimal"
             name="bloodsugar"
             placeholder="letzter Blutzuckerwert"
             id="bloodsugar"
