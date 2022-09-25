@@ -68,6 +68,7 @@ export default function Input({ onAddData }) {
             placeholder="letzter Blutzuckerwert"
             id="bloodsugar"
             min="0"
+            maxLength={3}
             required
           />
         </LabelBz>
