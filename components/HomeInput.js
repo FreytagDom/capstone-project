@@ -32,6 +32,7 @@ export default function Input({ onAddData }) {
       calculateUnit: value,
     };
 
+    console.log(cardData);
     onAddData(cardData);
     form.reset();
   }
@@ -48,18 +49,11 @@ export default function Input({ onAddData }) {
     const calculateUnit =
       (bloodsugar - targetValue) / corretionValue +
       carbohydrates / (morningfactor || lunchfactor || eveningfactor);
-    setValue(calculate);
     function calculate() {
       return Number.parseFloat(calculateUnit).toFixed(1);
     }
+    setValue(calculate);
   }
-
-  const [num, setNum] = useState('');
-
-  const handleNumChange = (event) => {
-    const maxLength = 3;
-    setNum(event.target.value.slice(0, maxLength));
-  };
 
   return (
     <>
@@ -72,8 +66,7 @@ export default function Input({ onAddData }) {
             name="bloodsugar"
             placeholder="letzter Blutzuckerwert"
             id="bloodsugar"
-            value={num}
-            onChange={handleNumChange}
+            min="0"
             required
           />
         </LabelBz>
@@ -86,6 +79,7 @@ export default function Input({ onAddData }) {
             placeholder="wieviele Khd 65g"
             id="carbohydrates"
             maxLength={'3'}
+            min="0"
           />
         </LabelCa>
 
@@ -108,6 +102,7 @@ export default function Input({ onAddData }) {
             placeholder="Faktor morgens"
             id="morningfactor"
             maxLength={'3'}
+            min="0"
           />
           <DataInput
             type="decimal"
@@ -115,6 +110,7 @@ export default function Input({ onAddData }) {
             placeholder="Faktor mittags"
             id="lunchfactor"
             maxLength={'3'}
+            min="0"
           />
           <DataInput
             type="decimal"
@@ -122,11 +118,14 @@ export default function Input({ onAddData }) {
             placeholder="Faktor abends"
             id="eveningfactor"
             maxLength={'3'}
+            min="0"
           />
         </LabelFa>
+
         <Button type="submit">bestätigen</Button>
+
         <InsulinUnits htmlFor="insulinunits">
-          {value} Einheiten <br /> Insulin spritzen
+          {value} / Einheiten <br /> Insulin spritzen
         </InsulinUnits>
       </EntryForm>
     </>

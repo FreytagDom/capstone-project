@@ -14,7 +14,7 @@ export default function Home() {
       <CardGrid>
         {data.map((item) => {
           return (
-            <Saved key={item.id.calculateUnit}>
+            <Saved key={item.id}>
               <BloodSugar>
                 Blutzuckerwert: <br /> {item.bloodsugar} mg/dl
               </BloodSugar>
