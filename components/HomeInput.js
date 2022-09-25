@@ -32,7 +32,6 @@ export default function Input({ onAddData }) {
       calculateUnit: value,
     };
 
-    console.log(cardData);
     onAddData(cardData);
     form.reset();
   }

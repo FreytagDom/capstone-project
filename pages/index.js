@@ -7,7 +7,7 @@ export default function Home() {
   function addData(savedData) {
     setData([savedData, ...data]);
   }
-  console.log(data);
+
   return (
     <Wrapper>
       <Input onAddData={addData} />
