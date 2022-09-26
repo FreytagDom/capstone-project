@@ -15,11 +15,25 @@ export default function Home() {
         {data.map((item) => {
           return (
             <Saved key={item.id}>
-              <BloodSugar> Blutzuckerwert: {item.bloodsugar} mg/dl </BloodSugar>
+              <BloodSugar>
+                Blutzuckerwert: <br /> {item.bloodsugar} mg/dl
+              </BloodSugar>
               <br />
-              <Insulin> Basal Insulin: {item.basal} Einheiten </Insulin>
+              <Carbohydrates>
+                Kohlenhydrate: <br /> {item.carbohydrates} g (Gramm)
+              </Carbohydrates>
               <br />
-              <Insulin> Bolus Insulin: {item.bolus} Einheiten </Insulin>
+              <Insulin>
+                Verwendetes Insulin: <br /> {item.insulin}
+              </Insulin>
+              <br />
+              <Factor>
+                Insulin Faktor: <br /> {item.morningfactor} {item.lunchfactor}{' '}
+                {item.eveningfactor}
+              </Factor>
+              <InsulinUnits>
+                gepritzte Insulin <br /> Menge: {item.calculateUnit}
+              </InsulinUnits>
             </Saved>
           );
         })}
@@ -37,7 +51,7 @@ const Wrapper = styled.section`
 
 const CardGrid = styled.ul`
   display: grid;
-  gap: 20px;
+  gap: auto;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   align-content: start;
   margin: 0;
@@ -51,19 +65,28 @@ const Saved = styled.li`
   background-color: beige;
   border-radius: 8px;
   text-align: center;
-  height: 100px;
+  height: auto;
   align-items: center;
-  margin: 20px;
+  margin: 1rem;
+  padding: 0.5rem;
 `;
 
 const BloodSugar = styled.span`
   color: #c92a2a;
-  margin: 0;
-  padding: 0;
 `;
 
 const Insulin = styled.span`
   color: #5c940d;
-  margin: 0;
-  padding: 0;
+`;
+
+const Carbohydrates = styled.span`
+  color: #e67700;
+`;
+
+const Factor = styled.span`
+  color: #2b8a3e;
+`;
+
+const InsulinUnits = styled.span`
+  color: #364fc7;
 `;
