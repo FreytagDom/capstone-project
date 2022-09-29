@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { Fragment } from 'react';
 
@@ -26,7 +26,7 @@ export default function FactorEntry({ onAddFactor }) {
     };
 
     onAddFactor(cardFactor);
-    console.log(cardFactor);
+
     form.reset();
   }
   useEffect(() => {

@@ -1,5 +1,4 @@
 import useLocalStorage from '../hooks/useLocalStorage';
-
 import FactorEntry from '../components/SetInsulinFactor';
 
 export default function SetInsulinFactor() {

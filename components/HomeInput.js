@@ -31,7 +31,7 @@ export default function Input({ onAddData }) {
       eveningfactor: eveningfactor,
       calculateUnit: calculateUnits,
     };
-    console.log(cardData);
+
     onAddData(cardData);
     form.reset();
   }

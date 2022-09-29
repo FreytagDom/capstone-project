@@ -1,5 +1,4 @@
 import FactorEntry from '../pages/setInsulinFactor';
-import { useState } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 export default function SavedData() {

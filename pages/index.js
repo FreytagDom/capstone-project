@@ -1,16 +1,14 @@
 import Input from '../components/HomeInput';
 import styled from 'styled-components';
-//import { useState } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 export default function Home() {
   const [data, setData] = useLocalStorage('_cart', []);
-  // const [data, setData] = useState([]);
+
   function addData(savedData) {
     setData([savedData, ...data]);
   }
 
-  console.log(data);
   return (
     <Wrapper>
       <Input onAddData={addData} />

@@ -1,16 +1,15 @@
-import SavedData from '../components/SavedData';
 import useLocalStorage from '../hooks/useLocalStorage';
 import styled from 'styled-components';
+import { keyframes } from 'styled-components';
 
 export default function SavedFactor() {
   const [value, setValue] = useLocalStorage('_cart', []);
   function addFactor(savedData) {
     setValue([savedData, ...value]);
-    console.log(value);
-    console.log(savedData);
   }
   return (
     <Wrapper>
+      <SavedFactorTitel>Gespeicherter Faktor</SavedFactorTitel>
       <CardGrid onAddFactor={addFactor}>
         {value.map((items) => {
           return (
@@ -81,4 +80,21 @@ const EveningFactor = styled.span`
 
 const LunchFactor = styled.span`
   color: #2b8a3e;
+`;
+const hue = keyframes`
+ from {
+   -webkit-filter: hue-rotate(180deg);
+ }
+ to {
+   -webkit-filter: hue-rotate(-180deg);
+ }
+`;
+const SavedFactorTitel = styled.h2`
+  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: ${hue} 10s infinite linear;
+  color: purple;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: center;
 `;
