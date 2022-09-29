@@ -12,6 +12,7 @@ export default function Input({ onAddData }) {
     const morningfactor = form.morningfactor.value;
     const lunchfactor = form.lunchfactor.value;
     const eveningfactor = form.eveningfactor.value;
+    const calculateUnit = value;
     InsulinUnit(
       bloodsugar,
       carbohydrates,
