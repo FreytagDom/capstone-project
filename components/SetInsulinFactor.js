@@ -34,9 +34,9 @@ export default function FactorEntry({ onAddFactor }) {
   });
 
   const options = [
-    { value: 'basal', label: 'Basal' },
-    { value: 'bolus', label: 'Bolus' },
-    { value: 'fiasp', label: 'Fiasp' },
+    { value: 'Basal', label: 'Basal', name: 'Basal' },
+    { value: 'Bolus', label: 'Bolus', name: 'Bolus' },
+    { value: 'Fiasp', label: 'Fiasp', name: 'Fiasp' },
   ];
 
   return (
