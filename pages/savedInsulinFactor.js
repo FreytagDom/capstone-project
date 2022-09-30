@@ -15,19 +15,19 @@ export default function SavedFactor() {
           return (
             <Saved key={items.id}>
               <Insulin>
-                welches Insulin: <br /> {items.insulin}
+                welches Insulin: <br /> {items.setinsulin}
               </Insulin>
               <br />
               <MorningFactor>
-                Faktor morgens: <br /> {items.morningfactor}
+                Faktor morgens: <br /> {items.setmorningfactor}
               </MorningFactor>
               <br />
               <LunchFactor>
-                Faktor mittags: <br /> {items.lunchfactor}
+                Faktor mittags: <br /> {items.setlunchfactor}
               </LunchFactor>
               <br />
               <EveningFactor>
-                Fakror abends: <br /> {items.eveningfactor}
+                Fakror abends: <br /> {items.seteveningfactor}
               </EveningFactor>
             </Saved>
           );

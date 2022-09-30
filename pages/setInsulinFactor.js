@@ -2,7 +2,7 @@ import useLocalStorage from '../hooks/useLocalStorage';
 import FactorEntry from '../components/SetInsulinFactor';
 
 export default function SetInsulinFactor() {
-  const [factor, setFactor] = useLocalStorage('_cart', 'addFactor', []);
+  const [factor, setFactor] = useLocalStorage('_cart', []);
   function addFactor(cardFactor) {
     setFactor([cardFactor, ...factor]);
   }

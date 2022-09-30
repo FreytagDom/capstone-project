@@ -5,25 +5,24 @@ import useLocalStorage from '../hooks/useLocalStorage';
 import { Fragment } from 'react';
 
 export default function FactorEntry({ onAddFactor }) {
-  const [factor, setFactor] = useLocalStorage('_cart', 'addFactor', []);
+  const [factor, setFactor] = useLocalStorage('_cart', []);
   function addFactor(cardFactor) {
     setFactor([cardFactor, ...factor]);
   }
-  console.log(addFactor);
 
-  function handleSubmit(event) {
+  function handleSetFactor(event) {
     event.preventDefault();
     const form = event.target;
-    const insulin = form.insulinSelect.value;
-    const morningfactor = form.morningfactor.value;
-    const lunchfactor = form.lunchfactor.value;
-    const eveningfactor = form.eveningfactor.value;
+    const setinsulin = form.setinsulinSelect.value;
+    const setmorningfactor = form.setmorningfactor.value;
+    const setlunchfactor = form.setlunchfactor.value;
+    const seteveningfactor = form.seteveningfactor.value;
     const cardFactor = {
-      id: insulin,
-      insulin: insulin,
-      morningfactor: morningfactor,
-      lunchfactor: lunchfactor,
-      eveningfactor: eveningfactor,
+      id: setinsulin,
+      setinsulin: setinsulin,
+      setmorningfactor: setmorningfactor,
+      setlunchfactor: setlunchfactor,
+      seteveningfactor: seteveningfactor,
     };
 
     onAddFactor(cardFactor);
@@ -44,13 +43,13 @@ export default function FactorEntry({ onAddFactor }) {
     <>
       <Wrapper>
         <InsulinFactor>Faktor anlegen</InsulinFactor>
-        <EntryForm onSubmit={handleSubmit}>
+        <EntryForm onSubmit={handleSetFactor}>
           <Fragment>
             <LabelIu> Welches Insulin </LabelIu>
 
             <InsulinSelect
-              htmlFor="insulin"
-              name="insulinSelect"
+              htmlFor="setinsulin"
+              name="setinsulinSelect"
               id={InsulinOption.id}
             >
               {options.map((option) => (
@@ -64,31 +63,31 @@ export default function FactorEntry({ onAddFactor }) {
             Welcher Tageszeit <br /> Faktor
             <DataInput
               type="decimal"
-              name="morningfactor"
+              name="setmorningfactor"
               placeholder="Faktor morgens"
-              id="morningfactor"
+              id="setmorningfactor"
               maxLength={'3'}
               min="0"
             />
             <DataInput
               type="decimal"
-              name="lunchfactor"
+              name="setlunchfactor"
               placeholder="Faktor mittags"
-              id="lunchfactor"
+              id="setlunchfactor"
               maxLength={'3'}
               min="0"
             />
             <DataInput
               type="decimal"
-              name="eveningfactor"
+              name="seteveningfactor"
               placeholder="Faktor abends"
-              id="eveningfactor"
+              id="seteveningfactor"
               maxLength={'3'}
               min="0"
             />
           </LabelFa>
 
-          <Button type="submit" onSubmit={handleSubmit}>
+          <Button type="submit" onSubmit={handleSetFactor}>
             bestätigen
           </Button>
         </EntryForm>
