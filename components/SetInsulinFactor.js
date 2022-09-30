@@ -51,10 +51,9 @@ export default function FactorEntry({ onAddFactor }) {
               htmlFor="insulin"
               name="insulinSelect"
               id={InsulinOption.id}
-              key="insulin"
             >
               {options.map((option) => (
-                <InsulinOption value={option.value}>
+                <InsulinOption key="insulin" value={option.value}>
                   {option.label}
                 </InsulinOption>
               ))}
