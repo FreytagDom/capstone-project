@@ -5,7 +5,6 @@ import { useState } from 'react';
 export default function Input({ onAddData }) {
   function handleSubmit(event) {
     event.preventDefault();
-
     const form = event.target;
     const bloodsugar = form.bloodsugar.value;
     const carbohydrates = form.carbohydrates.value;
@@ -13,6 +12,7 @@ export default function Input({ onAddData }) {
     const morningfactor = form.morningfactor.value;
     const lunchfactor = form.lunchfactor.value;
     const eveningfactor = form.eveningfactor.value;
+    const calculateUnits = value;
     InsulinUnit(
       bloodsugar,
       carbohydrates,
@@ -29,13 +29,14 @@ export default function Input({ onAddData }) {
       morningfactor: morningfactor,
       lunchfactor: lunchfactor,
       eveningfactor: eveningfactor,
-      calculateUnit: value,
+      calculateUnit: calculateUnits,
     };
 
     onAddData(cardData);
     form.reset();
   }
   const [value, setValue] = useState();
+
   function InsulinUnit(
     bloodsugar,
     carbohydrates,
@@ -45,16 +46,15 @@ export default function Input({ onAddData }) {
   ) {
     const targetValue = 100;
     const corretionValue = 60;
-    const calculateUnit =
+
+    const calculateUnit = (
       (bloodsugar - targetValue) / corretionValue +
       carbohydrates / (morningfactor || lunchfactor || eveningfactor) -
-      0.1;
-    function calculate() {
-      return Number(calculateUnit).toFixed(1);
-    }
-    setValue(calculate);
-  }
+      0.1
+    ).toFixed(1);
 
+    setValue(calculateUnit);
+  }
   return (
     <>
       <EntryForm onSubmit={handleSubmit}>
@@ -125,7 +125,12 @@ export default function Input({ onAddData }) {
 
         <Button type="submit">bestätigen</Button>
 
-        <InsulinUnits htmlFor="insulinunits">
+        <InsulinUnits
+          htmlFor="insulinunits"
+          id="calculateUnits"
+          key="calculateUnits"
+          name="calculateUnits"
+        >
           {value} / Einheiten <br /> Insulin spritzen
         </InsulinUnits>
       </EntryForm>

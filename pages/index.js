@@ -1,9 +1,10 @@
 import Input from '../components/HomeInput';
 import styled from 'styled-components';
-import { useState } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export default function Home() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useLocalStorage('_cart', []);
+
   function addData(savedData) {
     setData([savedData, ...data]);
   }
@@ -28,7 +29,8 @@ export default function Home() {
               </Insulin>
               <br />
               <Factor>
-                Insulin Faktor: <br /> {item.morningfactor} {item.lunchfactor}{' '}
+                Insulin Faktor: <br /> {item.morningfactor}
+                {item.lunchfactor}
                 {item.eveningfactor}
               </Factor>
               <InsulinUnits>
