@@ -6,18 +6,12 @@ export const Navbar = () => {
   return (
     <NavbarHead>
       <Navigation>
-        <Link href="/">
-          <a>Start</a>
-        </Link>
-      </Navigation>
-      <Navigation>
-        <Link href="/setInsulinFactor">
-          <a>Faktor</a>
-        </Link>
-      </Navigation>
-      <Navigation>
-        <Link href="/savedInsulinFactor">
-          <a>Gespeichert</a>
+        <Link>
+          <Tags href="/">Start</Tags>
+
+          <Tags href="/savedInsulinFactor">Gespeichert</Tags>
+
+          <Tags href="/setInsulinFactor">Faktor</Tags>
         </Link>
       </Navigation>
     </NavbarHead>
@@ -41,9 +35,11 @@ const NavbarHead = styled.nav`
   color: purple;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-align: center;
-  display: grid;
+  display: flex;
   position: fixed;
-
+  bottom: 0px;
+  width: 100%;
+  z-index: 1;
   justify-content: space-evenly;
 `;
 
@@ -54,4 +50,11 @@ const Navigation = styled.nav`
   justify-content: space-evenly;
   padding-top: 0.5rem;
   padding-left: 0.5rem;
+`;
+
+const Tags = styled.a`
+  text-decoration: none;
+  margin: 0px 20px;
+  font-size: 1em;
+  justify-items: stretch;
 `;

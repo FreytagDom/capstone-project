@@ -29,7 +29,8 @@ export default function Home() {
               </Insulin>
               <br />
               <Factor>
-                Insulin Faktor: <br /> {item.morningfactor} {item.lunchfactor}
+                Insulin Faktor: <br /> {item.morningfactor}
+                {item.lunchfactor}
                 {item.eveningfactor}
               </Factor>
               <InsulinUnits>
