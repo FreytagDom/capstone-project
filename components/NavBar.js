@@ -6,12 +6,16 @@ export const Navbar = () => {
   return (
     <NavbarHead>
       <Navigation>
-        <Link>
-          <Tags href="/">Start</Tags>
+        <Link href="/" passHref>
+          <Tags>Start</Tags>
+        </Link>
 
-          <Tags href="/savedInsulinFactor">Gespeichert</Tags>
+        <Link href="/savedInsulinFactor" passHref>
+          <Tags>Gespeichert</Tags>
+        </Link>
 
-          <Tags href="/setInsulinFactor">Faktor</Tags>
+        <Link href="/setInsulinFactor" passHref>
+          <Tags>Faktor</Tags>
         </Link>
       </Navigation>
     </NavbarHead>
@@ -27,7 +31,7 @@ const hue = keyframes`
  }
 `;
 
-const NavbarHead = styled.nav`
+const NavbarHead = styled.section`
   background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -50,6 +54,7 @@ const Navigation = styled.nav`
   justify-content: space-evenly;
   padding-top: 0.5rem;
   padding-left: 0.5rem;
+  background-color: blue;
 `;
 
 const Tags = styled.a`
