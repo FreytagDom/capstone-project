@@ -5,7 +5,7 @@ import copyright2 from '../public/copyright2.png';
 export default function Footer() {
   return (
     <FooterLine>
-      <Image src={copyright2} alt="" /> <br />
+      <Image src={copyright2} alt="" />
       2022 by FreyDom
     </FooterLine>
   );
