@@ -14,4 +14,9 @@ export default function Footer() {
 const FooterLine = styled.footer`
   max-height: 1rem;
   color: #5f3dc4;
+  display: flex;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  z-index: 1;
 `;
