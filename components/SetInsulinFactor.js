@@ -34,9 +34,9 @@ export default function FactorEntry({ onAddFactor }) {
   });
 
   const options = [
-    { value: 'Basal', label: 'Basal', name: 'Basal' },
-    { value: 'Bolus', label: 'Bolus', name: 'Bolus' },
-    { value: 'Fiasp', label: 'Fiasp', name: 'Fiasp' },
+    { value: 'Basal', label: 'Basal' },
+    { value: 'Bolus', label: 'Bolus' },
+    { value: 'Fiasp', label: 'Fiasp' },
   ];
 
   return (
@@ -51,6 +51,7 @@ export default function FactorEntry({ onAddFactor }) {
               htmlFor="insulin"
               name="insulinSelect"
               id={InsulinOption.id}
+              key="insulin"
             >
               {options.map((option) => (
                 <InsulinOption value={option.value}>
