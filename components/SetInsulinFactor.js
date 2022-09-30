@@ -9,6 +9,7 @@ export default function FactorEntry({ onAddFactor }) {
   function addFactor(cardFactor) {
     setFactor([cardFactor, ...factor]);
   }
+  console.log(addFactor);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -53,7 +54,7 @@ export default function FactorEntry({ onAddFactor }) {
               id={InsulinOption.id}
             >
               {options.map((option) => (
-                <InsulinOption key="insulin" value={option.value}>
+                <InsulinOption key={option.value} value={option.value}>
                   {option.label}
                 </InsulinOption>
               ))}

@@ -10,7 +10,7 @@ export default function SavedFactor() {
   return (
     <Wrapper>
       <SavedFactorTitel>Gespeicherter Faktor</SavedFactorTitel>
-      <CardGrid onAddFactor={addFactor}>
+      <CardGrid>
         {value.map((items) => {
           return (
             <Saved key={items.id}>

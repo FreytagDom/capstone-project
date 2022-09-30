@@ -54,7 +54,6 @@ const Navigation = styled.nav`
   justify-content: space-evenly;
   padding-top: 0.5rem;
   padding-left: 0.5rem;
-  background-color: blue;
 `;
 
 const Tags = styled.a`

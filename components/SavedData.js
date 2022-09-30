@@ -12,7 +12,7 @@ export default function SavedData() {
 
       {value.map((items) => {
         return (
-          <div key={items.sid}>
+          <div key={items.id}>
             <ul> {items.insulin} </ul>
             <li>{items.morningfactor} morgens</li>
             <li>{items.lunchfactor} mitttags</li>
