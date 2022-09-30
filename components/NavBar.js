@@ -58,7 +58,6 @@ const Navigation = styled.nav`
 
 const Tags = styled.a`
   text-decoration: none;
-  margin: 0px 20px;
+  margin: 15px 20px;
   font-size: 1em;
-  justify-items: stretch;
 `;
