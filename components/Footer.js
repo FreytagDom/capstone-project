@@ -1,11 +1,11 @@
+import Image from 'next/image';
 import styled from 'styled-components';
-// import Image from 'next/image';
-// import copyright2 from '../public/copyright2.png';
+import copyright2 from '../public/copyright2.png';
 
 export default function Footer() {
   return (
     <FooterLine>
-      Created
+      <Image src={copyright2} alt="" />
       <br />
       by FreyDom 2022
     </FooterLine>
