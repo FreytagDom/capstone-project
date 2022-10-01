@@ -6,7 +6,6 @@ export default function Footer() {
   return (
     <FooterLine>
       <Image src={copyright2} alt="" />
-      <br />
       2022 by FreyDom
     </FooterLine>
   );
