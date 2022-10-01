@@ -5,8 +5,10 @@ import copyright2 from '../public/copyright2.png';
 export default function Footer() {
   return (
     <FooterLine>
-      <Image src={copyright2} alt="" /> <br />
-      2022 by FreyDom
+      {/* <Image src={copyright2} alt="" />  */}
+      Created
+      <br />
+      by FreyDom 2022
     </FooterLine>
   );
 }
