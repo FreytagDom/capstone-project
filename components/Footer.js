@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import styled from 'styled-components';
-import copyright2 from '../public/copyright2.png';
+// import Image from 'next/image';
+// import copyright2 from '../public/copyright2.png';
 
 export default function Footer() {
   return (
