@@ -5,7 +5,6 @@ import styled from 'styled-components';
 export default function Footer() {
   return (
     <FooterLine>
-      {/* <Image src={copyright2} alt="" />  */}
       Created
       <br />
       by FreyDom 2022
