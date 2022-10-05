@@ -1,33 +1,36 @@
-import useLocalStorage from '../hooks/useLocalStorage';
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
 
-export default function SavedFactor() {
-  const [value, setValue] = useLocalStorage('_cart', []);
-  function addFactor(savedData) {
-    setValue([savedData, ...value]);
-  }
+import { getAllDayFactors } from '../services/savedDayFactorService';
+
+export async function getServerSideProps() {
+  const factors = await getAllDayFactors();
+
+  return {
+    props: {
+      factors: factors,
+    },
+  };
+}
+
+export default function SavedFactor({ factors }) {
   return (
     <Wrapper>
       <SavedFactorTitel>Gespeicherter Faktor</SavedFactorTitel>
       <CardGrid>
-        {value.map((items) => {
+        {factors.map((items) => {
           return (
             <Saved key={items.id}>
-              <Insulin>
-                welches Insulin: <br /> {items.setinsulin}
-              </Insulin>
-              <br />
               <MorningFactor>
-                Faktor morgens: <br /> {items.setmorningfactor}
+                Faktor morgens: <br /> {items.morningfactor}
               </MorningFactor>
               <br />
               <LunchFactor>
-                Faktor mittags: <br /> {items.setlunchfactor}
+                Faktor mittags: <br /> {items.lunchfactor}
               </LunchFactor>
               <br />
               <EveningFactor>
-                Fakror abends: <br /> {items.seteveningfactor}
+                Fakror abends: <br /> {items.eveningfactor}
               </EveningFactor>
             </Saved>
           );
@@ -68,10 +71,6 @@ const Saved = styled.li`
 
 const MorningFactor = styled.span`
   color: #c92a2a;
-`;
-
-const Insulin = styled.span`
-  color: #5c940d;
 `;
 
 const EveningFactor = styled.span`

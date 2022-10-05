@@ -34,7 +34,7 @@ export default function Home() {
                 {item.eveningfactor}
               </Factor>
               <InsulinUnits>
-                gepritzte Insulin <br /> Menge: {item.calculateUnit}
+                gespritzte Insulin <br /> Menge: {item.calculateUnit}
               </InsulinUnits>
             </Saved>
           );

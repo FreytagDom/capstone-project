@@ -145,12 +145,15 @@ const Label = styled.label`
   text-align: center;
   height: min 4rem;
 `;
+
 const LabelBz = styled(Label)`
   color: #c92a2a;
 `;
+
 const LabelIu = styled(Label)`
   color: #5c940d;
 `;
+
 const LabelCa = styled(Label)`
   color: #e67700;
 `;
