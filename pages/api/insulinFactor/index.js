@@ -13,7 +13,7 @@ export default async function handler(request, response) {
 
       const data = request.body;
 
-      await DayTimeFactor.create(data);
+      await DayTimeFactor.updateMany(data);
 
       return response
         .status(201)

@@ -19,7 +19,6 @@ export default function UsedData({ savedInsulinData }) {
       headers: {
         'Content-Type': 'application/json',
       },
-
       body: JSON.stringify(updatedUsedData),
     });
 

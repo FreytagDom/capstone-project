@@ -11,7 +11,6 @@ export async function getAllDayFactors() {
       return { id, morningfactor, lunchfactor, eveningfactor };
     }
   );
-
   return factorArray;
 }
 

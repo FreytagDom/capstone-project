@@ -8,7 +8,6 @@ const correctionSchema = new Schema({
   eveningcorretionfactor: { type: Number, required: true },
 });
 
-// CRUD: CREATE / READ / UPDATE / DELETE
 const CorrectionFactor =
   mongoose.models.CorrectionFactor ||
   mongoose.model('CorrectionFactor', correctionSchema);

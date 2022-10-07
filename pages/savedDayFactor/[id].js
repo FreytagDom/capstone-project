@@ -1,5 +1,3 @@
-import Head from 'next/head';
-
 import { getFactorById } from '../../../services/dayTimeFactorsService';
 import { getAllDayFactors } from '../../../services/savedDayFactorService';
 

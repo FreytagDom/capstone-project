@@ -1,6 +1,6 @@
 import FactorEntry from '../../components/SetInsulinFactor';
-
 import { getFactorById } from '../../services/dayTimeFactorsService';
+
 export async function getServerSideProps(context) {
   const { id } = context.params;
 

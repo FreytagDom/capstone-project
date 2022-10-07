@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { Fragment } from 'react';
 
-export default function Input({ factors, onHandleSetData }) {
+export default function Input({ factors }) {
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -55,8 +55,6 @@ export default function Input({ factors, onHandleSetData }) {
     ).toFixed(1);
 
     setValue(calculateUnit);
-
-    // onHandleSetData(handleInsulinUnit);
   }
 
   const options = [
