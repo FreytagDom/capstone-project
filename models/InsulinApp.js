@@ -8,10 +8,11 @@ const cardSchema = new Schema({
   carbohydrates: { type: Number, required: true },
   insulin: { type: String, required: true },
   factor: { type: Number, required: true },
-  calculateUnits: { type: Number, required: true }; 
+  calculateUnits: { type: Number, required: true },
 });
 
 const SavedInsulinData =
-  mongoose.models.SavedInsulinData || mongoose.model('SavedInsulinData', cardSchema);
+  mongoose.models.SavedInsulinData ||
+  mongoose.model('SavedInsulinData', cardSchema);
 
 export default SavedInsulinData;

@@ -41,7 +41,7 @@ const NavbarHead = styled.section`
   text-align: center;
   display: flex;
   position: fixed;
-  bottom: 0px;
+  bottom: 10px;
   width: 100%;
   z-index: 1;
   justify-content: space-evenly;

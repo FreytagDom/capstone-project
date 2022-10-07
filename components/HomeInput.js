@@ -1,24 +1,25 @@
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
+import { Fragment } from 'react';
 
-export default function Input({ onAddData }) {
+export default function Input({ factors, onHandleSetData }) {
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
     const bloodsugar = form.bloodsugar.value;
     const carbohydrates = form.carbohydrates.value;
-    const insulin = form.insulin.value;
-    const morningfactor = form.morningfactor.value;
-    const lunchfactor = form.lunchfactor.value;
-    const eveningfactor = form.eveningfactor.value;
+    const insulin = form.setinsulinSelect.value;
+    const setmorningfactor = form.dayfactorSelect.value;
+    const setlunchfactor = form.dayfactorSelect.value;
+    const seteveningfactor = form.dayfactorSelect.value;
     const calculateUnits = value;
-    InsulinUnit(
+    handleInsulinUnit(
       bloodsugar,
       carbohydrates,
-      morningfactor,
-      lunchfactor,
-      eveningfactor
+      setmorningfactor,
+      setlunchfactor,
+      seteveningfactor
     );
 
     const cardData = {
@@ -26,18 +27,18 @@ export default function Input({ onAddData }) {
       bloodsugar: bloodsugar,
       carbohydrates: carbohydrates,
       insulin: insulin,
-      morningfactor: morningfactor,
-      lunchfactor: lunchfactor,
-      eveningfactor: eveningfactor,
+      morningfactor: setmorningfactor,
+      lunchfactor: setlunchfactor,
+      eveningfactor: seteveningfactor,
       calculateUnit: calculateUnits,
     };
-
-    onAddData(cardData);
     form.reset();
+    console.log(cardData);
   }
+
   const [value, setValue] = useState();
 
-  function InsulinUnit(
+  function handleInsulinUnit(
     bloodsugar,
     carbohydrates,
     morningfactor,
@@ -54,7 +55,17 @@ export default function Input({ onAddData }) {
     ).toFixed(1);
 
     setValue(calculateUnit);
+
+    onHandleSetData(handleInsulinUnit);
   }
+
+  const options = [
+    { value: 'Basal', label: 'Basal' },
+    { value: 'Bolus', label: 'Bolus' },
+    { value: 'Fiasp', label: 'Fiasp' },
+    { value: 'Humas', label: 'Humas' },
+  ];
+
   return (
     <>
       <EntryForm onSubmit={handleSubmit}>
@@ -67,6 +78,7 @@ export default function Input({ onAddData }) {
             placeholder="letzter Blutzuckerwert"
             id="bloodsugar"
             min="0"
+            key="bloodsugar"
             maxLength={3}
             required
           />
@@ -80,51 +92,60 @@ export default function Input({ onAddData }) {
             placeholder="wieviele Khd 65g"
             id="carbohydrates"
             maxLength={'3'}
+            key="carbohydrates"
             min="0"
           />
         </LabelCa>
 
-        <LabelIu htmlFor="insulin">
-          Welches Insulin <br /> wird genommen
-          <DataInput
-            type="text"
-            name="insulin"
-            placeholder="Basal / Bolus"
-            id="insulin"
-            maxLength={8}
-          />
-        </LabelIu>
-
+        <Fragment>
+          <LabelIu htmlFor="insulin">
+            Welches Insulin <br /> wird genommen
+            <InsulinSelect
+              htmlFor="setinsulin"
+              name="setinsulinSelect"
+              id={InsulinOption.id}
+            >
+              {options.map((option) => (
+                <InsulinOption
+                  name="insulinOption"
+                  key={option.label}
+                  value={option.value}
+                >
+                  {option.label}
+                </InsulinOption>
+              ))}
+            </InsulinSelect>
+          </LabelIu>
+        </Fragment>
         <LabelFa htmlFor="factor">
           Welcher Tageszeit <br /> Faktor
-          <DataInput
-            type="decimal"
-            name="morningfactor"
-            placeholder="Faktor morgens"
-            id="morningfactor"
-            maxLength={'3'}
-            min="0"
-          />
-          <DataInput
-            type="decimal"
-            name="lunchfactor"
-            placeholder="Faktor mittags"
-            id="lunchfactor"
-            maxLength={'3'}
-            min="0"
-          />
-          <DataInput
-            type="decimal"
-            name="eveningfactor"
-            placeholder="Faktor abends"
-            id="eveningfactor"
-            maxLength={'3'}
-            min="0"
-          />
+          {factors.map((factor) => (
+            <Fragment>
+              <DayFactorSelect
+                htmlFor="setdayfactor"
+                name="dayfactorSelect"
+                id={DayFactorOption.name}
+                value={DayFactorOption.value}
+              >
+                <DayFactorOption
+                  value={factor.morningfactor}
+                  key="morningfactor"
+                  name="morningfactor"
+                  id="morningfactor"
+                >
+                  {factor.morningfactor}
+                </DayFactorOption>
+                <DayFactorOption value={factor.lunchfactor}>
+                  {factor.lunchfactor}
+                </DayFactorOption>
+                <DayFactorOption value={factor.eveningfactor}>
+                  {factor.eveningfactor}
+                </DayFactorOption>
+              </DayFactorSelect>
+            </Fragment>
+          ))}
         </LabelFa>
-
         <Button type="submit">bestätigen</Button>
-
         <InsulinUnits
           htmlFor="insulinunits"
           id="calculateUnits"
@@ -143,7 +164,10 @@ const Label = styled.label`
   border-radius: 8px;
   display: grid;
   text-align: center;
-  height: min 4rem;
+  height: 14vh;
+  padding-top: 2vh;
+  margin-top: 0.5vh;
+  position: sticky;
 `;
 
 const LabelBz = styled(Label)`
@@ -176,12 +200,45 @@ const Button = styled.button`
   height: 20px;
 `;
 
+const InsulinSelect = styled.select`
+  background-color: beige;
+  border-radius: 8px;
+  display: grid;
+  text-align: center;
+  height: min 4rem;
+  color: #364fc9;
+`;
+
+const InsulinOption = styled.option`
+  border-radius: 8px;
+  text-align: center;
+  color: #5c940d;
+  background: transparent;
+`;
+
+const DayFactorSelect = styled.select`
+  background-color: beige;
+  border-radius: 8px;
+  display: grid;
+  text-align: center;
+  height: min 4rem;
+  color: #364fc9;
+`;
+
+const DayFactorOption = styled.option`
+  border-radius: 8px;
+  text-align: center;
+  color: #5c940d;
+  background: transparent;
+`;
+
 const InsulinUnits = styled.li`
   color: #364fc7;
   background-color: beige;
   border-radius: 8px;
   display: grid;
   text-align: center;
+  padding-top: 2vh;
   height: 4rem;
   position: inherit;
 `;
@@ -195,6 +252,5 @@ const EntryForm = styled.form`
   align-content: start;
   margin: 0;
   padding: 0;
-  overflow-y: auto;
   justify-content: center;
 `;

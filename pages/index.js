@@ -1,18 +1,31 @@
 import Input from '../components/HomeInput';
 import styled from 'styled-components';
-import useLocalStorage from '../hooks/useLocalStorage';
+import { getAllDayFactors } from '../services/savedDayFactorService';
+import { getAllCategories } from '../services/insulinAppData';
 
-export default function Home() {
-  const [data, setData] = useLocalStorage('_cart', []);
+export async function getServerSideProps() {
+  const factors = await getAllDayFactors();
+  const cardData = await getAllCategories();
 
-  function addData(savedData) {
-    setData([savedData, ...data]);
-  }
+  return {
+    props: {
+      factors: factors,
+      cardData: cardData,
+    },
+  };
+}
+
+export default function Home({ factors, cardData }) {
+  // const [data, setData] = useLocalStorage('_cart', []);
+
+  // function addData(savedData) {
+  //   setData([savedData, ...data]);
+  // }
 
   return (
     <Wrapper>
-      <Input onAddData={addData} />
-      <CardGrid>
+      <Input factors={factors} cardData={cardData} />
+      {/* <CardGrid>
         {data.map((item) => {
           return (
             <Saved key={item.id}>
@@ -39,7 +52,7 @@ export default function Home() {
             </Saved>
           );
         })}
-      </CardGrid>
+      </CardGrid> */}
     </Wrapper>
   );
 }
