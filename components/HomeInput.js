@@ -115,15 +115,17 @@ export default function Input({ factors }) {
             </InsulinSelect>
           </LabelIu>
         </Fragment>
-        <LabelFa htmlFor="factor">
-          Welcher Tageszeit <br /> Faktor
-          {factors.map((factor) => (
-            <Fragment>
+        <Fragment>
+          <LabelFa htmlFor="factor">
+            Welcher Tageszeit <br /> Faktor
+            {factors.map((factor, index) => (
               <DayFactorSelect
                 htmlFor="setdayfactor"
                 name="dayfactorSelect"
                 id={DayFactorOption.name}
                 value={DayFactorOption.value}
+                key={index}
+                options
               >
                 <DayFactorOption value={factor.morningfactor}>
                   morgens / {factor.morningfactor}
@@ -135,9 +137,9 @@ export default function Input({ factors }) {
                   abends / {factor.eveningfactor}
                 </DayFactorOption>
               </DayFactorSelect>
-            </Fragment>
-          ))}
-        </LabelFa>
+            ))}
+          </LabelFa>
+        </Fragment>
         <Button type="submit">bestätigen</Button>
         <InsulinUnits
           htmlFor="insulinunits"
@@ -239,7 +241,6 @@ const InsulinUnits = styled.li`
 const EntryForm = styled.form`
   display: grid;
   justify-content: center;
-  display: grid;
   gap: auto;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   align-content: start;
