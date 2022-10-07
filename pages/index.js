@@ -16,43 +16,9 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ factors, cardData }) {
-  // const [data, setData] = useLocalStorage('_cart', []);
-
-  // function addData(savedData) {
-  //   setData([savedData, ...data]);
-  // }
-
   return (
     <Wrapper>
       <Input factors={factors} cardData={cardData} />
-      {/* <CardGrid>
-        {data.map((item) => {
-          return (
-            <Saved key={item.id}>
-              <BloodSugar>
-                Blutzuckerwert: <br /> {item.bloodsugar} mg/dl
-              </BloodSugar>
-              <br />
-              <Carbohydrates>
-                Kohlenhydrate: <br /> {item.carbohydrates} g (Gramm)
-              </Carbohydrates>
-              <br />
-              <Insulin>
-                Verwendetes Insulin: <br /> {item.insulin}
-              </Insulin>
-              <br />
-              <Factor>
-                Insulin Faktor: <br /> {item.morningfactor}
-                {item.lunchfactor}
-                {item.eveningfactor}
-              </Factor>
-              <InsulinUnits>
-                gespritzte Insulin <br /> Menge: {item.calculateUnit}
-              </InsulinUnits>
-            </Saved>
-          );
-        })}
-      </CardGrid> */}
     </Wrapper>
   );
 }

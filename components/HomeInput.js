@@ -56,7 +56,7 @@ export default function Input({ factors, onHandleSetData }) {
 
     setValue(calculateUnit);
 
-    onHandleSetData(handleInsulinUnit);
+    // onHandleSetData(handleInsulinUnit);
   }
 
   const options = [
@@ -127,19 +127,14 @@ export default function Input({ factors, onHandleSetData }) {
                 id={DayFactorOption.name}
                 value={DayFactorOption.value}
               >
-                <DayFactorOption
-                  value={factor.morningfactor}
-                  key="morningfactor"
-                  name="morningfactor"
-                  id="morningfactor"
-                >
-                  {factor.morningfactor}
+                <DayFactorOption value={factor.morningfactor}>
+                  morgens / {factor.morningfactor}
                 </DayFactorOption>
                 <DayFactorOption value={factor.lunchfactor}>
-                  {factor.lunchfactor}
+                  mittags / {factor.lunchfactor}
                 </DayFactorOption>
                 <DayFactorOption value={factor.eveningfactor}>
-                  {factor.eveningfactor}
+                  abends / {factor.eveningfactor}
                 </DayFactorOption>
               </DayFactorSelect>
             </Fragment>
