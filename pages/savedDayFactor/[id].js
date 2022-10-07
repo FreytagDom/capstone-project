@@ -1,10 +1,10 @@
-import { getAllFactors } from '../../services/dayTimeFactorsService';
+import { getFactorById } from '../../services/dayTimeFactorsService';
 import { getAllDayFactors } from '../../services/savedDayFactorService';
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
-  const daytimeFactors = getAllFactors();
-  const daytimeFactor = await getAllDayFactors(id);
+  const daytimeFactors = getAllDayFactors();
+  const daytimeFactor = await getFactorById(id);
 
   return {
     props: {
