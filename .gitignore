@@ -8,6 +8,8 @@
 # testing
 /coverage
 
+SavedData.js
+
 # next.js
 /.next/
 /out/

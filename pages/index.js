@@ -1,45 +1,24 @@
 import Input from '../components/HomeInput';
 import styled from 'styled-components';
-import useLocalStorage from '../hooks/useLocalStorage';
+import { getAllDayFactors } from '../services/savedDayFactorService';
+import { getAllCategories } from '../services/insulinAppData';
 
-export default function Home() {
-  const [data, setData] = useLocalStorage('_cart', []);
+export async function getServerSideProps() {
+  const factors = await getAllDayFactors();
+  const cardData = await getAllCategories();
 
-  function addData(savedData) {
-    setData([savedData, ...data]);
-  }
+  return {
+    props: {
+      factors: factors,
+      cardData: cardData,
+    },
+  };
+}
 
+export default function Home({ factors, cardData }) {
   return (
     <Wrapper>
-      <Input onAddData={addData} />
-      <CardGrid>
-        {data.map((item) => {
-          return (
-            <Saved key={item.id}>
-              <BloodSugar>
-                Blutzuckerwert: <br /> {item.bloodsugar} mg/dl
-              </BloodSugar>
-              <br />
-              <Carbohydrates>
-                Kohlenhydrate: <br /> {item.carbohydrates} g (Gramm)
-              </Carbohydrates>
-              <br />
-              <Insulin>
-                Verwendetes Insulin: <br /> {item.insulin}
-              </Insulin>
-              <br />
-              <Factor>
-                Insulin Faktor: <br /> {item.morningfactor}
-                {item.lunchfactor}
-                {item.eveningfactor}
-              </Factor>
-              <InsulinUnits>
-                gepritzte Insulin <br /> Menge: {item.calculateUnit}
-              </InsulinUnits>
-            </Saved>
-          );
-        })}
-      </CardGrid>
+      <Input factors={factors} cardData={cardData} />
     </Wrapper>
   );
 }
