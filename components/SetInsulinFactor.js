@@ -26,7 +26,11 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
     <>
       <Wrapper>
         <InsulinFactor>Faktor anlegen</InsulinFactor>
-        <EntryForm onSubmit={handleSetFactor} id="insulinfactor">
+        <EntryForm
+          onSubmit={handleSetFactor}
+          id="insulinfactor"
+          onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
+        >
           <LabelFa htmlFor="factor" id="insulinfactor">
             Welcher Tageszeit <br /> Faktor
             <DataInput

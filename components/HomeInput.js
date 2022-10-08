@@ -66,7 +66,10 @@ export default function Input({ factors }) {
 
   return (
     <>
-      <EntryForm onSubmit={handleSubmit}>
+      <EntryForm
+        onSubmit={handleSubmit}
+        onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
+      >
         <LabelBz htmlFor="bloodsugar">
           Blutzuckerwert <br />
           mg/dl
