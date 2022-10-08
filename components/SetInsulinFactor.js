@@ -14,12 +14,12 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
   );
 
   function handleSetFactor(event) {
-    event.preventDefault();
-
     onHandleSetFactor(morningfactor, lunchfactor, eveningfactor);
+    event.preventDefault();
     setMorningfactor('');
     setLunchfactor('');
     setEveningfactor('');
+    event.target.reset();
   }
 
   return (
