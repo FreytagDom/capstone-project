@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { Fragment } from 'react';
+import Image from 'next/image';
+import leereSpritze from '../public/leereSpritze.png';
+import volleSpritze from '../public/volleSpritze.png';
 
 export default function Input({ factors }) {
   function handleSubmit(event) {
@@ -106,6 +109,9 @@ export default function Input({ factors }) {
               name="setinsulinSelect"
               id={InsulinOption.id}
             >
+              <InsulinOption placeholder="Insulin wählen" disabled>
+                Insulin wählen
+              </InsulinOption>
               {options.map((option) => (
                 <InsulinOption
                   name="insulinOption"
@@ -130,6 +136,7 @@ export default function Input({ factors }) {
                 key={index}
                 options
               >
+                <DayFactorOption disabled>Faktor wählen</DayFactorOption>
                 <DayFactorOption value={factor.morningfactor}>
                   morgens / {factor.morningfactor}
                 </DayFactorOption>
@@ -151,6 +158,12 @@ export default function Input({ factors }) {
           name="calculateUnits"
         >
           {value} / Einheiten <br /> Insulin spritzen
+          <FullInject>
+            <Image src={volleSpritze} alt="" />
+          </FullInject>
+          <EmptyInject>
+            <Image src={leereSpritze} alt="" />
+          </EmptyInject>
         </InsulinUnits>
       </EntryForm>
     </>
@@ -196,6 +209,7 @@ const Button = styled.button`
   margin-bottom: 5px;
   border-radius: 15px;
   height: 20px;
+  z-index: 1;
 `;
 
 const InsulinSelect = styled.select`
@@ -239,6 +253,7 @@ const InsulinUnits = styled.li`
   padding-top: 2vh;
   height: 4rem;
   position: inherit;
+  z-index: 1;
 `;
 
 const EntryForm = styled.form`
@@ -250,4 +265,14 @@ const EntryForm = styled.form`
   margin: 0;
   padding: 0;
   justify-content: center;
+`;
+
+const EmptyInject = styled.span`
+  margin-left: 12rem;
+  margin-top: -1.2rem;
+`;
+
+const FullInject = styled.span`
+  margin-left: -12rem;
+  margin-top: -3rem;
 `;
