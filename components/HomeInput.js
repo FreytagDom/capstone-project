@@ -2,6 +2,13 @@ import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { Fragment } from 'react';
+import Image from 'next/image';
+import leereSpritze from '../public/leereSpritze.png';
+import volleSpritze from '../public/volleSpritze.png';
+import blood from '../public/blood.PNG';
+import blooddrop from '../public/blooddrop.PNG';
+import carbohydrates from '../public/carbohydrates.png';
+import donut from '../public/donut.png';
 
 export default function Input({ factors }) {
   function handleSubmit(event) {
@@ -61,7 +68,7 @@ export default function Input({ factors }) {
     { value: 'Basal', label: 'Basal' },
     { value: 'Bolus', label: 'Bolus' },
     { value: 'Fiasp', label: 'Fiasp' },
-    { value: 'Humas', label: 'Humas' },
+    { value: 'Hum Normal', label: 'Hum Normal' },
   ];
 
   return (
@@ -71,8 +78,14 @@ export default function Input({ factors }) {
         onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
       >
         <LabelBz htmlFor="bloodsugar">
+          <BloodDrop>
+            <Image src={blooddrop} alt="blooddrop" />
+          </BloodDrop>
           Blutzuckerwert <br />
           mg/dl
+          <Blood>
+            <Image src={blood} alt="blood" />
+          </Blood>
           <DataInput
             type="decimal"
             name="bloodsugar"
@@ -86,7 +99,13 @@ export default function Input({ factors }) {
         </LabelBz>
 
         <LabelCa htmlFor="carbohydrates">
+          <Carbohydrates>
+            <Image src={carbohydrates} alt="carbohydrates" />
+          </Carbohydrates>
           Kohlenhydrate (Khd) <br /> g (Gramm)
+          <Donut>
+            <Image src={donut} alt="donut" />
+          </Donut>
           <DataInput
             type="decimal"
             name="carbohydrates"
@@ -106,6 +125,9 @@ export default function Input({ factors }) {
               name="setinsulinSelect"
               id={InsulinOption.id}
             >
+              <InsulinOption placeholder="Insulin wählen" disabled>
+                Insulin wählen
+              </InsulinOption>
               {options.map((option) => (
                 <InsulinOption
                   name="insulinOption"
@@ -130,6 +152,7 @@ export default function Input({ factors }) {
                 key={index}
                 options
               >
+                <DayFactorOption disabled>Faktor wählen</DayFactorOption>
                 <DayFactorOption value={factor.morningfactor}>
                   morgens / {factor.morningfactor}
                 </DayFactorOption>
@@ -151,6 +174,12 @@ export default function Input({ factors }) {
           name="calculateUnits"
         >
           {value} / Einheiten <br /> Insulin spritzen
+          <FullInject>
+            <Image src={volleSpritze} alt="" />
+          </FullInject>
+          <EmptyInject>
+            <Image src={leereSpritze} alt="" />
+          </EmptyInject>
         </InsulinUnits>
       </EntryForm>
     </>
@@ -187,6 +216,7 @@ const LabelFa = styled(Label)`
 const DataInput = styled.input`
   border-radius: 8px;
   text-align: center;
+  border-style: groove;
 `;
 
 const Button = styled.button`
@@ -196,6 +226,7 @@ const Button = styled.button`
   margin-bottom: 5px;
   border-radius: 15px;
   height: 20px;
+  z-index: 1;
 `;
 
 const InsulinSelect = styled.select`
@@ -239,6 +270,7 @@ const InsulinUnits = styled.li`
   padding-top: 2vh;
   height: 4rem;
   position: inherit;
+  z-index: 1;
 `;
 
 const EntryForm = styled.form`
@@ -246,8 +278,48 @@ const EntryForm = styled.form`
   justify-content: center;
   gap: auto;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
   align-content: start;
   margin: 0;
   padding: 0;
-  justify-content: center;
+`;
+
+const EmptyInject = styled.span`
+  margin-left: 12rem;
+  margin-top: -1.2rem;
+`;
+
+const FullInject = styled.span`
+  margin-left: -12rem;
+  margin-top: -3rem;
+`;
+
+const BloodDrop = styled.span`
+  margin-left: 1rem;
+  margin-top: -2rem;
+  padding-top: 1.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+`;
+
+const Blood = styled.span`
+  margin-left: 11.5rem;
+  margin-top: -2.2rem;
+  height: 2rem;
+  width: 3rem;
+`;
+
+const Carbohydrates = styled.span`
+  margin-left: 1rem;
+  margin-top: -1.6rem;
+  padding-top: 1.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+`;
+
+const Donut = styled.span`
+  margin-left: 12rem;
+  margin-top: -2rem;
+  height: 2rem;
+  width: 2rem;
 `;

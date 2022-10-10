@@ -2,7 +2,7 @@ import Input from '../components/HomeInput';
 import styled from 'styled-components';
 import { getAllDayFactors } from '../services/savedDayFactorService';
 import { getAllCategories } from '../services/insulinAppData';
-
+import bzBackGround from '../public/bzBackGround.jpg';
 export async function getServerSideProps() {
   const factors = await getAllDayFactors();
   const cardData = await getAllCategories();
@@ -18,11 +18,14 @@ export async function getServerSideProps() {
 export default function Home({ factors, cardData }) {
   return (
     <Wrapper>
+      <ImageBackGround alt="img can't load" />
       <Input factors={factors} cardData={cardData} />
     </Wrapper>
   );
 }
-
+const ImageBackGround = styled.div`
+  background-image: url(${bzBackGround});
+`;
 const Wrapper = styled.section`
   display: grid;
   grid-template-rows: min-content auto 48px;

@@ -26,4 +26,6 @@ const Headline = styled.h1`
   color: purple;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-align: center;
+  z-index: 1;
+  position: relative;
 `;

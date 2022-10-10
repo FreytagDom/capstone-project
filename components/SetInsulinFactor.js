@@ -33,7 +33,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
         >
           <LabelFa htmlFor="factor" id="insulinfactor">
             Welcher Tageszeit <br /> Faktor
-            <DataInput
+            <DataInputMorning
               type="decimal"
               name="setedmorningfactor"
               placeholder="Faktor morgens"
@@ -55,7 +55,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
                 setLunchfactor(event.target.value);
               }}
             />
-            <DataInput
+            <DataInputEvening
               type="decimal"
               name="seteveningfactor"
               placeholder="Faktor abends"
@@ -80,6 +80,7 @@ const Wrapper = styled.section`
   grid-template-rows: min-content auto 48px;
   height: inherit;
   justify-content: center;
+  z-index: 1;
 `;
 
 const hue = keyframes`
@@ -97,6 +98,7 @@ const Label = styled.label`
   display: grid;
   text-align: center;
   height: min 5rem;
+  z-index: 1;
 `;
 
 const LabelFa = styled(Label)`
@@ -104,8 +106,19 @@ const LabelFa = styled(Label)`
 `;
 
 const DataInput = styled.input`
-  border-radius: 8px;
   text-align: center;
+  z-index: 1;
+  border-style: groove;
+`;
+
+const DataInputMorning = styled(DataInput)`
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+`;
+
+const DataInputEvening = styled(DataInput)`
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 `;
 
 const Button = styled.button`
@@ -115,6 +128,7 @@ const Button = styled.button`
   margin-bottom: 5px;
   border-radius: 15px;
   height: 20px;
+  z-index: 1;
 `;
 
 const EntryForm = styled.form`
@@ -128,6 +142,7 @@ const EntryForm = styled.form`
   padding: 0;
   overflow-y: auto;
   justify-content: center;
+  z-index: 1;
 `;
 
 const InsulinFactor = styled.h2`
@@ -138,4 +153,5 @@ const InsulinFactor = styled.h2`
   color: purple;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-align: center;
+  z-index: 1;
 `;

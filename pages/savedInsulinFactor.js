@@ -45,6 +45,7 @@ const Wrapper = styled.section`
   grid-template-rows: min-content auto 48px;
   height: inherit;
   justify-content: center;
+  z-index: 1;
 `;
 
 const CardGrid = styled.ul`
@@ -57,6 +58,7 @@ const CardGrid = styled.ul`
   overflow-y: auto;
   border-radius: 10px;
   justify-content: center;
+  z-index: 1;
 `;
 const Saved = styled.li`
   display: grid;
