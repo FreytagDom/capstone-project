@@ -208,6 +208,7 @@ const LabelFa = styled(Label)`
 const DataInput = styled.input`
   border-radius: 8px;
   text-align: center;
+  border-style: groove;
 `;
 
 const Button = styled.button`
@@ -269,10 +270,10 @@ const EntryForm = styled.form`
   justify-content: center;
   gap: auto;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
   align-content: start;
   margin: 0;
   padding: 0;
-  justify-content: center;
 `;
 
 const EmptyInject = styled.span`
@@ -287,14 +288,15 @@ const FullInject = styled.span`
 
 const BloodDrop = styled.span`
   margin-left: 1rem;
-  margin-top: -0.7rem;
+  margin-top: -2rem;
+  padding-top: 1.5rem;
   height: 1.5rem;
   width: 1.5rem;
 `;
 
 const Blood = styled.span`
-  margin-left: 11rem;
-  margin-top: -2.4rem;
+  margin-left: 11.5rem;
+  margin-top: -2.2rem;
   height: 2rem;
   width: 3rem;
 `;
