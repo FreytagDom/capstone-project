@@ -7,6 +7,8 @@ import leereSpritze from '../public/leereSpritze.png';
 import volleSpritze from '../public/volleSpritze.png';
 import blood from '../public/blood.png';
 import blooddrop from '../public/blooddrop.png';
+import carbohydrates from '../public/carbohydrates.png';
+import donut from '../public/donut.png';
 
 export default function Input({ factors }) {
   function handleSubmit(event) {
@@ -97,7 +99,13 @@ export default function Input({ factors }) {
         </LabelBz>
 
         <LabelCa htmlFor="carbohydrates">
+          <Carbohydrates>
+            <Image src={carbohydrates} alt="carbohydrates" />
+          </Carbohydrates>
           Kohlenhydrate (Khd) <br /> g (Gramm)
+          <Donut>
+            <Image src={donut} alt="donut" />
+          </Donut>
           <DataInput
             type="decimal"
             name="carbohydrates"
@@ -299,4 +307,19 @@ const Blood = styled.span`
   margin-top: -2.2rem;
   height: 2rem;
   width: 3rem;
+`;
+
+const Carbohydrates = styled.span`
+  margin-left: 1rem;
+  margin-top: -1.6rem;
+  padding-top: 1.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+`;
+
+const Donut = styled.span`
+  height: 2rem;
+  width: 2rem;
+  margin-left: 12rem;
+  margin-top: -2rem;
 `;
