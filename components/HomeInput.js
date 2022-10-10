@@ -5,8 +5,8 @@ import { Fragment } from 'react';
 import Image from 'next/image';
 import leereSpritze from '../public/leereSpritze.png';
 import volleSpritze from '../public/volleSpritze.png';
-import blood from '../public/blood.png';
-import blooddrop from '../public/blooddrop.png';
+import blood from '../public/blood.PNG';
+import blooddrop from '../public/blooddrop.PNG';
 import carbohydrates from '../public/carbohydrates.png';
 import donut from '../public/donut.png';
 
