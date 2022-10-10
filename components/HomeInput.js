@@ -318,8 +318,8 @@ const Carbohydrates = styled.span`
 `;
 
 const Donut = styled.span`
-  height: 2rem;
-  width: 2rem;
   margin-left: 12rem;
   margin-top: -2rem;
+  height: 2rem;
+  width: 2rem;
 `;
