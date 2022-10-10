@@ -68,7 +68,7 @@ export default function Input({ factors }) {
     { value: 'Basal', label: 'Basal' },
     { value: 'Bolus', label: 'Bolus' },
     { value: 'Fiasp', label: 'Fiasp' },
-    { value: 'Humas', label: 'Humas' },
+    { value: 'Hum Normal', label: 'Hum Normal' },
   ];
 
   return (
