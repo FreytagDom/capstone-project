@@ -191,7 +191,7 @@ const Label = styled.label`
   border-radius: 8px;
   display: grid;
   text-align: center;
-  height: 14vh;
+  height: 13vh;
   padding-top: 2vh;
   margin-top: 0.5vh;
   position: sticky;
@@ -276,8 +276,7 @@ const InsulinUnits = styled.li`
 const EntryForm = styled.form`
   display: grid;
   justify-content: center;
-  gap: auto;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
   align-content: start;
   margin: 0;
