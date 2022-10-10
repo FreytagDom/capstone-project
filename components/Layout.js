@@ -21,5 +21,5 @@ export default function Layout({ children }) {
 }
 
 const ImageBackGround = styled.span`
-  position: -webkit-sticky;
+  position: static;
 `;
