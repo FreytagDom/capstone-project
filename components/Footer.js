@@ -13,9 +13,10 @@ export default function Footer() {
 
 const FooterLine = styled.footer`
   max-height: 0.8rem;
+  font-size: 0.6rem;
   color: #5f3dc4;
   display: flex;
   position: fixed;
-  bottom: 3px;
+  bottom: 5px;
   width: 100%;
 `;

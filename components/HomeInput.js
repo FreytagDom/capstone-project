@@ -5,6 +5,8 @@ import { Fragment } from 'react';
 import Image from 'next/image';
 import leereSpritze from '../public/leereSpritze.png';
 import volleSpritze from '../public/volleSpritze.png';
+import blood from '../public/blood.png';
+import blooddrop from '../public/blooddrop.png';
 
 export default function Input({ factors }) {
   function handleSubmit(event) {
@@ -74,8 +76,14 @@ export default function Input({ factors }) {
         onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
       >
         <LabelBz htmlFor="bloodsugar">
+          <BloodDrop>
+            <Image src={blooddrop} alt="blooddrop" />
+          </BloodDrop>
           Blutzuckerwert <br />
           mg/dl
+          <Blood>
+            <Image src={blood} alt="blood" />
+          </Blood>
           <DataInput
             type="decimal"
             name="bloodsugar"
@@ -275,4 +283,18 @@ const EmptyInject = styled.span`
 const FullInject = styled.span`
   margin-left: -12rem;
   margin-top: -3rem;
+`;
+
+const BloodDrop = styled.span`
+  margin-left: 1rem;
+  margin-top: -0.7rem;
+  height: 1.5rem;
+  width: 1.5rem;
+`;
+
+const Blood = styled.span`
+  margin-left: 11rem;
+  margin-top: -2.4rem;
+  height: 2rem;
+  width: 3rem;
 `;

@@ -80,6 +80,7 @@ const Wrapper = styled.section`
   grid-template-rows: min-content auto 48px;
   height: inherit;
   justify-content: center;
+  z-index: 1;
 `;
 
 const hue = keyframes`
@@ -97,6 +98,7 @@ const Label = styled.label`
   display: grid;
   text-align: center;
   height: min 5rem;
+  z-index: 1;
 `;
 
 const LabelFa = styled(Label)`
@@ -106,6 +108,7 @@ const LabelFa = styled(Label)`
 const DataInput = styled.input`
   border-radius: 8px;
   text-align: center;
+  z-index: 1;
 `;
 
 const Button = styled.button`
@@ -115,6 +118,7 @@ const Button = styled.button`
   margin-bottom: 5px;
   border-radius: 15px;
   height: 20px;
+  z-index: 1;
 `;
 
 const EntryForm = styled.form`
@@ -128,6 +132,7 @@ const EntryForm = styled.form`
   padding: 0;
   overflow-y: auto;
   justify-content: center;
+  z-index: 1;
 `;
 
 const InsulinFactor = styled.h2`
@@ -138,4 +143,5 @@ const InsulinFactor = styled.h2`
   color: purple;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-align: center;
+  z-index: 1;
 `;
