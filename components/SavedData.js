@@ -8,7 +8,7 @@ export default function SavedDataInjected({ cardData }) {
       <CardGrid>
         {data.map((item) => {
           return (
-            <Saved key={item.id} onRemoveCard={removeCard}>
+            <Saved key={item.id}>
               <BloodSugar>
                 Blutzuckerwert: <br /> {item.bloodsugar} mg/dl
               </BloodSugar>
