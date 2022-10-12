@@ -49,10 +49,10 @@ export default function Input({ factors }) {
 
   function handleInsulinUnit(bloodsugar, carbohydrates, daytimeFactor) {
     const targetValue = 100;
-    const corretionValue = 60;
+    const correctionValue = 60;
 
     const calculateUnit = (
-      (bloodsugar - targetValue) / corretionValue +
+      (bloodsugar - targetValue) / correctionValue +
       carbohydrates / daytimeFactor -
       0.1
     ).toFixed(1);

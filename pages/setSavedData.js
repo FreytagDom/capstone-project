@@ -22,7 +22,6 @@ export default function CreateData() {
       body: JSON.stringify(cardData),
     });
     const json = response.json();
-    // console.log(response_);
   }
 
   return (

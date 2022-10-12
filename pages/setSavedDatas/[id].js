@@ -22,8 +22,6 @@ export default function SavedInsulinData({ savedInsulinData }) {
 
       body: JSON.stringify(updatedSavedInsulinData),
     });
-
-    console.log('updated!');
   }
 
   return (
