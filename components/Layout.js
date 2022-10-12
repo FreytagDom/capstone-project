@@ -15,19 +15,19 @@ export default function Layout({ children }) {
           layout="fill"
           objectFit="cover"
         />
-        <Header />
-
-        <main>{children}</main>
-        <Navbar />
-        <Footer />
       </ImageBackGround>
+      <Header />
+      <main>{children}</main>
+      <Navbar />
+      <Footer />
     </>
   );
 }
 
 const ImageBackGround = styled.span`
   background-attachment: scroll;
-  position: static;
+  position: fixed;
+  display: flex;
   width: 100%;
   height: 100%;
 `;
