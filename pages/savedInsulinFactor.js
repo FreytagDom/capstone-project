@@ -46,6 +46,7 @@ const Wrapper = styled.section`
   height: inherit;
   justify-content: center;
   z-index: 1;
+  background-attachment: scroll;
 `;
 
 const CardGrid = styled.ul`
@@ -59,6 +60,7 @@ const CardGrid = styled.ul`
   border-radius: 10px;
   justify-content: center;
   z-index: 1;
+  background-attachment: scroll;
 `;
 const Saved = styled.li`
   display: grid;
@@ -70,6 +72,7 @@ const Saved = styled.li`
   margin: 1rem;
   padding: 0.5rem;
   opacity: 0.75;
+  background-attachment: scroll;
 `;
 
 const MorningFactor = styled.span`
@@ -99,4 +102,5 @@ const SavedFactorTitel = styled.h2`
   color: purple;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-align: center;
+  width: 100%;
 `;

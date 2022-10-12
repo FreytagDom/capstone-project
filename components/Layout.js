@@ -1,7 +1,7 @@
 import Footer from './Footer';
 import Header from './Header';
 import { Navbar } from './NavBar';
-import bzBackGround from '../public/bzBackGround.jpg';
+import bloodsugarvertical from '../public/bloodsugarvertical.jpg';
 import Image from 'next/image';
 import styled from 'styled-components';
 
@@ -9,7 +9,12 @@ export default function Layout({ children }) {
   return (
     <>
       <ImageBackGround>
-        <Image src={bzBackGround} alt="img can't load" layout="fill" />
+        <Image
+          src={bloodsugarvertical}
+          alt="bloodsugar"
+          layout="fill"
+          objectFit="cover"
+        />
         <Header />
 
         <main>{children}</main>
@@ -21,5 +26,8 @@ export default function Layout({ children }) {
 }
 
 const ImageBackGround = styled.span`
+  background-attachment: scroll;
   position: static;
+  width: 100%;
+  height: 100%;
 `;

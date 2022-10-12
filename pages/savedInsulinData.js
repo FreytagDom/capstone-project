@@ -48,15 +48,3 @@ const SavedData = styled.h2`
   text-align: center;
   z-index: 1;
 `;
-
-// const CardGrid = styled.ul`
-//   display: grid;
-//   gap: auto;
-//   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-//   align-content: start;
-//   margin: 0;
-//   padding: 0;
-//   overflow-y: auto;
-//   border-radius: 10px;
-//   justify-content: center;
-// `;

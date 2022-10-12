@@ -26,6 +26,7 @@ export default function SavedDataInjected({ cardData }) {
               </Factor>
               <InsulinUnits>
                 gepritzte Insulin <br /> Menge: {item.calculateUnit}
+                {item.createdAt}
               </InsulinUnits>
             </Saved>
           );
@@ -42,6 +43,7 @@ const WrapperSaved = styled.section`
   justify-content: center;
   z-index: 1;
   opacity: 0.75;
+  background-attachment: scroll;
 `;
 
 const CardGrid = styled.ul`
@@ -55,6 +57,7 @@ const CardGrid = styled.ul`
   border-radius: 10px;
   justify-content: center;
 `;
+
 const Saved = styled.li`
   display: grid;
   background-color: beige;

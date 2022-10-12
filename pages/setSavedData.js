@@ -1,4 +1,15 @@
-import Input from '../components/HomeInput';
+import SavedDataInjected from '../components/SavedData';
+import { getAllCategories } from '../services/insulinAppDataService';
+
+export async function getServerSideProps() {
+  const cardData = await getAllCategories();
+
+  return {
+    props: {
+      cardData: cardData,
+    },
+  };
+}
 
 export default function CreateData() {
   async function handleSetSubmit(cardData) {
@@ -16,7 +27,7 @@ export default function CreateData() {
 
   return (
     <>
-      <Input onHandleSetData={handleSetSubmit} />
+      <SavedDataInjected cardData={handleSetSubmit} />
     </>
   );
 }

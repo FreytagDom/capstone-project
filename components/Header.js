@@ -28,4 +28,6 @@ const Headline = styled.h1`
   text-align: center;
   z-index: 1;
   position: relative;
+  display: grid;
+  width: 100%;
 `;
