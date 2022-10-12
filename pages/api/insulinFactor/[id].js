@@ -1,5 +1,6 @@
 import { getFactorById } from '../../../services/dayTimeFactorsService';
 import DayTimeFactor from '../../../models/DayTimeFactor';
+
 export default async function handler(request, response) {
   const { id } = request.query;
   switch (request.method) {

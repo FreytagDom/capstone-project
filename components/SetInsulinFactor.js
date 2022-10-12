@@ -99,6 +99,7 @@ const Label = styled.label`
   text-align: center;
   height: min 5rem;
   z-index: 1;
+  opacity: 0.8;
 `;
 
 const LabelFa = styled(Label)`
@@ -129,12 +130,12 @@ const Button = styled.button`
   border-radius: 15px;
   height: 20px;
   z-index: 1;
+  opacity: 0.9;
 `;
 
 const EntryForm = styled.form`
   display: grid;
   justify-content: center;
-  display: grid;
   gap: auto;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   align-content: start;

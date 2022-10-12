@@ -11,23 +11,22 @@ export async function getServerSideProps(context) {
     },
   };
 }
-export default function UsedData({ savedInsulinData }) {
+export default function SavedInsulinData({ savedInsulinData }) {
   const fetchApi = fetch();
-  async function updateUsedData(updatedUsedData) {
+  async function updateSavedInsulinData(updatedSavedInsulinData) {
     await fetchApi(`/api/setSavedDatas/${savedInsulinData.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(updatedUsedData),
-    });
 
-    console.log('updated!');
+      body: JSON.stringify(updatedSavedInsulinData),
+    });
   }
 
   return (
     <>
-      <Input onHandleSetData={updateUsedData} />
+      <Input onHandleSetData={updateSavedInsulinData} />
     </>
   );
 }

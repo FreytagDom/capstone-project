@@ -7,14 +7,21 @@ export async function getAllCategories() {
   const savedInsulinData = await SavedInsulinData.find();
 
   return savedInsulinData.map(
-    ({ id, bloodsugar, carbohydrates, insulin, factor, calculateUnits }) => {
+    ({
+      id,
+      bloodsugar,
+      carbohydrates,
+      insulin,
+      daytimeFactor,
+      calculateUnit,
+    }) => {
       return {
         id,
         bloodsugar,
         carbohydrates,
         insulin,
-        factor,
-        calculateUnits,
+        daytimeFactor,
+        calculateUnit,
       };
     }
   );

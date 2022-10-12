@@ -10,8 +10,14 @@ export const Navbar = () => {
           <Tags>Start</Tags>
         </Link>
 
+        <Link href="/savedInsulinData" passHref>
+          <Tags>Daten</Tags>
+        </Link>
+
         <Link href="/savedInsulinFactor" passHref>
-          <Tags>Gespeichert</Tags>
+          <Tags>
+            Gespeicherter <br /> Faktor{' '}
+          </Tags>
         </Link>
 
         <Link href="/setInsulinFactor" passHref>
@@ -53,7 +59,6 @@ const Navigation = styled.nav`
   color: darkcyan;
   justify-content: space-evenly;
   padding-top: 0.5rem;
-  padding-left: 0.5rem;
 `;
 
 const Tags = styled.a`
