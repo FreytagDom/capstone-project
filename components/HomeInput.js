@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { Fragment } from 'react';
 import Image from 'next/image';
@@ -11,57 +10,55 @@ import carbohydrates from '../public/carbohydrates.png';
 import donut from '../public/donut.png';
 
 export default function Input({ factors }) {
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
     const bloodsugar = form.bloodsugar.value;
     const carbohydrates = form.carbohydrates.value;
     const insulin = form.setinsulinSelect.value;
-    const setmorningfactor = form.dayfactorSelect.value;
-    const setlunchfactor = form.dayfactorSelect.value;
-    const seteveningfactor = form.dayfactorSelect.value;
-    const calculateUnits = value;
-    handleInsulinUnit(
+    const daytimeFactor = form.dayfactorSelect.value;
+    const calculateUnits = handleInsulinUnit(
       bloodsugar,
       carbohydrates,
-      setmorningfactor,
-      setlunchfactor,
-      seteveningfactor
+      daytimeFactor
     );
 
     const cardData = {
-      id: nanoid(),
       bloodsugar: bloodsugar,
       carbohydrates: carbohydrates,
       insulin: insulin,
-      morningfactor: setmorningfactor,
-      lunchfactor: setlunchfactor,
-      eveningfactor: seteveningfactor,
+      daytimeFactor: daytimeFactor,
       calculateUnit: calculateUnits,
     };
+
+    const response = await fetch('/api/setInsulinDatas', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+
+      body: JSON.stringify(cardData),
+    });
+    const json = response.json();
+
     form.reset();
     console.log(cardData);
   }
 
   const [value, setValue] = useState();
 
-  function handleInsulinUnit(
-    bloodsugar,
-    carbohydrates,
-    morningfactor,
-    lunchfactor,
-    eveningfactor
-  ) {
+  function handleInsulinUnit(bloodsugar, carbohydrates, daytimeFactor) {
     const targetValue = 100;
     const corretionValue = 60;
 
     const calculateUnit = (
       (bloodsugar - targetValue) / corretionValue +
-      carbohydrates / (morningfactor || lunchfactor || eveningfactor) -
+      carbohydrates / daytimeFactor -
       0.1
     ).toFixed(1);
 
     setValue(calculateUnit);
+    return calculateUnit;
   }
 
   const options = [
@@ -159,7 +156,10 @@ export default function Input({ factors }) {
                 <DayFactorOption value={factor.lunchfactor}>
                   mittags / {factor.lunchfactor}
                 </DayFactorOption>
-                <DayFactorOption value={factor.eveningfactor}>
+                <DayFactorOption
+                  value={factor.eveningfactor}
+                  key="eveningfactor"
+                >
                   abends / {factor.eveningfactor}
                 </DayFactorOption>
               </DayFactorSelect>
@@ -191,10 +191,11 @@ const Label = styled.label`
   border-radius: 8px;
   display: grid;
   text-align: center;
-  height: 13vh;
-  padding-top: 2vh;
+  height: 14vh;
+  padding-top: 3vh;
   margin-top: 0.5vh;
   position: sticky;
+  opacity: 0.8;
 `;
 
 const LabelBz = styled(Label)`
@@ -271,6 +272,7 @@ const InsulinUnits = styled.li`
   height: 4rem;
   position: inherit;
   z-index: 1;
+  opacity: 0.75;
 `;
 
 const EntryForm = styled.form`

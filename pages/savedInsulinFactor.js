@@ -69,6 +69,7 @@ const Saved = styled.li`
   align-items: center;
   margin: 1rem;
   padding: 0.5rem;
+  opacity: 0.75;
 `;
 
 const MorningFactor = styled.span`
