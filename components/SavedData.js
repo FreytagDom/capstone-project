@@ -37,7 +37,7 @@ export default function SavedDataInjected({ cardData }) {
               <InsulinUnits>
                 gespritzte Insulin <br /> Menge: {item.calculateUnit}
               </InsulinUnits>
-              {item.date}
+              <Timestampwraper>{item.date}</Timestampwraper>
             </Saved>
           );
         })}
@@ -105,4 +105,11 @@ const Factor = styled.span`
 
 const InsulinUnits = styled.span`
   color: #364fc7;
+`;
+
+const Timestampwraper = styled.span`
+  color: #008080;
+  font-size: 0.8rem;
+  display: grid;
+  margin-top: 0.3rem;
 `;
