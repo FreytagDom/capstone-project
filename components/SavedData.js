@@ -1,14 +1,30 @@
 import styled from 'styled-components';
+import { RiDeleteBinLine } from 'react-icons/ri';
 
 export default function SavedDataInjected({ cardData }) {
   const data = cardData;
 
+  async function removeCard() {
+    const response = await fetch('/api/savedInsulinData', {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+      },
+
+      body: JSON.stringify(data),
+    });
+
+    const json = response.json();
+  }
   return (
     <WrapperSaved>
       <CardGrid>
         {data.map((item) => {
           return (
-            <Saved key={item.id}>
+            <Saved key={item.id} removeCard={removeCard}>
+              <IconWrapper>
+                <RiDeleteBinLine onClick={() => removeCard(item.id)} />
+              </IconWrapper>
               <BloodSugar>
                 Blutzuckerwert: <br /> {item.bloodsugar} mg/dl
               </BloodSugar>
@@ -35,6 +51,14 @@ export default function SavedDataInjected({ cardData }) {
     </WrapperSaved>
   );
 }
+
+const IconWrapper = styled.span`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  color: #fe4b13;
+`;
 
 const WrapperSaved = styled.section`
   display: grid;

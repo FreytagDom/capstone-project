@@ -42,7 +42,6 @@ export default function Input({ factors }) {
     const json = response.json();
 
     form.reset();
-    console.log(cardData);
   }
 
   const [value, setValue] = useState();
@@ -304,8 +303,9 @@ const BloodDrop = styled.span`
 `;
 
 const Blood = styled.span`
-  margin-left: 11.5rem;
+  margin-left: 11rem;
   margin-top: -2.2rem;
+  padding-right: 0.5rem;
   height: 2rem;
   width: 3rem;
 `;
