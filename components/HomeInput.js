@@ -29,8 +29,9 @@ export default function Input({ factors }) {
       insulin: insulin,
       daytimeFactor: daytimeFactor,
       calculateUnit: calculateUnits,
+      date: Date(),
     };
-
+    console.log(cardData);
     const response = await fetch('/api/setInsulinDatas', {
       method: 'POST',
       headers: {
