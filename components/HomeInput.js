@@ -31,7 +31,7 @@ export default function Input({ factors }) {
       calculateUnit: calculateUnits,
       date: Date(),
     };
-    console.log(cardData);
+
     const response = await fetch('/api/setInsulinDatas', {
       method: 'POST',
       headers: {
@@ -40,7 +40,6 @@ export default function Input({ factors }) {
 
       body: JSON.stringify(cardData),
     });
-    const json = response.json();
 
     form.reset();
   }
