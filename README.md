@@ -12,7 +12,7 @@ Die Insulin App ist in ersterlinie für Diabetiker Typ1 Kiner gedacht.
 
 Die App soll beim berechnen der zu spritzenden Insulineinheiten helfen. Das bunte Desnig muntert etwas auf wodurch sie die Krankheit nicht mehr so sehr als Last sehen.
 
-## Bedienung
+### Bedienung
 
 - Zu erst speicher man den Tageszeitfaktor unter 'Faktor' ab
 - Im nächsten Schritt gibt man auf der 'Start' Seite, den aktuell gemessenen Blutzuckerert und die Kohlenhydrate die man zusichnehmen möchte, ein
@@ -41,6 +41,10 @@ On the 'Data' page, the entries made on the 'Start' page are saved with the date
 The set factor is stored under the item 'Stored factor', each time you set a new factor, the previously set factor is overwritten.
 
 ## Tech Stack
+
+
+https://user-images.githubusercontent.com/109357762/195850502-4ea4f1ea-3c83-404a-9461-b920d4ee951b.mov
+
 
 | JavaScript | React.js | Next.js MongoDB | Mongoose |
 
