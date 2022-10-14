@@ -3,7 +3,7 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 
 export default function SavedDataInjected({ cardData }) {
   const data = cardData;
-  console.log(cardData);
+
   async function removeCard(id) {
     const response = await fetch('/api/savedInsulinData/' + id, {
       method: 'DELETE',
