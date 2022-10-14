@@ -1,14 +1,24 @@
 import styled from 'styled-components';
+import { RiDeleteBinLine } from 'react-icons/ri';
 
 export default function SavedDataInjected({ cardData }) {
   const data = cardData;
 
+  async function removeCard(id) {
+    const response = await fetch('/api/savedInsulinData/' + id, {
+      method: 'DELETE',
+    });
+    const json = response.json();
+  }
   return (
     <WrapperSaved>
       <CardGrid>
         {data.map((item) => {
           return (
             <Saved key={item.id}>
+              <IconWrapper>
+                <RiDeleteBinLine onClick={() => removeCard(item.id)} />
+              </IconWrapper>
               <BloodSugar>
                 Blutzuckerwert: <br /> {item.bloodsugar} mg/dl
               </BloodSugar>
@@ -26,8 +36,8 @@ export default function SavedDataInjected({ cardData }) {
               </Factor>
               <InsulinUnits>
                 gespritzte Insulin <br /> Menge: {item.calculateUnit}
-                {item.createdAt}
               </InsulinUnits>
+              <Timestampwraper>{item.date}</Timestampwraper>
             </Saved>
           );
         })}
@@ -35,6 +45,14 @@ export default function SavedDataInjected({ cardData }) {
     </WrapperSaved>
   );
 }
+
+const IconWrapper = styled.span`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  color: #fe4b13;
+`;
 
 const WrapperSaved = styled.section`
   display: grid;
@@ -87,4 +105,11 @@ const Factor = styled.span`
 
 const InsulinUnits = styled.span`
   color: #364fc7;
+`;
+
+const Timestampwraper = styled.span`
+  color: #008080;
+  font-size: 0.8rem;
+  display: grid;
+  margin-top: 0.3rem;
 `;

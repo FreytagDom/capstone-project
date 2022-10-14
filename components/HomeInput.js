@@ -29,6 +29,7 @@ export default function Input({ factors }) {
       insulin: insulin,
       daytimeFactor: daytimeFactor,
       calculateUnit: calculateUnits,
+      date: Date(),
     };
 
     const response = await fetch('/api/setInsulinDatas', {
@@ -39,10 +40,8 @@ export default function Input({ factors }) {
 
       body: JSON.stringify(cardData),
     });
-    const json = response.json();
 
     form.reset();
-    console.log(cardData);
   }
 
   const [value, setValue] = useState();
@@ -304,8 +303,9 @@ const BloodDrop = styled.span`
 `;
 
 const Blood = styled.span`
-  margin-left: 11.5rem;
+  margin-left: 11rem;
   margin-top: -2.2rem;
+  padding-right: 0.5rem;
   height: 2rem;
   width: 3rem;
 `;

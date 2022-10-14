@@ -14,6 +14,7 @@ export async function getAllCategories() {
       insulin,
       daytimeFactor,
       calculateUnit,
+      date,
     }) => {
       return {
         id,
@@ -22,6 +23,7 @@ export async function getAllCategories() {
         insulin,
         daytimeFactor,
         calculateUnit,
+        date,
       };
     }
   );
@@ -32,8 +34,23 @@ export async function getCategoryById(savedInsulinId) {
 
   const savedInsulin = await SavedInsulinData.findById(savedInsulinId);
 
-  const { id, bloodsugar, carbohydrates, insulin, factor, calculateUnits } =
-    savedInsulin;
+  const {
+    id,
+    bloodsugar,
+    carbohydrates,
+    insulin,
+    factor,
+    calculateUnits,
+    date,
+  } = savedInsulin;
 
-  return { id, bloodsugar, carbohydrates, insulin, factor, calculateUnits };
+  return {
+    id,
+    bloodsugar,
+    carbohydrates,
+    insulin,
+    factor,
+    calculateUnits,
+    date,
+  };
 }
