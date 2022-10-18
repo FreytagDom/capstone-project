@@ -9,7 +9,7 @@ import blooddrop from '../public/blooddrop.PNG';
 import carbohydrates from '../public/carbohydrates.png';
 import donut from '../public/donut.png';
 
-export default function Input({ factors }) {
+export default function Input({ factors, correctionfactors }) {
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -17,20 +17,24 @@ export default function Input({ factors }) {
     const carbohydrates = form.carbohydrates.value;
     const insulin = form.setinsulinSelect.value;
     const daytimeFactor = form.dayfactorSelect.value;
+    const correctionFactor = form.correctionfactorSelect.value;
     const calculateUnits = handleInsulinUnit(
       bloodsugar,
       carbohydrates,
-      daytimeFactor
+      daytimeFactor,
+      correctionFactor
     );
-
+    const datestamp = new Date().toUTCString;
     const cardData = {
       bloodsugar: bloodsugar,
       carbohydrates: carbohydrates,
       insulin: insulin,
       daytimeFactor: daytimeFactor,
+      correctionFactor: correctionFactor,
       calculateUnit: calculateUnits,
-      date: Date(),
+      date: datestamp,
     };
+    console.log(datestamp);
 
     const response = await fetch('/api/setInsulinDatas', {
       method: 'POST',
@@ -46,12 +50,17 @@ export default function Input({ factors }) {
 
   const [value, setValue] = useState();
 
-  function handleInsulinUnit(bloodsugar, carbohydrates, daytimeFactor) {
+  function handleInsulinUnit(
+    bloodsugar,
+    carbohydrates,
+    daytimeFactor,
+    correctionFactor
+  ) {
     const targetValue = 100;
-    const correctionValue = 60;
+    // const correctionValue = 60;
 
     const calculateUnit = (
-      (bloodsugar - targetValue) / correctionValue +
+      (bloodsugar - targetValue) / correctionFactor +
       carbohydrates / daytimeFactor -
       0.1
     ).toFixed(1);
@@ -121,7 +130,7 @@ export default function Input({ factors }) {
               name="setinsulinSelect"
               id={InsulinOption.id}
             >
-              <InsulinOption placeholder="Insulin wählen" disabled>
+              <InsulinOption placeholder="Insulin wählen">
                 Insulin wählen
               </InsulinOption>
               {options.map((option) => (
@@ -140,28 +149,64 @@ export default function Input({ factors }) {
           <LabelFa htmlFor="factor">
             Welcher Tageszeit <br /> Faktor
             {factors.map((factor, index) => (
-              <DayFactorSelect
+              <FactorSelect
                 htmlFor="setdayfactor"
                 name="dayfactorSelect"
-                id={DayFactorOption.name}
-                value={DayFactorOption.value}
+                id={FactorOption.name}
+                value={FactorOption.value}
                 key={index}
                 options
               >
-                <DayFactorOption disabled>Faktor wählen</DayFactorOption>
-                <DayFactorOption value={factor.morningfactor}>
+                <FactorOption>Faktor wählen</FactorOption>
+                <FactorOption name="morningfactor" value={factor.morningfactor}>
                   morgens / {factor.morningfactor}
-                </DayFactorOption>
-                <DayFactorOption value={factor.lunchfactor}>
+                </FactorOption>
+                <FactorOption name="lunchfactor" value={factor.lunchfactor}>
                   mittags / {factor.lunchfactor}
-                </DayFactorOption>
-                <DayFactorOption
-                  value={factor.eveningfactor}
-                  key="eveningfactor"
-                >
+                </FactorOption>
+                <FactorOption name="eveningfactor" value={factor.eveningfactor}>
                   abends / {factor.eveningfactor}
-                </DayFactorOption>
-              </DayFactorSelect>
+                </FactorOption>
+                <FactorOption name="latefactor" value={factor.latefactor}>
+                  spät / {factor.latefactor}
+                </FactorOption>
+              </FactorSelect>
+            ))}
+            {correctionfactors.map((correctionfactor, index) => (
+              <FactorSelect
+                htmlFor="setcorrectionfactor"
+                name="correctionfactorSelect"
+                id={FactorOption.name}
+                value={FactorOption.value}
+                key={index}
+                options
+              >
+                <FactorOption>Korrekturfaktor wählen</FactorOption>
+                <FactorOption
+                  name="morningcorrectionfactor"
+                  value={correctionfactor.morningcorrectionfactor}
+                >
+                  Korrektur morgens / {correctionfactor.morningcorrectionfactor}
+                </FactorOption>
+                <FactorOption
+                  name="lunchcorrectionfactor"
+                  value={correctionfactor.lunchcorrectionfactor}
+                >
+                  Korrektur mittags / {correctionfactor.lunchcorrectionfactor}
+                </FactorOption>
+                <FactorOption
+                  name="eveningcorrectionfactor"
+                  value={correctionfactor.eveningcorrectionfactor}
+                >
+                  Korrektur abends / {correctionfactor.eveningcorrectionfactor}
+                </FactorOption>
+                <FactorOption
+                  name="latecorrectionfactor"
+                  value={correctionfactor.latecorrectionfactor}
+                >
+                  Korrektur spät / {correctionfactor.latecorrectionfactor}
+                </FactorOption>
+              </FactorSelect>
             ))}
           </LabelFa>
         </Fragment>
@@ -222,8 +267,8 @@ const DataInput = styled.input`
 const Button = styled.button`
   background-color: skyblue;
   color: darkblue;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
   border-radius: 15px;
   height: 20px;
   z-index: 1;
@@ -234,7 +279,8 @@ const InsulinSelect = styled.select`
   border-radius: 8px;
   display: grid;
   text-align: center;
-  height: min 4rem;
+  height: 1.8rem;
+  margin-top: 0.7rem;
   color: #364fc9;
 `;
 
@@ -245,16 +291,16 @@ const InsulinOption = styled.option`
   background: transparent;
 `;
 
-const DayFactorSelect = styled.select`
+const FactorSelect = styled.select`
   background-color: beige;
   border-radius: 8px;
   display: grid;
   text-align: center;
-  height: min 4rem;
+  height: 1.8rem;
   color: #364fc9;
 `;
 
-const DayFactorOption = styled.option`
+const FactorOption = styled.option`
   border-radius: 8px;
   text-align: center;
   color: #5c940d;

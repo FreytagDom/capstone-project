@@ -1,23 +1,25 @@
 import dbConnect from '../dbConnect';
 import CorrectionFactor from '../models/CorrectionFactor';
 
-export async function getAllProducts() {
+export async function getAllCorrectionFactors() {
   await dbConnect();
 
-  const corretionFactors = await CorrectionFactor.find();
+  const correctionFactors = await CorrectionFactor.find();
 
-  const correctionFactorArray = corretionFactors.map(
+  const correctionFactorArray = correctionFactors.map(
     ({
       id,
-      morningcorretionfactor,
-      lunchcorretionfactor,
-      eveningcorretionfactor,
+      morningcorrectionfactor,
+      lunchcorrectionfactor,
+      eveningcorrectionfactor,
+      latecorrectionfactor,
     }) => {
       return {
         id,
-        morningcorretionfactor,
-        lunchcorretionfactor,
-        eveningcorretionfactor,
+        morningcorrectionfactor,
+        lunchcorrectionfactor,
+        eveningcorrectionfactor,
+        latecorrectionfactor,
       };
     }
   );
@@ -25,22 +27,24 @@ export async function getAllProducts() {
   return correctionFactorArray;
 }
 
-export async function getProductById(corretionFactorId) {
+export async function getCorrectionFactorsById(correctionFactorId) {
   await dbConnect();
 
-  const corretionFactor = await CorrectionFactor.findById(corretionFactorId);
+  const correctionFactor = await CorrectionFactor.findById(correctionFactorId);
 
   const {
     id,
-    morningcorretionfactor,
-    lunchcorretionfactor,
-    eveningcorretionfactor,
-  } = corretionFactor;
+    morningcorrectionfactor,
+    lunchcorrectionfactor,
+    eveningcorrectionfactor,
+    latecorrectionfactor,
+  } = correctionFactor;
 
   return {
     id,
-    morningcorretionfactor,
-    lunchcorretionfactor,
-    eveningcorretionfactor,
+    morningcorrectionfactor,
+    lunchcorrectionfactor,
+    eveningcorrectionfactor,
+    latecorrectionfactor,
   };
 }

@@ -13,6 +13,7 @@ export async function getAllCategories() {
       carbohydrates,
       insulin,
       daytimeFactor,
+      correctionFactor,
       calculateUnit,
       date,
     }) => {
@@ -22,6 +23,7 @@ export async function getAllCategories() {
         carbohydrates,
         insulin,
         daytimeFactor,
+        correctionFactor,
         calculateUnit,
         date,
       };
@@ -40,6 +42,7 @@ export async function getCategoryById(savedInsulinId) {
     carbohydrates,
     insulin,
     factor,
+    correctionFactor,
     calculateUnits,
     date,
   } = savedInsulin;
@@ -50,6 +53,7 @@ export async function getCategoryById(savedInsulinId) {
     carbohydrates,
     insulin,
     factor,
+    correctionFactor,
     calculateUnits,
     date,
   };

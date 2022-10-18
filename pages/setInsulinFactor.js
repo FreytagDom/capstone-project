@@ -1,13 +1,23 @@
 import FactorEntry from '../components/SetInsulinFactor';
 
 export default function CreateFactor() {
-  async function handleSetSubmit(morningfactor, lunchfactor, eveningfactor) {
+  async function handleSetSubmit(
+    morningfactor,
+    lunchfactor,
+    eveningfactor,
+    latefactor
+  ) {
     const response = await fetch('/api/insulinFactor', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ morningfactor, lunchfactor, eveningfactor }),
+      body: JSON.stringify({
+        morningfactor,
+        lunchfactor,
+        eveningfactor,
+        latefactor,
+      }),
     });
     const response_ = await response.json();
     console.log(response_);

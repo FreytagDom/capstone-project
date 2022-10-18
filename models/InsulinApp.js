@@ -7,6 +7,7 @@ const cardSchema = new Schema({
   carbohydrates: { type: Number, required: true, timestamps: true },
   insulin: { type: String, required: true, timestamps: true },
   daytimeFactor: { type: Number, required: true, timestamps: true },
+  correctionFactor: { type: Number, required: true, timestamps: true },
   calculateUnit: { type: Number, required: true, timestamps: true },
   date: { type: String, required: true, timestamps: true },
 });

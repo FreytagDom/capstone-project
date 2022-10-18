@@ -42,10 +42,6 @@ The set factor is stored under the item 'Stored factor', each time you set a new
 
 ## Tech Stack
 
-
-https://user-images.githubusercontent.com/109357762/195850502-4ea4f1ea-3c83-404a-9461-b920d4ee951b.mov
-
-
 | JavaScript | React.js | Next.js MongoDB | Mongoose |
 
 ## Project Setup

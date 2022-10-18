@@ -34,6 +34,10 @@ export default function SavedDataInjected({ cardData }) {
               <Factor>
                 Insulin Faktor: <br /> {item.daytimeFactor}
               </Factor>
+              <Factor>
+                Korrektur Faktor: <br />
+                {item.correctionFactor}
+              </Factor>
               <InsulinUnits>
                 gespritzte Insulin <br /> Menge: {item.calculateUnit}
               </InsulinUnits>

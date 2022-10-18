@@ -16,12 +16,22 @@ export const Navbar = () => {
 
         <Link href="/savedInsulinFactor" passHref>
           <Tags>
-            Gespeicherter <br /> Faktor{' '}
+            Gespeicherter <br /> Faktor
+          </Tags>
+        </Link>
+
+        <Link href="/savedCorrectionFactor" passHref>
+          <Tags>
+            Gespeicherter <br /> Korrekturfaktor
           </Tags>
         </Link>
 
         <Link href="/setInsulinFactor" passHref>
-          <Tags>Faktor</Tags>
+          <Tags>Insulinfaktor</Tags>
+        </Link>
+
+        <Link href="/setCorrectionFactor" passHref>
+          <Tags>Korrekturfaktor</Tags>
         </Link>
       </Navigation>
     </NavbarHead>

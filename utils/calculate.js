@@ -1,4 +1,23 @@
-// import { useState } from 'react';
+import { useState } from 'react';
+
+import Input from '../components/HomeInput';
+
+export function handleInsulinUnit(bloodsugar, carbohydrates, daytimeFactor) {
+  const [value, setValue] = useState();
+
+  const targetValue = 100;
+  const correctionValue = 60;
+
+  const calculateUnit = (
+    (bloodsugar - targetValue) / correctionValue +
+    carbohydrates / daytimeFactor -
+    0.1
+  ).toFixed(1);
+
+  console.log(value);
+  setValue(calculateUnit);
+  return calculateUnit;
+}
 
 // export default function DandleInsulinUnit(
 //   cardData,

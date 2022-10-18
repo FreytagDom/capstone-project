@@ -13,7 +13,11 @@ export default async function handler(request, response) {
 
       const data = request.body;
 
-      await DayTimeFactor.updateMany(data);
+      // await DayTimeFactor.updateMany(data);
+      const result = await DayTimeFactor.findOneAndUpdate({ _id: 1 }, data, {
+        new: true,
+        upsert: true,
+      });
 
       return response
         .status(201)

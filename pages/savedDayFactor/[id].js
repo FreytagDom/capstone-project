@@ -14,7 +14,8 @@ export async function getServerSideProps(context) {
   };
 }
 export default function SavedFactor({ daytimeFactors }) {
-  const { id, morningfactor, lunchfactor, eveningfactor } = daytimeFactors;
+  const { id, morningfactor, lunchfactor, eveningfactor, latefactor } =
+    daytimeFactors;
   function updateFactor(updatedFactor) {
     console.log(updatedFactor);
   }

@@ -7,12 +7,13 @@ export async function getAllFactors() {
   const daytimeFactors = await DayTimeFactor.find();
 
   return daytimeFactors.map(
-    ({ id, morningfactor, lunchfactor, eveningfactor }) => {
+    ({ id, morningfactor, lunchfactor, eveningfactor, latefactor }) => {
       return {
         id,
         morningfactor,
         lunchfactor,
         eveningfactor,
+        latefactor,
       };
     }
   );
@@ -23,7 +24,8 @@ export async function getFactorById(dayTimeFactorId) {
 
   const dayTimeFactor = await DayTimeFactor.findById(dayTimeFactorId);
 
-  const { id, morningfactor, lunchfactor, eveningfactor } = dayTimeFactor;
+  const { id, morningfactor, lunchfactor, eveningfactor, latefactor } =
+    dayTimeFactor;
 
-  return { id, morningfactor, lunchfactor, eveningfactor };
+  return { id, morningfactor, lunchfactor, eveningfactor, latefactor };
 }

@@ -2,81 +2,91 @@ import styled from 'styled-components';
 import { keyframes } from 'styled-components';
 import { useState } from 'react';
 
-export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
-  const [morningfactor, setMorningfactor] = useState(
-    DayTimeFactor?.morningfactor ?? ''
+export default function CorrectionFactorEntry({
+  CorrectionFactor,
+  onHandleSetCorrectionfactor,
+}) {
+  const [morningcorrectionfactor, setMorningcorrectionfactor] = useState(
+    CorrectionFactor?.morningcorrectionfactor ?? ''
   );
-  const [lunchfactor, setLunchfactor] = useState(
-    DayTimeFactor?.lunchfactor ?? ''
+  const [lunchcorrectionfactor, setLunchcorrectionfactor] = useState(
+    CorrectionFactor?.lunchcorrectionfactor ?? ''
   );
-  const [eveningfactor, setEveningfactor] = useState(
-    DayTimeFactor?.eveningfactor ?? ''
+  const [eveningcorrectionfactor, setEveningcorrectionfactor] = useState(
+    CorrectionFactor?.eveningcorrectionfactor ?? ''
   );
-  const [latefactor, setLatefactor] = useState(DayTimeFactor?.latefactor ?? '');
+  const [latecorrectionfactor, setLatecorrectionfactor] = useState(
+    CorrectionFactor?.latecorrectionfactor ?? ''
+  );
 
-  function handleSetFactor(event) {
-    onHandleSetFactor(morningfactor, lunchfactor, eveningfactor, latefactor);
+  function handleSetCorrectionFactor(event) {
+    onHandleSetCorrectionfactor(
+      morningcorrectionfactor,
+      lunchcorrectionfactor,
+      eveningcorrectionfactor,
+      latecorrectionfactor
+    );
     event.preventDefault();
-    setMorningfactor('');
-    setLunchfactor('');
-    setEveningfactor('');
-    setLatefactor('');
+    setMorningcorrectionfactor('');
+    setLunchcorrectionfactor('');
+    setEveningcorrectionfactor('');
+    setLatecorrectionfactor('');
     event.target.reset();
   }
 
   return (
     <>
       <Wrapper>
-        <InsulinFactor>Faktor anlegen</InsulinFactor>
+        <CorrectionFactorTitel>Korrekturfaktor anlegen</CorrectionFactorTitel>
         <EntryForm
-          onSubmit={handleSetFactor}
-          id="insulinfactor"
+          onSubmit={handleSetCorrectionFactor}
+          id="correctionfactor"
           onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
         >
-          <LabelFa htmlFor="factor" id="insulinfactor">
-            Welcher Tageszeit <br /> Faktor
+          <LabelFa htmlFor="correctionfactor" id="correctionfactor">
+            Welcher Tageszeit <br /> Korrekturaktor
             <DataInputMorning
               type="decimal"
-              name="setedmorningfactor"
-              placeholder="Faktor morgens"
-              id="setedmorningfactor"
+              name="setcorrectionmorningfactor"
+              placeholder="Korrekturfaktor morgens"
+              id="setcorrectiomorningfactor"
               maxLength={'3'}
               min="0"
               onChange={(event) => {
-                setMorningfactor(event.target.value);
+                setMorningcorrectionfactor(event.target.value);
               }}
             />
             <DataInput
               type="decimal"
-              name="setedlunchfactor"
-              placeholder="Faktor mittags"
-              id="setedlunchfactor"
+              name="setcorrectiolunchfactor"
+              placeholder="Korrekturfaktor mittags"
+              id="setcorrectiolunchfactor"
               maxLength={'3'}
               min="0"
               onChange={(event) => {
-                setLunchfactor(event.target.value);
+                setLunchcorrectionfactor(event.target.value);
               }}
             />
             <DataInput
               type="decimal"
-              name="seteveningfactor"
-              placeholder="Faktor abends"
-              id="seteveningfactor"
+              name="setcorrectioeveningfactor"
+              placeholder="Korrekturfaktor abends"
+              id="setcorrectioeveningfactor"
               maxLength={'3'}
               min="0"
               onChange={(event) => {
-                setEveningfactor(event.target.value);
+                setEveningcorrectionfactor(event.target.value);
               }}
             />
             <DataInputLate
               type="decimal"
-              name="latefactor"
-              placeholder="Faktor spät"
-              id="latefactor"
+              name="setlatecorrectiofactor"
+              placeholder="Korrekturfaktor spät"
+              id="setcorrectiolatefactor"
               maxLength={'3'}
               min="0"
               onChange={(event) => {
-                setLatefactor(event.target.value);
+                setLatecorrectionfactor(event.target.value);
               }}
             />
           </LabelFa>
@@ -159,7 +169,7 @@ const EntryForm = styled.form`
   z-index: 1;
 `;
 
-const InsulinFactor = styled.h2`
+const CorrectionFactorTitel = styled.h2`
   background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
