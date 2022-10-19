@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { Fragment } from 'react';
+import { newdate } from '../utils/datestamp';
 import Image from 'next/image';
 import leereSpritze from '../public/leereSpritze.png';
 import volleSpritze from '../public/volleSpritze.png';
@@ -24,7 +25,7 @@ export default function Input({ factors, correctionfactors }) {
       daytimeFactor,
       correctionFactor
     );
-    const datestamp = new Date().toUTCString;
+
     const cardData = {
       bloodsugar: bloodsugar,
       carbohydrates: carbohydrates,
@@ -32,9 +33,8 @@ export default function Input({ factors, correctionfactors }) {
       daytimeFactor: daytimeFactor,
       correctionFactor: correctionFactor,
       calculateUnit: calculateUnits,
-      date: datestamp,
+      date: newdate,
     };
-    console.log(datestamp);
 
     const response = await fetch('/api/setInsulinDatas', {
       method: 'POST',
