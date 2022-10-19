@@ -49,4 +49,8 @@ The set factor is stored under the item 'Stored factor', each time you set a new
 - Clone this repository
 - Open it in VSCode
 - Inside root folder install all dependencies via `npm install`
+- Create a file called `.env.local.`
+- Store an environment variable called `MONGODB_URL` with the connection string provided by MongoDB.
+  Usually something like this: `MONGODB_URL='mongodb://127.0.0.1:27017/<name-of-db>'`
+- Make sure to add the name of your database to the url!
 - Run app in development mode via `npm run dev`

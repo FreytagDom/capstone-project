@@ -9,8 +9,10 @@ import blood from '../public/blood.PNG';
 import blooddrop from '../public/blooddrop.PNG';
 import carbohydrates from '../public/carbohydrates.png';
 import donut from '../public/donut.png';
+import handleInsulinUnit from '../utils/calculate';
 
 export default function Input({ factors, correctionfactors }) {
+  const [value, setValue] = useState();
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -26,6 +28,7 @@ export default function Input({ factors, correctionfactors }) {
       correctionFactor
     );
 
+    setValue(calculateUnits);
     const cardData = {
       bloodsugar: bloodsugar,
       carbohydrates: carbohydrates,
@@ -46,27 +49,6 @@ export default function Input({ factors, correctionfactors }) {
     });
 
     form.reset();
-  }
-
-  const [value, setValue] = useState();
-
-  function handleInsulinUnit(
-    bloodsugar,
-    carbohydrates,
-    daytimeFactor,
-    correctionFactor
-  ) {
-    const targetValue = 100;
-    // const correctionValue = 60;
-
-    const calculateUnit = (
-      (bloodsugar - targetValue) / correctionFactor +
-      carbohydrates / daytimeFactor -
-      0.1
-    ).toFixed(1);
-
-    setValue(calculateUnit);
-    return calculateUnit;
   }
 
   const options = [
