@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { useState, Fragment } from 'react';
-import { newdate } from '../utils/datestamp';
 import Image from 'next/image';
 import leereSpritze from '../public/leereSpritze.png';
 import volleSpritze from '../public/volleSpritze.png';
@@ -9,6 +8,7 @@ import blooddrop from '../public/blooddrop.PNG';
 import carbohydrates from '../public/carbohydrates.png';
 import donut from '../public/donut.png';
 import handleInsulinUnit from '../utils/calculate';
+import { Await } from 'react-router-dom';
 
 export default function Input({ factors, correctionfactors }) {
   const [value, setValue] = useState();
@@ -28,6 +28,8 @@ export default function Input({ factors, correctionfactors }) {
     );
 
     setValue(calculateUnits);
+    const date = new Date();
+    const newdate = date.toLocaleString();
     const cardData = {
       bloodsugar: bloodsugar,
       carbohydrates: carbohydrates,
