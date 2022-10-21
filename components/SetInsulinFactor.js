@@ -27,7 +27,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
   return (
     <>
       <Wrapper>
-        <InsulinFactor>Faktor anlegen</InsulinFactor>
+        <InsulinFactor>Insulinfaktor anlegen</InsulinFactor>
         <EntryForm
           onSubmit={handleSetFactor}
           id="insulinfactor"

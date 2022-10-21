@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { useState } from 'react';
-import { Fragment } from 'react';
+import { useState, Fragment } from 'react';
 import { newdate } from '../utils/datestamp';
 import Image from 'next/image';
 import leereSpritze from '../public/leereSpritze.png';

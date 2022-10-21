@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
-
 import { getAllDayFactors } from '../services/savedDayFactorService';
 
 export async function getServerSideProps() {
@@ -16,7 +15,9 @@ export async function getServerSideProps() {
 export default function SavedFactor({ factors }) {
   return (
     <Wrapper>
-      <SavedFactorTitel>Gespeicherter Faktor</SavedFactorTitel>
+      <SavedFactorTitel>
+        Gespeicherter <br /> Insulinfaktor
+      </SavedFactorTitel>
       <CardGrid>
         {factors.map((items) => {
           return (

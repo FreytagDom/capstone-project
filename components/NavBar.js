@@ -10,28 +10,22 @@ export const Navbar = () => {
           <Tags>Start</Tags>
         </Link>
 
-        <Link href="/savedInsulinData" passHref>
-          <Tags>Daten</Tags>
-        </Link>
-
-        <Link href="/savedInsulinFactor" passHref>
-          <Tags>
-            Gespeicherter <br /> Faktor
-          </Tags>
-        </Link>
-
-        <Link href="/savedCorrectionFactor" passHref>
-          <Tags>
-            Gespeicherter <br /> Korrekturfaktor
-          </Tags>
-        </Link>
-
         <Link href="/setInsulinFactor" passHref>
-          <Tags>Insulinfaktor</Tags>
+          <Tags>
+            Insulin <br />
+            Faktor
+          </Tags>
         </Link>
 
         <Link href="/setCorrectionFactor" passHref>
-          <Tags>Korrekturfaktor</Tags>
+          <Tags>
+            Korrektur <br />
+            Faktor
+          </Tags>
+        </Link>
+
+        <Link href="/savedInsulinData" passHref>
+          <Tags>Daten</Tags>
         </Link>
       </Navigation>
     </NavbarHead>
@@ -65,7 +59,7 @@ const NavbarHead = styled.section`
 
 const Navigation = styled.nav`
   display: flex;
-  font-size: 1.1em;
+  font-size: 1.1rem;
   color: darkcyan;
   justify-content: space-evenly;
   padding-top: 0.5rem;
@@ -74,5 +68,5 @@ const Navigation = styled.nav`
 const Tags = styled.a`
   text-decoration: none;
   margin: 15px 20px;
-  font-size: 1em;
+  font-size: 1.1rem;
 `;
