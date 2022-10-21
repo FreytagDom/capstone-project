@@ -52,6 +52,7 @@ export default function CorrectionFactorEntry({
               id="setcorrectiomorningfactor"
               maxLength={'3'}
               min="0"
+              required
               onChange={(event) => {
                 setMorningcorrectionfactor(event.target.value);
               }}
@@ -63,6 +64,7 @@ export default function CorrectionFactorEntry({
               id="setcorrectiolunchfactor"
               maxLength={'3'}
               min="0"
+              required
               onChange={(event) => {
                 setLunchcorrectionfactor(event.target.value);
               }}
@@ -74,6 +76,7 @@ export default function CorrectionFactorEntry({
               id="setcorrectioeveningfactor"
               maxLength={'3'}
               min="0"
+              required
               onChange={(event) => {
                 setEveningcorrectionfactor(event.target.value);
               }}
@@ -85,6 +88,7 @@ export default function CorrectionFactorEntry({
               id="setcorrectiolatefactor"
               maxLength={'3'}
               min="0"
+              required
               onChange={(event) => {
                 setLatecorrectionfactor(event.target.value);
               }}

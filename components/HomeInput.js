@@ -100,6 +100,7 @@ export default function Input({ factors, correctionfactors }) {
             maxLength={'3'}
             key="carbohydrates"
             min="0"
+            required
           />
         </LabelCa>
 
