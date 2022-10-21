@@ -8,7 +8,6 @@ import blooddrop from '../public/blooddrop.PNG';
 import carbohydrates from '../public/carbohydrates.png';
 import donut from '../public/donut.png';
 import handleInsulinUnit from '../utils/calculate';
-import { Await } from 'react-router-dom';
 
 export default function Input({ factors, correctionfactors }) {
   const [value, setValue] = useState();
