@@ -42,19 +42,17 @@ const hue = keyframes`
 `;
 
 const NavbarHead = styled.section`
-  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-animation: ${hue} 10s infinite linear;
-  color: purple;
+  justify-content: space-evenly;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-align: center;
+  justify-items: inherit;
   display: flex;
   position: fixed;
-  bottom: 10px;
+  bottom: 0vh;
   width: 100%;
-  z-index: 1;
-  justify-content: space-evenly;
+  background-color: black;
+  opacity: 0.8;
+  height: 4rem;
 `;
 
 const Navigation = styled.nav`
@@ -62,11 +60,19 @@ const Navigation = styled.nav`
   font-size: 1.1rem;
   color: darkcyan;
   justify-content: space-evenly;
-  padding-top: 0.5rem;
 `;
 
 const Tags = styled.a`
   text-decoration: none;
-  margin: 15px 20px;
+  margin: 5px 20px;
   font-size: 1.1rem;
+  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: ${hue} 8s infinite linear;
+  color: purple;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  display: flex;
+  z-index: 2;
+  justify-content: space-evenly;
 `;
