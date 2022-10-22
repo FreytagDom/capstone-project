@@ -53,6 +53,7 @@ const NavbarHead = styled.section`
   background-color: black;
   opacity: 0.8;
   height: 4rem;
+  z-index: 2;
 `;
 
 const Navigation = styled.nav`
@@ -60,6 +61,7 @@ const Navigation = styled.nav`
   font-size: 1.1rem;
   color: darkcyan;
   justify-content: space-evenly;
+  z-index: 2;
 `;
 
 const Tags = styled.a`

@@ -92,14 +92,6 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
   );
 }
 
-const Wrapper = styled.section`
-  display: grid;
-  grid-template-rows: min-content auto 48px;
-  height: inherit;
-  justify-content: center;
-  z-index: 1;
-`;
-
 const hue = keyframes`
  from {
    -webkit-filter: hue-rotate(180deg);
@@ -107,6 +99,15 @@ const hue = keyframes`
  to {
    -webkit-filter: hue-rotate(-180deg);
  }
+`;
+
+const Wrapper = styled.section`
+  display: grid;
+  grid-template-rows: min-content auto 48px;
+  height: inherit;
+  justify-content: center;
+  margin-top: -0.5rem;
+  z-index: 1;
 `;
 
 const Label = styled.label`

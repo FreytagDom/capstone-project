@@ -1,43 +1,31 @@
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
 
-import { getAllCorrectionFactors } from '../services/correctionFactorsService';
-
-export async function getServerSideProps() {
-  const factors = await getAllCorrectionFactors();
-
-  return {
-    props: {
-      factors: factors,
-    },
-  };
-}
-
-export default function SavedCorrectionFactor({ factors }) {
+export default function SavedFactor({ factors }) {
   return (
     <Wrapper>
-      <SavedCorrectionFactorTitel>
-        Gespeicherter Korrekturfaktor
-      </SavedCorrectionFactorTitel>
+      <SavedFactorTitel>
+        Gespeicherter <br /> Insulinfaktor
+      </SavedFactorTitel>
       <CardGrid>
         {factors.map((items) => {
           return (
             <Saved key={items.id}>
-              <MorningCorrectionFactor>
-                Korrekturfaktor morgens: <br /> {items.morningcorrectionfactor}
-              </MorningCorrectionFactor>
+              <MorningFactor>
+                Faktor morgens: <br /> {items.morningfactor}
+              </MorningFactor>
               <br />
-              <LunchCorrectionFactor>
-                Korrekturfaktor mittags: <br /> {items.lunchcorrectionfactor}
-              </LunchCorrectionFactor>
+              <LunchFactor>
+                Faktor mittags: <br /> {items.lunchfactor}
+              </LunchFactor>
               <br />
-              <EveningCorrectionFactor>
-                Korrekturfakror abends: <br /> {items.eveningcorrectionfactor}
-              </EveningCorrectionFactor>
+              <EveningFactor>
+                Faktor abends: <br /> {items.eveningfactor}
+              </EveningFactor>
               <br />
-              <LateCorrectionFactor>
-                Korrekturfakror spät: <br /> {items.latecorrectionfactor}
-              </LateCorrectionFactor>
+              <LateFactor>
+                Faktor spät: <br /> {items.latefactor}
+              </LateFactor>
             </Saved>
           );
         })}
@@ -53,6 +41,7 @@ const Wrapper = styled.section`
   justify-content: center;
   z-index: 1;
   background-attachment: scroll;
+  margin-top: -1.5rem;
 `;
 
 const CardGrid = styled.ul`
@@ -67,7 +56,9 @@ const CardGrid = styled.ul`
   justify-content: center;
   z-index: 1;
   background-attachment: scroll;
+  margin-top: -1rem;
 `;
+
 const Saved = styled.li`
   display: grid;
   background-color: beige;
@@ -81,20 +72,20 @@ const Saved = styled.li`
   background-attachment: scroll;
 `;
 
-const MorningCorrectionFactor = styled.span`
-  color: #c92f2a;
+const MorningFactor = styled.span`
+  color: #c92a2a;
 `;
 
-const LunchCorrectionFactor = styled.span`
-  color: #2b8c3e;
+const LunchFactor = styled.span`
+  color: #2b8a3e;
 `;
 
-const EveningCorrectionFactor = styled.span`
+const EveningFactor = styled.span`
   color: #e67700;
 `;
 
-const LateCorrectionFactor = styled.span`
-  color: #bc11cf;
+const LateFactor = styled.span`
+  color: #355fc8;
 `;
 
 const hue = keyframes`
@@ -105,7 +96,7 @@ const hue = keyframes`
    -webkit-filter: hue-rotate(-180deg);
  }
 `;
-const SavedCorrectionFactorTitel = styled.h2`
+const SavedFactorTitel = styled.h2`
   background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
