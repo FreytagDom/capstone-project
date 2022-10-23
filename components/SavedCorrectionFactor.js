@@ -5,7 +5,7 @@ export default function SavedCorrectionFactor({ correctionfactors }) {
   return (
     <Wrapper>
       <SavedCorrectionFactorTitel>
-        Gespeicherter Korrekturfaktor
+        Gespeicherter <br /> Korrekturfaktor
       </SavedCorrectionFactorTitel>
       <CardGrid>
         {correctionfactors.map((items) => {

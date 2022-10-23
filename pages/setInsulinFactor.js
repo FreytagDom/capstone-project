@@ -1,6 +1,7 @@
 import FactorEntry from '../components/SetInsulinFactor';
 import SavedFactor from '../components/SavedInsulinFactor';
 import { getAllDayFactors } from '../services/savedDayFactorService';
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps() {
   const factors = await getAllDayFactors();
@@ -11,7 +12,6 @@ export async function getServerSideProps() {
     },
   };
 }
-
 export default function CreateFactor({ factors }) {
   async function handleSetSubmit(
     morningfactor,
@@ -30,11 +30,11 @@ export default function CreateFactor({ factors }) {
         eveningfactor,
         latefactor,
       }),
+    }).then((res) => {
+      if (res.ok) router.reload();
     });
-    const response_ = await response.json();
-    console.log(response_);
   }
-
+  const router = useRouter();
   return (
     <>
       <FactorEntry onHandleSetFactor={handleSetSubmit} />

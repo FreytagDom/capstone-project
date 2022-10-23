@@ -1,6 +1,7 @@
 import CorrectionFactorEntry from '../components/SetCorrectionFactor';
 import { getAllCorrectionFactors } from '../services/correctionFactorsService';
 import SavedCorrectionFactor from '../components/SavedCorrectionFactor';
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps() {
   const correctionfactors = await getAllCorrectionFactors();
@@ -30,11 +31,11 @@ export default function CreateCorretionfactor({ correctionfactors }) {
         eveningcorrectionfactor,
         latecorrectionfactor,
       }),
+    }).then(async (res) => {
+      if (res.ok) router.reload();
     });
-    const response_ = await response.json();
-    console.log(response_);
   }
-
+  const router = useRouter();
   return (
     <>
       <CorrectionFactorEntry onHandleSetCorrectionfactor={handleSetSubmit} />

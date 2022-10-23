@@ -13,7 +13,6 @@ export default async function handler(request, response) {
 
       const data = request.body;
 
-      // await CorrectionFactor.updateMany(data);
       const result = await CorrectionFactor.findOneAndUpdate({ _id: 1 }, data, {
         new: true,
         upsert: true,
