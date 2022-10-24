@@ -76,7 +76,7 @@ export default function Input({ factors, correctionfactors }) {
           <DataInput
             type="decimal"
             name="bloodsugar"
-            placeholder="letzter Blutzuckerwert"
+            placeholder="aktueller Blutzuckerwert"
             id="bloodsugar"
             min="0"
             key="bloodsugar"
