@@ -32,7 +32,7 @@ export default function CreateCorretionfactor({ correctionfactors }) {
         latecorrectionfactor,
       }),
     }).then(async (res) => {
-      if (res.ok) router.reload();
+      if (res.ok) router.replace(SavedCorrectionFactor);
     });
   }
   const router = useRouter();

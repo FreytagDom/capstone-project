@@ -31,7 +31,7 @@ export default function CreateFactor({ factors }) {
         latefactor,
       }),
     }).then((res) => {
-      if (res.ok) router.reload();
+      if (res.ok) router.replace(SavedFactor);
     });
   }
   const router = useRouter();
