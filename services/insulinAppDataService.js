@@ -4,7 +4,7 @@ import SavedInsulinData from '../models/InsulinApp';
 export async function getAllCategories() {
   await dbConnect();
 
-  const savedInsulinData = await SavedInsulinData.find();
+  const savedInsulinData = await SavedInsulinData.find().sort({ date: -1 });
 
   return savedInsulinData.map(
     ({

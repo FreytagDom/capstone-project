@@ -5,7 +5,6 @@ export async function getAllFactors() {
   await dbConnect();
 
   const daytimeFactors = await DayTimeFactor.find();
-
   return daytimeFactors.map(
     ({ id, morningfactor, lunchfactor, eveningfactor, latefactor }) => {
       return {
@@ -23,7 +22,6 @@ export async function getFactorById(dayTimeFactorId) {
   await dbConnect();
 
   const dayTimeFactor = await DayTimeFactor.findById(dayTimeFactorId);
-
   const { id, morningfactor, lunchfactor, eveningfactor, latefactor } =
     dayTimeFactor;
 
