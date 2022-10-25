@@ -1,21 +1,24 @@
 import Input from '../components/HomeInput';
 import styled from 'styled-components';
 import { getAllDayFactors } from '../services/savedDayFactorService';
+import { getAllCorrectionFactors } from '../services/correctionFactorsService';
 
 export async function getServerSideProps() {
   const factors = await getAllDayFactors();
+  const correctionfactors = await getAllCorrectionFactors();
 
   return {
     props: {
       factors: factors,
+      correctionfactors: correctionfactors,
     },
   };
 }
 
-export default function Home({ factors }) {
+export default function Home({ factors, correctionfactors }) {
   return (
     <Wrapper>
-      <Input factors={factors} />
+      <Input factors={factors} correctionfactors={correctionfactors} />
     </Wrapper>
   );
 }

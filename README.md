@@ -42,10 +42,6 @@ The set factor is stored under the item 'Stored factor', each time you set a new
 
 ## Tech Stack
 
-
-https://user-images.githubusercontent.com/109357762/195850502-4ea4f1ea-3c83-404a-9461-b920d4ee951b.mov
-
-
 | JavaScript | React.js | Next.js MongoDB | Mongoose |
 
 ## Project Setup
@@ -53,9 +49,8 @@ https://user-images.githubusercontent.com/109357762/195850502-4ea4f1ea-3c83-404a
 - Clone this repository
 - Open it in VSCode
 - Inside root folder install all dependencies via `npm install`
-- Create a file called `.env.local.` 
+- Create a file called `.env.local.`
 - Store an environment variable called `MONGODB_URL` with the connection string provided by MongoDB.
-  Usually something like this:
-  `MONGODB_URL='mongodb://127.0.0.1:27017/<name-of-db>'`
+  Usually something like this: `MONGODB_URL='mongodb://127.0.0.1:27017/<name-of-db>'`
 - Make sure to add the name of your database to the url!
 - Run app in development mode via `npm run dev`

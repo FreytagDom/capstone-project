@@ -3,9 +3,11 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const correctionSchema = new Schema({
-  morningcorretionfactor: { type: Number, required: true },
-  lunchcorretionfactor: { type: Number, required: true },
-  eveningcorretionfactor: { type: Number, required: true },
+  _id: { type: Number },
+  morningcorrectionfactor: { type: Number, required: true },
+  lunchcorrectionfactor: { type: Number, required: true },
+  eveningcorrectionfactor: { type: Number, required: true },
+  latecorrectionfactor: { type: Number, requirde: true },
 });
 
 const CorrectionFactor =

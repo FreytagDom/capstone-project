@@ -1,19 +1,25 @@
 import styled from 'styled-components';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import { useState } from 'react';
 
 export default function SavedDataInjected({ cardData }) {
-  const data = cardData;
+  const [newCardData, setNewCardData] = useState(cardData);
 
   async function removeCard(id) {
     const response = await fetch('/api/savedInsulinData/' + id, {
       method: 'DELETE',
     });
-    const json = response.json();
+
+    setNewCardData(
+      newCardData.filter((cardData) => {
+        return cardData.id !== id;
+      })
+    );
   }
   return (
     <WrapperSaved>
       <CardGrid>
-        {data.map((item) => {
+        {newCardData.map((item) => {
           return (
             <Saved key={item.id}>
               <IconWrapper>
@@ -33,6 +39,10 @@ export default function SavedDataInjected({ cardData }) {
               <br />
               <Factor>
                 Insulin Faktor: <br /> {item.daytimeFactor}
+              </Factor>
+              <Factor>
+                Korrektur Faktor: <br />
+                {item.correctionFactor}
               </Factor>
               <InsulinUnits>
                 gespritzte Insulin <br /> Menge: {item.calculateUnit}

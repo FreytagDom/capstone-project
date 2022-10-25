@@ -1,5 +1,3 @@
-import dbConnect from '../../../dbConnect';
-import SavedInsulinData from '../../../models/InsulinApp';
 import { getAllCategories } from '../../../services/insulinAppDataService';
 
 export default async function handler(request, response) {
