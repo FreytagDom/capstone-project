@@ -52,8 +52,6 @@ export default function Input({ factors, correctionfactors }) {
   }
 
   const options = [
-    { value: 'Basal', label: 'Basal' },
-    { value: 'Bolus', label: 'Bolus' },
     { value: 'Fiasp', label: 'Fiasp' },
     { value: 'Hum Normal', label: 'Hum Normal' },
   ];
