@@ -218,7 +218,7 @@ const Label = styled.label`
   text-align: center;
   height: 14vh;
   padding-top: 3vh;
-  margin-top: 0.5vh;
+  margin-top: 0.3vh;
   position: sticky;
   opacity: 0.8;
 `;
@@ -277,7 +277,7 @@ const FactorSelect = styled.select`
   border-radius: 8px;
   display: grid;
   text-align: center;
-  height: 1.8rem;
+  height: 1.7rem;
   color: #364fc9;
 `;
 

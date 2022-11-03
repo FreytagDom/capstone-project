@@ -2,6 +2,7 @@ import Input from '../components/HomeInput';
 import styled from 'styled-components';
 import { getAllDayFactors } from '../services/savedDayFactorService';
 import { getAllCorrectionFactors } from '../services/correctionFactorsService';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 export async function getServerSideProps() {
   const factors = await getAllDayFactors();
@@ -16,8 +17,27 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ factors, correctionfactors }) {
+  const { data: session } = useSession();
   return (
     <Wrapper>
+      <Sign>
+        {session ? (
+          <>
+            <Login>
+              Hallo {'  '}
+              <Login> {session.user.name}</Login>
+            </Login>{' '}
+            {'  '}
+            <Atags href="#" onClick={signOut}>
+              Abmelden
+            </Atags>
+          </>
+        ) : (
+          <Atags href="#" onClick={signIn}>
+            Anmelden
+          </Atags>
+        )}
+      </Sign>
       <Input factors={factors} correctionfactors={correctionfactors} />
     </Wrapper>
   );
@@ -28,4 +48,27 @@ const Wrapper = styled.section`
   grid-template-rows: min-content auto 48px;
   height: inherit;
   justify-content: center;
+`;
+
+const Login = styled.span`
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+`;
+
+const Sign = styled.span`
+  color: white;
+  text-decoration: none;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
+  z-index: 2;
+`;
+
+const Atags = styled.a`
+  color: green;
+  text-decoration: none;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
 `;
