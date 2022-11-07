@@ -9,8 +9,9 @@ import carbohydrates from '../public/carbohydrates.png';
 import donut from '../public/donut.png';
 import handleInsulinUnit from '../utils/calculate';
 
-export default function Input({ factors, correctionfactors }) {
+export default function Input({ session, factors, correctionfactors }) {
   const [value, setValue] = useState();
+
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -25,11 +26,14 @@ export default function Input({ factors, correctionfactors }) {
       daytimeFactor,
       correctionFactor
     );
+    const user = session.user.email;
 
     setValue(calculateUnits);
+
     const date = new Date();
     const newdate = date.toLocaleString();
     const cardData = {
+      user: user,
       bloodsugar: bloodsugar,
       carbohydrates: carbohydrates,
       insulin: insulin,

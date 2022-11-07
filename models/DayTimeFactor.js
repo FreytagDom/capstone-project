@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 
 const factorSchema = new Schema({
   _id: { type: Number },
+  user: { type: String, required: true },
   morningfactor: { type: Number, required: true },
   lunchfactor: { type: Number, required: true },
   eveningfactor: { type: Number, required: true },

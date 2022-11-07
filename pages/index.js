@@ -3,10 +3,25 @@ import styled from 'styled-components';
 import { getAllDayFactors } from '../services/savedDayFactorService';
 import { getAllCorrectionFactors } from '../services/correctionFactorsService';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { getToken } from 'next-auth/jwt';
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req }) {
   const factors = await getAllDayFactors();
   const correctionfactors = await getAllCorrectionFactors();
+  const token = await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+    raw: true,
+  });
+
+  const response = await fetch(
+    `http://${req.headers.host}/api/setInsulinDatas/`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
   return {
     props: {
@@ -38,7 +53,11 @@ export default function Home({ factors, correctionfactors }) {
           </Atags>
         )}
       </Sign>
-      <Input factors={factors} correctionfactors={correctionfactors} />
+      <Input
+        session={session}
+        factors={factors}
+        correctionfactors={correctionfactors}
+      />
     </Wrapper>
   );
 }
@@ -70,5 +89,5 @@ const Atags = styled.a`
   text-decoration: none;
   justify-content: center;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
 `;

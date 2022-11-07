@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 export default function SavedDataInjected({ cardData }) {
+  const { data: session } = useSession();
   const [newCardData, setNewCardData] = useState(cardData);
 
   async function removeCard(id) {
@@ -16,10 +18,14 @@ export default function SavedDataInjected({ cardData }) {
       })
     );
   }
+  const userCardData = cardData.filter((newCardData) => {
+    return newCardData.user !== session.user.email;
+  });
+
   return (
     <WrapperSaved>
       <CardGrid>
-        {newCardData.map((item) => {
+        {userCardData.map((item) => {
           return (
             <Saved key={item.id}>
               <IconWrapper>
