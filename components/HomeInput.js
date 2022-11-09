@@ -62,6 +62,9 @@ export default function Input({ session, factors, correctionfactors }) {
   const userFactor = factors.filter((factors) => {
     return factors.id === session?.user.email;
   });
+  const userCorrectionFactor = correctionfactors.filter((correctionfactors) => {
+    return correctionfactors.id === session.user.email;
+  });
   return (
     <>
       <EntryForm
@@ -159,7 +162,7 @@ export default function Input({ session, factors, correctionfactors }) {
                 </FactorOption>
               </FactorSelect>
             ))}
-            {correctionfactors.map((correctionfactor, index) => (
+            {userCorrectionFactor.map((correctionfactor, index) => (
               <FactorSelect
                 htmlFor="setcorrectionfactor"
                 name="correctionfactorSelect"

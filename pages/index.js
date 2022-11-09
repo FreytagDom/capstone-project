@@ -4,6 +4,7 @@ import { getAllDayFactors } from '../services/savedDayFactorService';
 import { getAllCorrectionFactors } from '../services/correctionFactorsService';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { getToken } from 'next-auth/jwt';
+import LoginPage from '../components/Login';
 
 export async function getServerSideProps({ req }) {
   const factors = await getAllDayFactors();
@@ -55,18 +56,12 @@ export default function Home({ factors, correctionfactors }) {
             />
           </>
         ) : (
-          <SingIn href="#" onClick={() => signIn('github')}>
-            Anmelden
-          </SingIn>
+          <LoginPage />
         )}
       </Sign>
     </Wrapper>
   );
 }
-
-const Main = styled.main`
-  display: grid;
-`;
 
 const Wrapper = styled.section`
   display: grid;
@@ -96,11 +91,4 @@ const Atags = styled.a`
   justify-content: center;
   text-align: center;
   font-size: 0.8rem;
-`;
-
-const SingIn = styled.a`
-  text-decoration: none;
-  justify-content: center;
-  font-size: 3rem;
-  color: aliceblue;
 `;
