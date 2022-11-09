@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 
 export async function getServerSideProps() {
   const factors = await getAllDayFactors();
-
   return {
     props: {
       factors: factors,
