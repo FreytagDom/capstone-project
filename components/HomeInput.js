@@ -59,7 +59,9 @@ export default function Input({ session, factors, correctionfactors }) {
     { value: 'Fiasp', label: 'Fiasp' },
     { value: 'Hum Normal', label: 'Hum Normal' },
   ];
-
+  const userFactor = factors.filter((factors) => {
+    return factors.id === session?.user.email;
+  });
   return (
     <>
       <EntryForm
@@ -133,7 +135,7 @@ export default function Input({ session, factors, correctionfactors }) {
         <Fragment>
           <LabelFa htmlFor="factor">
             Welcher Tageszeit <br /> Faktor
-            {factors.map((factor, index) => (
+            {userFactor.map((factor, index) => (
               <FactorSelect
                 htmlFor="setdayfactor"
                 name="dayfactorSelect"

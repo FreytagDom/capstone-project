@@ -12,6 +12,7 @@ export async function getServerSideProps() {
     },
   };
 }
+
 export default function CreateFactor({ factors }) {
   async function handleSetSubmit(
     morningfactor,

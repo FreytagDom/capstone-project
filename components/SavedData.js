@@ -19,7 +19,7 @@ export default function SavedDataInjected({ cardData }) {
     );
   }
   const userCardData = cardData.filter((newCardData) => {
-    return newCardData.user !== session.user.email;
+    return newCardData.user === session.user.email;
   });
 
   return (

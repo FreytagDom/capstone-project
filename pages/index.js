@@ -16,6 +16,7 @@ export async function getServerSideProps({ req }) {
 
   const response = await fetch(
     `http://${req.headers.host}/api/setInsulinDatas/`,
+
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -33,6 +34,7 @@ export async function getServerSideProps({ req }) {
 
 export default function Home({ factors, correctionfactors }) {
   const { data: session } = useSession();
+
   return (
     <Wrapper>
       <Sign>
@@ -46,21 +48,25 @@ export default function Home({ factors, correctionfactors }) {
             <Atags href="#" onClick={signOut}>
               Abmelden
             </Atags>
+            <Input
+              session={session}
+              factors={factors}
+              correctionfactors={correctionfactors}
+            />
           </>
         ) : (
-          <Atags href="#" onClick={signIn}>
+          <SingIn href="#" onClick={() => signIn('github')}>
             Anmelden
-          </Atags>
+          </SingIn>
         )}
       </Sign>
-      <Input
-        session={session}
-        factors={factors}
-        correctionfactors={correctionfactors}
-      />
     </Wrapper>
   );
 }
+
+const Main = styled.main`
+  display: grid;
+`;
 
 const Wrapper = styled.section`
   display: grid;
@@ -90,4 +96,11 @@ const Atags = styled.a`
   justify-content: center;
   text-align: center;
   font-size: 0.8rem;
+`;
+
+const SingIn = styled.a`
+  text-decoration: none;
+  justify-content: center;
+  font-size: 3rem;
+  color: aliceblue;
 `;

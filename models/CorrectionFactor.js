@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const correctionSchema = new Schema({
-  _id: { type: Number },
+  _id: { type: String, required: true },
   morningcorrectionfactor: { type: Number, required: true },
   lunchcorrectionfactor: { type: Number, required: true },
   eveningcorrectionfactor: { type: Number, required: true },

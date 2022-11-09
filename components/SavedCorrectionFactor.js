@@ -1,14 +1,20 @@
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
+import { useSession } from 'next-auth/react';
 
 export default function SavedCorrectionFactor({ correctionfactors }) {
+  const { data: session } = useSession();
+  const userCorrectionFactor = correctionfactors.filter((correctionfactors) => {
+    return correctionfactors.id === session.user.email;
+  });
+
   return (
     <Wrapper>
       <SavedCorrectionFactorTitel>
         Gespeicherter <br /> Korrekturfaktor
       </SavedCorrectionFactorTitel>
       <CardGrid>
-        {correctionfactors.map((items) => {
+        {userCorrectionFactor.map((items) => {
           return (
             <Saved key={items.id}>
               <MorningCorrectionFactor>
