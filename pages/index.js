@@ -2,7 +2,7 @@ import Input from '../components/HomeInput';
 import styled from 'styled-components';
 import { getAllDayFactors } from '../services/savedDayFactorService';
 import { getAllCorrectionFactors } from '../services/correctionFactorsService';
-import { useSession, signOut } from 'next-auth/react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import { getToken } from 'next-auth/jwt';
 import LoginPage from '../components/Login';
 
