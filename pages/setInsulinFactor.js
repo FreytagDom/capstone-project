@@ -5,13 +5,13 @@ import { useRouter } from 'next/router';
 
 export async function getServerSideProps() {
   const factors = await getAllDayFactors();
-
   return {
     props: {
       factors: factors,
     },
   };
 }
+
 export default function CreateFactor({ factors }) {
   async function handleSetSubmit(
     morningfactor,

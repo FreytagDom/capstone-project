@@ -3,7 +3,6 @@ import { getAllCategories } from '../services/insulinAppDataService';
 
 export async function getServerSideProps() {
   const cardData = await getAllCategories();
-
   return {
     props: {
       cardData: cardData,

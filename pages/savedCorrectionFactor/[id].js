@@ -8,7 +8,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      daytimeFactors,
+      correctionFactors,
       correctionFactor,
     },
   };
@@ -20,7 +20,7 @@ export default function SavedCorrectionFactor({ correctionFactors }) {
     lunchcorrectionfactor,
     eveningcorrectionfactor,
     latecorrectionfactor,
-  } = daytimeFactors;
+  } = correctionFactors;
   function updateCorrectionFactor(updatedCorrectionFactor) {
     console.log(updatedCorrectionFactor);
   }

@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 
 export async function getServerSideProps() {
   const correctionfactors = await getAllCorrectionFactors();
-
   return {
     props: {
       correctionfactors: correctionfactors,

@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const factorSchema = new Schema({
-  _id: { type: Number },
+  _id: { type: String, required: true },
   morningfactor: { type: Number, required: true },
   lunchfactor: { type: Number, required: true },
   eveningfactor: { type: Number, required: true },

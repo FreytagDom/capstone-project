@@ -9,8 +9,9 @@ import carbohydrates from '../public/carbohydrates.png';
 import donut from '../public/donut.png';
 import handleInsulinUnit from '../utils/calculate';
 
-export default function Input({ factors, correctionfactors }) {
+export default function Input({ session, factors, correctionfactors }) {
   const [value, setValue] = useState();
+
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -25,11 +26,14 @@ export default function Input({ factors, correctionfactors }) {
       daytimeFactor,
       correctionFactor
     );
+    const user = session.user.email;
 
     setValue(calculateUnits);
+
     const date = new Date();
     const newdate = date.toLocaleString();
     const cardData = {
+      user: user,
       bloodsugar: bloodsugar,
       carbohydrates: carbohydrates,
       insulin: insulin,
@@ -55,7 +59,12 @@ export default function Input({ factors, correctionfactors }) {
     { value: 'Fiasp', label: 'Fiasp' },
     { value: 'Hum Normal', label: 'Hum Normal' },
   ];
-
+  const userFactor = factors.filter((factors) => {
+    return factors.id === session?.user.email;
+  });
+  const userCorrectionFactor = correctionfactors.filter((correctionfactors) => {
+    return correctionfactors.id === session.user.email;
+  });
   return (
     <>
       <EntryForm
@@ -129,7 +138,7 @@ export default function Input({ factors, correctionfactors }) {
         <Fragment>
           <LabelFa htmlFor="factor">
             Welcher Tageszeit <br /> Faktor
-            {factors.map((factor, index) => (
+            {userFactor.map((factor, index) => (
               <FactorSelect
                 htmlFor="setdayfactor"
                 name="dayfactorSelect"
@@ -153,7 +162,7 @@ export default function Input({ factors, correctionfactors }) {
                 </FactorOption>
               </FactorSelect>
             ))}
-            {correctionfactors.map((correctionfactor, index) => (
+            {userCorrectionFactor.map((correctionfactor, index) => (
               <FactorSelect
                 htmlFor="setcorrectionfactor"
                 name="correctionfactorSelect"
@@ -218,7 +227,7 @@ const Label = styled.label`
   text-align: center;
   height: 14vh;
   padding-top: 3vh;
-  margin-top: 0.5vh;
+  margin-top: 0.3vh;
   position: sticky;
   opacity: 0.8;
 `;
@@ -277,7 +286,7 @@ const FactorSelect = styled.select`
   border-radius: 8px;
   display: grid;
   text-align: center;
-  height: 1.8rem;
+  height: 1.7rem;
   color: #364fc9;
 `;
 

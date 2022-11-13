@@ -1,14 +1,20 @@
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
+import { useSession } from 'next-auth/react';
 
 export default function SavedFactor({ factors }) {
+  const { data: session } = useSession();
+  const userFactor = factors.filter((factors) => {
+    return factors.id === session.user.email;
+  });
+
   return (
     <Wrapper>
       <SavedFactorTitel>
         Gespeicherter <br /> Insulinfaktor
       </SavedFactorTitel>
       <CardGrid>
-        {factors.map((items) => {
+        {userFactor.map((items) => {
           return (
             <Saved key={items.id}>
               <MorningFactor>

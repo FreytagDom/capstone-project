@@ -2,10 +2,28 @@ import Input from '../components/HomeInput';
 import styled from 'styled-components';
 import { getAllDayFactors } from '../services/savedDayFactorService';
 import { getAllCorrectionFactors } from '../services/correctionFactorsService';
+import { useSession, signIn, signOut } from 'next-auth/react';
+import { getToken } from 'next-auth/jwt';
+import LoginPage from '../components/Login';
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req }) {
   const factors = await getAllDayFactors();
   const correctionfactors = await getAllCorrectionFactors();
+  const token = await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+    raw: true,
+  });
+
+  const response = await fetch(
+    `http://${req.headers.host}/api/setInsulinDatas/`,
+
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
   return {
     props: {
@@ -16,9 +34,40 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ factors, correctionfactors }) {
+  const isPreview = process.env.VERCEL_ENV === 'preview';
+  const { data: session } = useSession();
+
   return (
     <Wrapper>
-      <Input factors={factors} correctionfactors={correctionfactors} />
+      <Sign>
+        {session ? (
+          <>
+            <Login>
+              Hallo {'  '}
+              <Login> {session.user.name}</Login>
+            </Login>{' '}
+            {'  '}
+            <Atags href="#" onClick={signOut}>
+              Abmelden
+            </Atags>
+            <Input
+              session={session}
+              factors={factors}
+              correctionfactors={correctionfactors}
+            />
+          </>
+        ) : (
+          <>
+            <LoginPage />
+            <a
+              href="#"
+              onClick={() => signIn(isPreview ? 'credentials' : 'github')}
+            >
+              Anmelden
+            </a>
+          </>
+        )}
+      </Sign>
     </Wrapper>
   );
 }
@@ -28,4 +77,27 @@ const Wrapper = styled.section`
   grid-template-rows: min-content auto 48px;
   height: inherit;
   justify-content: center;
+`;
+
+const Login = styled.span`
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+`;
+
+const Sign = styled.span`
+  color: white;
+  text-decoration: none;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
+  z-index: 2;
+`;
+
+const Atags = styled.a`
+  color: green;
+  text-decoration: none;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8rem;
 `;
