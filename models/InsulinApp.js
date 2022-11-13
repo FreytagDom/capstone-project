@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const cardSchema = new Schema({
-  user: { type: String, required: true },
+  userMail: { type: String, required: true },
   bloodsugar: { type: Number, required: true, timestamps: true },
   carbohydrates: { type: Number, required: true, timestamps: true },
   insulin: { type: String, required: true, timestamps: true },

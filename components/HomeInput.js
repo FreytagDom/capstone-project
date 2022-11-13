@@ -26,14 +26,14 @@ export default function Input({ session, factors, correctionfactors }) {
       daytimeFactor,
       correctionFactor
     );
-    const user = session.user.email;
+    const userMail = session.user.email;
 
     setValue(calculateUnits);
 
     const date = new Date();
     const newdate = date.toLocaleString();
     const cardData = {
-      user: user,
+      userMail: userMail,
       bloodsugar: bloodsugar,
       carbohydrates: carbohydrates,
       insulin: insulin,
