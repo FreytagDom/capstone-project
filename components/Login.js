@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { signIn } from 'next-auth/react';
 import LoginButton from '../components/Button';
 import githubSvg from '../assets/github.svg';
-import googleSvg from '../assets/google.svg';
+import googleLogoColor from '../assets/googleLogoColor.svg';
 
 export default function LoginPage() {
   return (
@@ -18,9 +18,9 @@ export default function LoginPage() {
           onClick={() => signIn('github')}
         />
         <LoginButton
-          icon={googleSvg}
+          icon={googleLogoColor}
           providerName="Google"
-          bgColor="#DB4437"
+          bgColor="#AA5437"
           onClick={() => signIn('google')}
         />
       </LoginButtons>
@@ -30,8 +30,10 @@ export default function LoginPage() {
 
 const SingIn = styled.p`
   justify-content: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 2rem;
-  color: antiquewhite;
+  color: aquamarine;
+  font-weight: bold;
 `;
 
 const LoginButtons = styled.section`
