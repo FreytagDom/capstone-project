@@ -34,7 +34,7 @@ export async function getServerSideProps({ req }) {
 }
 
 export default function Home({ factors, correctionfactors }) {
-  const isPreview = process.env.VERCEL_ENV === 'preview';
+  // const isPreview = process.env.VERCEL_ENV === 'preview';
   const { data: session } = useSession();
 
   return (
@@ -59,12 +59,12 @@ export default function Home({ factors, correctionfactors }) {
         ) : (
           <>
             <LoginPage />
-            <a
+            {/* <a
               href="#"
               onClick={() => signIn(isPreview ? 'credentials' : 'github')}
             >
               Anmelden
-            </a>
+            </a> */}
           </>
         )}
       </Sign>
