@@ -9,7 +9,7 @@ export async function getAllCategories() {
   return savedInsulinData.map(
     ({
       id,
-      user,
+      userMail,
       bloodsugar,
       carbohydrates,
       insulin,
@@ -20,7 +20,7 @@ export async function getAllCategories() {
     }) => {
       return {
         id,
-        user,
+        userMail,
         bloodsugar,
         carbohydrates,
         insulin,
@@ -40,7 +40,7 @@ export async function getCategoryById(savedInsulinId) {
 
   const {
     id,
-    user,
+    userMail,
     bloodsugar,
     carbohydrates,
     insulin,
@@ -52,7 +52,7 @@ export async function getCategoryById(savedInsulinId) {
 
   return {
     id,
-    user,
+    userMail,
     bloodsugar,
     carbohydrates,
     insulin,
