@@ -1,11 +1,14 @@
 import styled from 'styled-components';
-import { RiDeleteBinLine } from 'react-icons/ri';
+import { RiDeleteBinLine, RiLineHeight } from 'react-icons/ri';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 
 export default function SavedDataInjected({ cardData }) {
   const { data: session } = useSession();
-  const [newCardData, setNewCardData] = useState(cardData);
+  const userCardData = cardData.filter((cardData) => {
+    return cardData.userMail === session.user.email;
+  });
+  const [newCardData, setNewCardData] = useState(userCardData);
 
   async function removeCard(id) {
     const response = await fetch('/api/savedInsulinData/' + id, {
@@ -13,48 +16,52 @@ export default function SavedDataInjected({ cardData }) {
     });
 
     setNewCardData(
-      newCardData.filter((cardData) => {
-        return cardData.id !== id;
+      newCardData.filter((userCardData) => {
+        return userCardData.id !== id;
       })
     );
   }
-  const userCardData = cardData.filter((newCardData) => {
-    return newCardData.userMail === session.user.email;
-  });
 
   return (
     <WrapperSaved>
       <CardGrid>
-        {userCardData.map((item) => {
+        {newCardData.map((item) => {
           return (
-            <Saved key={item.id}>
-              <IconWrapper>
-                <RiDeleteBinLine onClick={() => removeCard(item.id)} />
-              </IconWrapper>
-              <BloodSugar>
-                Blutzuckerwert: <br /> {item.bloodsugar} mg/dl
-              </BloodSugar>
-              <br />
-              <Carbohydrates>
-                Kohlenhydrate: <br /> {item.carbohydrates} g (Gramm)
-              </Carbohydrates>
-              <br />
-              <Insulin>
-                Verwendetes Insulin: <br /> {item.insulin}
-              </Insulin>
-              <br />
-              <Factor>
-                Insulin Faktor: <br /> {item.daytimeFactor}
-              </Factor>
-              <Factor>
-                Korrektur Faktor: <br />
-                {item.correctionFactor}
-              </Factor>
-              <InsulinUnits>
-                gespritzte Insulin <br /> Menge: {item.calculateUnit}
-              </InsulinUnits>
-              <Timestampwraper>{item.date}</Timestampwraper>
-            </Saved>
+            <Details key={item.id}>
+              <Summary>
+                <Timestampwraper>{item.date}</Timestampwraper>
+                <IconWrapper>
+                  <RiLineHeight />
+                </IconWrapper>
+              </Summary>
+              <Saved>
+                <IconWrapper>
+                  <RiDeleteBinLine onClick={() => removeCard(item.id)} />
+                </IconWrapper>
+                <BloodSugar>
+                  Blutzuckerwert: <br /> {item.bloodsugar} mg/dl
+                </BloodSugar>
+                <br />
+                <Carbohydrates>
+                  Kohlenhydrate: <br /> {item.carbohydrates} g (Gramm)
+                </Carbohydrates>
+                <br />
+                <Insulin>
+                  Verwendetes Insulin: <br /> {item.insulin}
+                </Insulin>
+                <br />
+                <Factor>
+                  Insulin Faktor: <br /> {item.daytimeFactor}
+                </Factor>
+                <Factor>
+                  Korrektur Faktor: <br />
+                  {item.correctionFactor}
+                </Factor>
+                <InsulinUnits>
+                  gespritzte Insulin <br /> Menge: {item.calculateUnit}
+                </InsulinUnits>
+              </Saved>
+            </Details>
           );
         })}
       </CardGrid>
@@ -68,6 +75,7 @@ const IconWrapper = styled.span`
   align-items: center;
   width: 100%;
   color: #fe4b13;
+  margin-top: -1rem;
 `;
 
 const WrapperSaved = styled.section`
@@ -100,6 +108,30 @@ const Saved = styled.li`
   height: auto;
   align-items: center;
   margin: 1rem;
+  padding: 0.5rem;
+`;
+
+const Summary = styled.summary`
+  display: grid;
+  text-decoration: underline;
+  background-color: transparent;
+  border-radius: 8px;
+  text-align: center;
+  height: auto;
+  align-items: center;
+  margin: 0.5rem;
+  padding: 0.5rem;
+`;
+
+const Details = styled.details`
+  display: grid;
+  background-color: beige;
+  right: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  height: auto;
+  align-items: center;
+  margin: 0.5rem;
   padding: 0.5rem;
 `;
 

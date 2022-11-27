@@ -5,6 +5,7 @@ import { getAllCorrectionFactors } from '../services/correctionFactorsService';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { getToken } from 'next-auth/jwt';
 import LoginPage from '../components/Login';
+import { GoSignOut } from 'react-icons/go';
 
 export async function getServerSideProps({ req }) {
   const factors = await getAllDayFactors();
@@ -48,7 +49,7 @@ export default function Home({ factors, correctionfactors }) {
             </Login>{' '}
             {'  '}
             <Atags href="#" onClick={signOut}>
-              Abmelden
+              <GoSignOut />
             </Atags>
             <Input
               session={session}
@@ -95,9 +96,10 @@ const Sign = styled.span`
 `;
 
 const Atags = styled.a`
-  color: green;
-  text-decoration: none;
-  justify-content: center;
+  display: flex;
+  color: sandybrown;
+  justify-content: end;
   text-align: center;
-  font-size: 0.8rem;
+  margin-top: -1rem;
+  font-size: 1rem;
 `;
