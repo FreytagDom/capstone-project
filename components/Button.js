@@ -10,7 +10,7 @@ export default function LoginButton({ onClick, providerName, bgColor, icon }) {
         width="35px"
         height="35px"
       />
-      {providerName}
+      <Textstyling>{providerName}</Textstyling>
     </StyledButton>
   );
 }
@@ -30,4 +30,8 @@ const StyledButton = styled.button`
   color: #fff;
   font-size: 1.5rem;
   margin-top: 1.5rem;
+`;
+
+const Textstyling = styled.p`
+  padding-top: 0.3rem;
 `;
