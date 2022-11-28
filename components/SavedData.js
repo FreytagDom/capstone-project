@@ -119,8 +119,6 @@ const Summary = styled.summary`
   text-align: center;
   height: auto;
   align-items: center;
-  margin: 0.5rem;
-  padding: 0.5rem;
 `;
 
 const Details = styled.details`
@@ -131,6 +129,8 @@ const Details = styled.details`
   text-align: center;
   height: auto;
   align-items: center;
+  margin: 0.5rem;
+  padding: 0.5rem;
 `;
 
 const BloodSugar = styled.span`
