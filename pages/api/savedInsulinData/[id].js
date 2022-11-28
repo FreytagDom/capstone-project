@@ -2,7 +2,7 @@ import { getCategoryById } from '../../../services/insulinAppDataService';
 import SavedInsulinData from '../../../models/InsulinApp';
 
 export default async function handler(request, response) {
-  const { user } = request.query;
+  const { id } = request.query;
   switch (request.method) {
     case 'GET':
       const cardData = getCategoryById(user);
