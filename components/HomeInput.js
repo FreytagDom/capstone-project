@@ -225,7 +225,7 @@ const Label = styled.label`
   border-radius: 8px;
   display: grid;
   text-align: center;
-  height: 14vh;
+  height: min-content 14vh;
   padding-top: 3vh;
   margin-top: 0.3vh;
   position: sticky;
