@@ -2,7 +2,7 @@ import Footer from './Footer';
 import Header from './Header';
 import { Navbar } from './NavBar';
 import bloodsugarvertical from '../public/bloodsugarvertical.jpg';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import styled from 'styled-components';
 
 export default function Layout({ children }) {

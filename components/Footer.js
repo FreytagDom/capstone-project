@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import copyright2 from '../public/copyright2.png';
 
 export default function Footer() {

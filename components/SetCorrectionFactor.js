@@ -34,72 +34,70 @@ export default function CorrectionFactorEntry({
     event.target.reset();
   }
 
-  return (
-    <>
-      <Wrapper>
-        <CorrectionFactorTitel>Korrekturfaktor anlegen</CorrectionFactorTitel>
-        <EntryForm
-          onSubmit={handleSetCorrectionFactor}
-          id="correctionfactor"
-          onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
-        >
-          <LabelFa htmlFor="correctionfactor" id="correctionfactor">
-            Welcher Tageszeit <br /> Korrekturaktor
-            <DataInputMorning
-              type="decimal"
-              name="setcorrectionmorningfactor"
-              placeholder="Korrekturfaktor morgens"
-              id="setcorrectiomorningfactor"
-              maxLength={'3'}
-              min="0"
-              required
-              onChange={(event) => {
-                setMorningcorrectionfactor(event.target.value);
-              }}
-            />
-            <DataInput
-              type="decimal"
-              name="setcorrectiolunchfactor"
-              placeholder="Korrekturfaktor mittags"
-              id="setcorrectiolunchfactor"
-              maxLength={'3'}
-              min="0"
-              required
-              onChange={(event) => {
-                setLunchcorrectionfactor(event.target.value);
-              }}
-            />
-            <DataInput
-              type="decimal"
-              name="setcorrectioeveningfactor"
-              placeholder="Korrekturfaktor abends"
-              id="setcorrectioeveningfactor"
-              maxLength={'3'}
-              min="0"
-              required
-              onChange={(event) => {
-                setEveningcorrectionfactor(event.target.value);
-              }}
-            />
-            <DataInputLate
-              type="decimal"
-              name="setlatecorrectiofactor"
-              placeholder="Korrekturfaktor spät"
-              id="setcorrectiolatefactor"
-              maxLength={'3'}
-              min="0"
-              required
-              onChange={(event) => {
-                setLatecorrectionfactor(event.target.value);
-              }}
-            />
-          </LabelFa>
+  return <>
+    <Wrapper>
+      <CorrectionFactorTitel>Korrekturfaktor anlegen</CorrectionFactorTitel>
+      <EntryForm
+        onSubmit={handleSetCorrectionFactor}
+        id="correctionfactor"
+        onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
+      >
+        <LabelFa htmlFor="correctionfactor" id="correctionfactor">
+          Welcher Tageszeit <br /> Korrekturaktor
+          <DataInputMorning
+            type="decimal"
+            name="setcorrectionmorningfactor"
+            placeholder="Korrekturfaktor morgens"
+            id="setcorrectiomorningfactor"
+            maxLength={'3'}
+            min="0"
+            required
+            onChange={(event) => {
+              setMorningcorrectionfactor(event.target.value);
+            }}
+          />
+          <DataInput
+            type="decimal"
+            name="setcorrectiolunchfactor"
+            placeholder="Korrekturfaktor mittags"
+            id="setcorrectiolunchfactor"
+            maxLength={'3'}
+            min="0"
+            required
+            onChange={(event) => {
+              setLunchcorrectionfactor(event.target.value);
+            }}
+          />
+          <DataInput
+            type="decimal"
+            name="setcorrectioeveningfactor"
+            placeholder="Korrekturfaktor abends"
+            id="setcorrectioeveningfactor"
+            maxLength={'3'}
+            min="0"
+            required
+            onChange={(event) => {
+              setEveningcorrectionfactor(event.target.value);
+            }}
+          />
+          <DataInputLate
+            type="decimal"
+            name="setlatecorrectiofactor"
+            placeholder="Korrekturfaktor spät"
+            id="setcorrectiolatefactor"
+            maxLength={'3'}
+            min="0"
+            required
+            onChange={(event) => {
+              setLatecorrectionfactor(event.target.value);
+            }}
+          />
+        </LabelFa>
 
-          <Button type="submit">bestätigen</Button>
-        </EntryForm>
-      </Wrapper>
-    </>
-  );
+        <Button type="submit">bestätigen</Button>
+      </EntryForm>
+    </Wrapper>
+  </>;
 }
 
 const Wrapper = styled.section`
