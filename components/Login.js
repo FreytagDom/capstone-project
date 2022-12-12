@@ -3,6 +3,7 @@ import { signIn } from 'next-auth/react';
 import LoginButton from '../components/Button';
 import githubSvg from '../assets/github.svg';
 import googleLogoColor from '../assets/googleLogoColor.svg';
+import facebook from '../assets/facebook.svg';
 
 export default function LoginPage() {
   return (
@@ -22,6 +23,12 @@ export default function LoginPage() {
           providerName="Google"
           bgColor="#AA5437"
           onClick={() => signIn('google')}
+        />
+        <LoginButton
+          icon={facebook}
+          providerName="Facebook"
+          bgColor="#4050B5"
+          onClick={() => signIn('facebook')}
         />
       </LoginButtons>
     </>

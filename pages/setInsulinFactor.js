@@ -2,6 +2,9 @@ import FactorEntry from '../components/SetInsulinFactor';
 import SavedFactor from '../components/SavedInsulinFactor';
 import { getAllDayFactors } from '../services/savedDayFactorService';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
+import LoginPage from '../components/Login';
+import styled from 'styled-components';
 
 export async function getServerSideProps() {
   const factors = await getAllDayFactors();
@@ -35,10 +38,37 @@ export default function CreateFactor({ factors }) {
     });
   }
   const router = useRouter();
+  const { data: session } = useSession();
   return (
-    <>
-      <FactorEntry onHandleSetFactor={handleSetSubmit} />
-      <SavedFactor factors={factors} />
-    </>
+    <Wrapper>
+      <Sign>
+        {session ? (
+          <>
+            <FactorEntry onHandleSetFactor={handleSetSubmit} />
+            <SavedFactor factors={factors} />
+          </>
+        ) : (
+          <>
+            <LoginPage />
+          </>
+        )}
+      </Sign>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.section`
+  display: grid;
+  grid-template-rows: min-content auto 48px;
+  height: inherit;
+  justify-content: center;
+`;
+
+const Sign = styled.span`
+  color: white;
+  text-decoration: none;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
+  z-index: 2;
+`;

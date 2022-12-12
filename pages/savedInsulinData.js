@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { getAllCategories } from '../services/insulinAppDataService';
 import SavedDataInjected from '../components/SavedData';
 import { keyframes } from 'styled-components';
+import LoginPage from '../components/Login';
+import { useSession } from 'next-auth/react';
 
 export async function getServerSideProps() {
   const cardData = await getAllCategories();
@@ -14,10 +16,19 @@ export async function getServerSideProps() {
 }
 
 export default function DataInjected({ cardData }) {
+  const { data: session } = useSession();
   return (
     <WrapperSaved>
-      <SavedData>Gespeicherte Werte</SavedData>
-      <SavedDataInjected cardData={cardData} />
+      <Sign>
+        {session ? (
+          <>
+            <SavedData>Gespeicherte Werte</SavedData>
+            <SavedDataInjected cardData={cardData} />
+          </>
+        ) : (
+          <LoginPage />
+        )}
+      </Sign>
     </WrapperSaved>
   );
 }
@@ -27,6 +38,15 @@ const WrapperSaved = styled.section`
   grid-template-rows: min-content auto 48px;
   height: inherit;
   justify-content: center;
+`;
+
+const Sign = styled.span`
+  color: white;
+  text-decoration: none;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
+  z-index: 2;
 `;
 
 const hue = keyframes`
