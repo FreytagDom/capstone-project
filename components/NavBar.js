@@ -6,25 +6,25 @@ export const Navbar = () => {
   return (
     <NavbarHead>
       <Navigation>
-        <Link href="/" passHref>
+        <Link href="/" passHref legacyBehavior>
           <Tags>Start</Tags>
         </Link>
 
-        <Link href="/setInsulinFactor" passHref>
+        <Link href="/setInsulinFactor" passHref legacyBehavior>
           <Tags>
             Insulin <br />
             Faktor
           </Tags>
         </Link>
 
-        <Link href="/setCorrectionFactor" passHref>
+        <Link href="/setCorrectionFactor" passHref legacyBehavior>
           <Tags>
             Korrektur <br />
             Faktor
           </Tags>
         </Link>
 
-        <Link href="/savedInsulinData" passHref>
+        <Link href="/savedInsulinData" passHref legacyBehavior>
           <Tags>Daten</Tags>
         </Link>
       </Navigation>
