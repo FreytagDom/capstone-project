@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState, Fragment } from 'react';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import leereSpritze from '../public/leereSpritze.png';
 import volleSpritze from '../public/volleSpritze.png';
 import blood from '../public/blood.PNG';
@@ -72,12 +72,24 @@ export default function Input({ session, factors, correctionfactors }) {
     >
       <LabelBz htmlFor="bloodsugar">
         <BloodDrop>
-          <Image src={blooddrop} alt="blooddrop" />
+          <Image
+            src={blooddrop}
+            alt="blooddrop"
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </BloodDrop>
         Blutzuckerwert <br />
         mg/dl
         <Blood>
-          <Image src={blood} alt="blood" />
+          <Image
+            src={blood}
+            alt="blood"
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </Blood>
         <DataInput
           type="decimal"
@@ -93,11 +105,23 @@ export default function Input({ session, factors, correctionfactors }) {
 
       <LabelCa htmlFor="carbohydrates">
         <Carbohydrates>
-          <Image src={carbohydrates} alt="carbohydrates" />
+          <Image
+            src={carbohydrates}
+            alt="carbohydrates"
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </Carbohydrates>
         Kohlenhydrate (Khd) <br /> g (Gramm)
         <Donut>
-          <Image src={donut} alt="donut" />
+          <Image
+            src={donut}
+            alt="donut"
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </Donut>
         <DataInput
           type="decimal"
@@ -208,10 +232,22 @@ export default function Input({ session, factors, correctionfactors }) {
       >
         {value} / Einheiten <br /> Insulin spritzen
         <FullInject>
-          <Image src={volleSpritze} alt="" />
+          <Image
+            src={volleSpritze}
+            alt=""
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </FullInject>
         <EmptyInject>
-          <Image src={leereSpritze} alt="" />
+          <Image
+            src={leereSpritze}
+            alt=""
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </EmptyInject>
       </InsulinUnits>
     </EntryForm>

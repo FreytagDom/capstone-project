@@ -1,11 +1,17 @@
 import styled from 'styled-components';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import copyright2 from '../public/copyright2.png';
 
 export default function Footer() {
   return (
     <FooterLine>
-      <Image src={copyright2} alt="" />
+      <Image
+        src={copyright2}
+        alt=""
+        style={{
+          maxWidth: "100%",
+          height: "auto"
+        }} />
       Created by FreyDom 2022
     </FooterLine>
   );

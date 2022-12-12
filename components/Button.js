@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 export default function LoginButton({ onClick, providerName, bgColor, icon }) {
   return (
@@ -9,7 +9,10 @@ export default function LoginButton({ onClick, providerName, bgColor, icon }) {
         alt={`${providerName} icon`}
         width="35px"
         height="35px"
-      />
+        style={{
+          maxWidth: "100%",
+          height: "auto"
+        }} />
       <Textstyling>{providerName}</Textstyling>
     </StyledButton>
   );
