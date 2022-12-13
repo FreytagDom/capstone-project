@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState, Fragment } from 'react';
-import Image from "next/image";
+import Image from 'next/legacy/image';
 import leereSpritze from '../public/leereSpritze.png';
 import volleSpritze from '../public/volleSpritze.png';
 import blood from '../public/blood.PNG';
@@ -65,193 +65,201 @@ export default function Input({ session, factors, correctionfactors }) {
   const userCorrectionFactor = correctionfactors.filter((correctionfactors) => {
     return correctionfactors.id === session.user.email;
   });
-  return <>
-    <EntryForm
-      onSubmit={handleSubmit}
-      onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
-    >
-      <LabelBz htmlFor="bloodsugar">
-        <BloodDrop>
-          <Image
-            src={blooddrop}
-            alt="blooddrop"
-            style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
-        </BloodDrop>
-        Blutzuckerwert <br />
-        mg/dl
-        <Blood>
-          <Image
-            src={blood}
-            alt="blood"
-            style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
-        </Blood>
-        <DataInput
-          type="decimal"
-          name="bloodsugar"
-          placeholder="aktueller Blutzuckerwert"
-          id="bloodsugar"
-          min="0"
-          key="bloodsugar"
-          maxLength={3}
-          required
-        />
-      </LabelBz>
-
-      <LabelCa htmlFor="carbohydrates">
-        <Carbohydrates>
-          <Image
-            src={carbohydrates}
-            alt="carbohydrates"
-            style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
-        </Carbohydrates>
-        Kohlenhydrate (Khd) <br /> g (Gramm)
-        <Donut>
-          <Image
-            src={donut}
-            alt="donut"
-            style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
-        </Donut>
-        <DataInput
-          type="decimal"
-          name="carbohydrates"
-          placeholder="wieviele Khd 65g"
-          id="carbohydrates"
-          maxLength={'3'}
-          key="carbohydrates"
-          min="0"
-          required
-        />
-      </LabelCa>
-
-      <Fragment>
-        <LabelIu htmlFor="insulin">
-          Welches Insulin <br /> wird genommen
-          <InsulinSelect
-            htmlFor="setinsulin"
-            name="setinsulinSelect"
-            id={InsulinOption.id}
-          >
-            <InsulinOption placeholder="Insulin wählen">
-              Insulin wählen
-            </InsulinOption>
-            {options.map((option) => (
-              <InsulinOption
-                name="insulinOption"
-                key={option.label}
-                value={option.value}
-              >
-                {option.label}
-              </InsulinOption>
-            ))}
-          </InsulinSelect>
-        </LabelIu>
-      </Fragment>
-      <Fragment>
-        <LabelFa htmlFor="factor">
-          Welcher Tageszeit <br /> Faktor
-          {userFactor.map((factor, index) => (
-            <FactorSelect
-              htmlFor="setdayfactor"
-              name="dayfactorSelect"
-              id={FactorOption.name}
-              value={FactorOption.value}
-              key={index}
-              options
-            >
-              <FactorOption>Faktor wählen</FactorOption>
-              <FactorOption name="morningfactor" value={factor.morningfactor}>
-                morgens / {factor.morningfactor}
-              </FactorOption>
-              <FactorOption name="lunchfactor" value={factor.lunchfactor}>
-                mittags / {factor.lunchfactor}
-              </FactorOption>
-              <FactorOption name="eveningfactor" value={factor.eveningfactor}>
-                abends / {factor.eveningfactor}
-              </FactorOption>
-              <FactorOption name="latefactor" value={factor.latefactor}>
-                spät / {factor.latefactor}
-              </FactorOption>
-            </FactorSelect>
-          ))}
-          {userCorrectionFactor.map((correctionfactor, index) => (
-            <FactorSelect
-              htmlFor="setcorrectionfactor"
-              name="correctionfactorSelect"
-              id={FactorOption.name}
-              value={FactorOption.value}
-              key={index}
-              options
-            >
-              <FactorOption>Korrekturfaktor wählen</FactorOption>
-              <FactorOption
-                name="morningcorrectionfactor"
-                value={correctionfactor.morningcorrectionfactor}
-              >
-                Korrektur morgens / {correctionfactor.morningcorrectionfactor}
-              </FactorOption>
-              <FactorOption
-                name="lunchcorrectionfactor"
-                value={correctionfactor.lunchcorrectionfactor}
-              >
-                Korrektur mittags / {correctionfactor.lunchcorrectionfactor}
-              </FactorOption>
-              <FactorOption
-                name="eveningcorrectionfactor"
-                value={correctionfactor.eveningcorrectionfactor}
-              >
-                Korrektur abends / {correctionfactor.eveningcorrectionfactor}
-              </FactorOption>
-              <FactorOption
-                name="latecorrectionfactor"
-                value={correctionfactor.latecorrectionfactor}
-              >
-                Korrektur spät / {correctionfactor.latecorrectionfactor}
-              </FactorOption>
-            </FactorSelect>
-          ))}
-        </LabelFa>
-      </Fragment>
-      <Button type="submit">bestätigen</Button>
-      <InsulinUnits
-        htmlFor="insulinunits"
-        id="calculateUnits"
-        key="calculateUnits"
-        name="calculateUnits"
+  return (
+    <>
+      <EntryForm
+        onSubmit={handleSubmit}
+        onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
       >
-        {value} / Einheiten <br /> Insulin spritzen
-        <FullInject>
-          <Image
-            src={volleSpritze}
-            alt=""
-            style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
-        </FullInject>
-        <EmptyInject>
-          <Image
-            src={leereSpritze}
-            alt=""
-            style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
-        </EmptyInject>
-      </InsulinUnits>
-    </EntryForm>
-  </>;
+        <LabelBz htmlFor="bloodsugar">
+          <BloodDrop>
+            <Image
+              src={blooddrop}
+              alt="blooddrop"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+          </BloodDrop>
+          Blutzuckerwert <br />
+          mg/dl
+          <Blood>
+            <Image
+              src={blood}
+              alt="blood"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+          </Blood>
+          <DataInput
+            type="decimal"
+            name="bloodsugar"
+            placeholder="aktueller Blutzuckerwert"
+            id="bloodsugar"
+            min="0"
+            key="bloodsugar"
+            maxLength={3}
+            required
+          />
+        </LabelBz>
+
+        <LabelCa htmlFor="carbohydrates">
+          <Carbohydrates>
+            <Image
+              src={carbohydrates}
+              alt="carbohydrates"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+          </Carbohydrates>
+          Kohlenhydrate (Khd) <br /> g (Gramm)
+          <Donut>
+            <Image
+              src={donut}
+              alt="donut"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+          </Donut>
+          <DataInput
+            type="decimal"
+            name="carbohydrates"
+            placeholder="wieviele Khd 65g"
+            id="carbohydrates"
+            maxLength={'3'}
+            key="carbohydrates"
+            min="0"
+            required
+          />
+        </LabelCa>
+
+        <Fragment>
+          <LabelIu htmlFor="insulin">
+            Welches Insulin <br /> wird genommen
+            <InsulinSelect
+              htmlFor="setinsulin"
+              name="setinsulinSelect"
+              id={InsulinOption.id}
+            >
+              <InsulinOption placeholder="Insulin wählen">
+                Insulin wählen
+              </InsulinOption>
+              {options.map((option) => (
+                <InsulinOption
+                  name="insulinOption"
+                  key={option.label}
+                  value={option.value}
+                >
+                  {option.label}
+                </InsulinOption>
+              ))}
+            </InsulinSelect>
+          </LabelIu>
+        </Fragment>
+        <Fragment>
+          <LabelFa htmlFor="factor">
+            Welcher Tageszeit <br /> Faktor
+            {userFactor.map((factor, index) => (
+              <FactorSelect
+                htmlFor="setdayfactor"
+                name="dayfactorSelect"
+                id={FactorOption.name}
+                value={FactorOption.value}
+                key={index}
+                options
+              >
+                <FactorOption>Faktor wählen</FactorOption>
+                <FactorOption name="morningfactor" value={factor.morningfactor}>
+                  morgens / {factor.morningfactor}
+                </FactorOption>
+                <FactorOption name="lunchfactor" value={factor.lunchfactor}>
+                  mittags / {factor.lunchfactor}
+                </FactorOption>
+                <FactorOption name="eveningfactor" value={factor.eveningfactor}>
+                  abends / {factor.eveningfactor}
+                </FactorOption>
+                <FactorOption name="latefactor" value={factor.latefactor}>
+                  spät / {factor.latefactor}
+                </FactorOption>
+              </FactorSelect>
+            ))}
+            {userCorrectionFactor.map((correctionfactor, index) => (
+              <FactorSelect
+                htmlFor="setcorrectionfactor"
+                name="correctionfactorSelect"
+                id={FactorOption.name}
+                value={FactorOption.value}
+                key={index}
+                options
+              >
+                <FactorOption>Korrekturfaktor wählen</FactorOption>
+                <FactorOption
+                  name="morningcorrectionfactor"
+                  value={correctionfactor.morningcorrectionfactor}
+                >
+                  Korrektur morgens / {correctionfactor.morningcorrectionfactor}
+                </FactorOption>
+                <FactorOption
+                  name="lunchcorrectionfactor"
+                  value={correctionfactor.lunchcorrectionfactor}
+                >
+                  Korrektur mittags / {correctionfactor.lunchcorrectionfactor}
+                </FactorOption>
+                <FactorOption
+                  name="eveningcorrectionfactor"
+                  value={correctionfactor.eveningcorrectionfactor}
+                >
+                  Korrektur abends / {correctionfactor.eveningcorrectionfactor}
+                </FactorOption>
+                <FactorOption
+                  name="latecorrectionfactor"
+                  value={correctionfactor.latecorrectionfactor}
+                >
+                  Korrektur spät / {correctionfactor.latecorrectionfactor}
+                </FactorOption>
+              </FactorSelect>
+            ))}
+          </LabelFa>
+        </Fragment>
+        <Button type="submit">bestätigen</Button>
+        <InsulinUnits
+          htmlFor="insulinunits"
+          id="calculateUnits"
+          key="calculateUnits"
+          name="calculateUnits"
+        >
+          {value} / Einheiten <br /> Insulin spritzen
+          <FullInject>
+            <Image
+              src={volleSpritze}
+              alt=""
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+          </FullInject>
+          <EmptyInject>
+            <Image
+              src={leereSpritze}
+              alt=""
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
+          </EmptyInject>
+        </InsulinUnits>
+      </EntryForm>
+    </>
+  );
 }
 
 const Label = styled.label`
