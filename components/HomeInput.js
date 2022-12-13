@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState, Fragment } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import leereSpritze from '../public/leereSpritze.png';
 import volleSpritze from '../public/volleSpritze.png';
 import blood from '../public/blood.PNG';
