@@ -21,11 +21,22 @@ export default function SavedDataInjected({ cardData }) {
       })
     );
   }
+  const [search, setSearch] = useState('');
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const filteredData = newCardData.filter((item) =>
+    item.date.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <WrapperSaved>
+      <SearchData>
+        <DataInput type="text" placeholder="Suche" onChange={handleChange} />
+      </SearchData>
       <CardGrid>
-        {newCardData.map((item) => {
+        {filteredData.map((item) => {
           return (
             <Details key={item.id}>
               <Summary>
@@ -158,4 +169,24 @@ const Timestampwraper = styled.span`
   font-size: 0.8rem;
   display: grid;
   margin-top: 0.3rem;
+`;
+
+const SearchData = styled.span`
+  display: grid;
+  margin: 0.3rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+`;
+
+const DataInput = styled.input`
+  width: auto;
+  text-align: center;
+  height: 2.4rem;
+  border-radius: 8px;
+  background-color: beige;
+  color: black;
+  border: none;
+  opacity: 0.85;
 `;
