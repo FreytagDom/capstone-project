@@ -81,7 +81,7 @@ export default function Input({ session, factors, correctionfactors }) {
             <Image src={blood} alt="blood" />
           </Blood>
           <DataInput
-            type="decimal"
+            type="number"
             name="bloodsugar"
             placeholder="aktueller Blutzuckerwert"
             id="bloodsugar"
@@ -101,7 +101,7 @@ export default function Input({ session, factors, correctionfactors }) {
             <Image src={donut} alt="donut" />
           </Donut>
           <DataInput
-            type="decimal"
+            type="number"
             name="carbohydrates"
             placeholder="wieviele Khd 65g"
             id="carbohydrates"
@@ -252,6 +252,11 @@ const DataInput = styled.input`
   border-radius: 8px;
   text-align: center;
   border-style: groove;
+  -webkit-outer-spin-button: none;
+  -webkit-inner-spin-button: none;
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: textfield;
 `;
 
 const Button = styled.button`
