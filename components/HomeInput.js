@@ -12,7 +12,7 @@ import handleInsulinUnit from '../utils/calculate';
 import React from 'react'
 
 
-export default function Input({ session, factors, correctionfactors, index, userCorrectionFactorToDisplays }) {
+export default function Input({ session, factors, correctionfactors, index }) {
   const [value, setValue] = useState();
   
   async function handleSubmit(event) {
@@ -21,8 +21,8 @@ export default function Input({ session, factors, correctionfactors, index, user
     const bloodsugar = form.bloodsugar.value;
     const carbohydrates = form.carbohydrates.value;
     const insulin = form.setinsulinSelect.value;
-    const daytimeFactor = form.dayfactorSelect.value;
-    const correctionFactor = form.correctionfactorSelect.value;
+    const daytimeFactor = userFactorToDisplay[0].props.value;
+    const correctionFactor =userCorrectionFactorToDisplay[0].props.value;
     const calculateUnits = handleInsulinUnit(
       bloodsugar,
       carbohydrates,
@@ -70,7 +70,7 @@ export default function Input({ session, factors, correctionfactors, index, user
   let userFactorToDisplay;
   let userCorrectionFactorToDisplay  ;  
   
-  if (currentTime >= 6 && currentTime < 12) {
+  if (currentTime >= 6 && currentTime < 11) {
     userFactorToDisplay = userFactor.map((factor, index) => (
       <SetDayFactorOption
         htmlFor="setdayfactor"
@@ -102,7 +102,7 @@ export default function Input({ session, factors, correctionfactors, index, user
       )
     );
   } 
-  else if (currentTime >= 12 && currentTime < 20){
+  else if (currentTime >= 11 && currentTime < 17){
     userFactorToDisplay = userFactor.map((factor, index) => (
       <SetDayFactorOption
         htmlFor="setdayfactor"
@@ -239,9 +239,10 @@ export default function Input({ session, factors, correctionfactors, index, user
             </InsulinSelect>
           </LabelIu>
         </Fragment>
+        
          <Fragment>
           <LabelFa htmlFor="factor">
-            Welcher Tageszeit <br /> Faktor
+            Tageszeit  Faktor
             
               <FactorSelect
                 htmlFor="setdayfactor"
@@ -254,7 +255,7 @@ export default function Input({ session, factors, correctionfactors, index, user
                 <FactorOption name={userFactorToDisplay[0].props.name}
                 id={userFactorToDisplay}
                 value={userFactorToDisplay[0].props.value}>
-                {userFactorToDisplay[0].props.value}
+               Insulinfakror {userFactorToDisplay[0].props.value}
                 </FactorOption>
               </FactorSelect>
             
@@ -270,7 +271,7 @@ export default function Input({ session, factors, correctionfactors, index, user
               <FactorOption name={userCorrectionFactorToDisplay[0].props.name}
                 id={userCorrectionFactorToDisplay}
                 value={userCorrectionFactorToDisplay[0].props.value}>
-                  {userCorrectionFactorToDisplay[0].props.value}
+                 Korrektur {userCorrectionFactorToDisplay[0].props.value}
                   </FactorOption>
               </FactorSelect>
           </LabelFa>
@@ -363,7 +364,7 @@ const InsulinOption = styled.option`
   background: transparent;
 `;
 
-const FactorSelect = styled.select`
+const FactorSelect = styled.div`
   background-color: beige;
   border-radius: 8px;
   display: grid;
@@ -372,15 +373,16 @@ const FactorSelect = styled.select`
   color: #364fc9;
 `;
 
-const CorrectionFactorOption = styled.option`
+const CorrectionFactorOption = styled.div`
   border-radius: 8px;
   text-align: center;
   color: #5c940d;
   background: transparent;
 `;
-const FactorOption = styled.option`
+const FactorOption = styled.div`
   border-radius: 8px;
   text-align: center;
+  padding-top: 0.4rem;
   color: #5c940d;
   background: transparent;
 `;
