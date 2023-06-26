@@ -106,6 +106,39 @@ export default function Input({ session, factors, correctionfactors, index }) {
     userFactorToDisplay = userFactor.map((factor, index) => (
       <SetDayFactorOption
         htmlFor="setdayfactor"
+        name="lunchfactor"
+        id={factor.name}
+        value={factor.lunchfactor}
+        key={index} 
+      >
+        <FactorOption name="lunchfactor" value={factor.lunchfactor}>
+           {factor.lunchfactor}
+        </FactorOption>
+      </SetDayFactorOption>
+    ));
+    userCorrectionFactorToDisplay = userCorrectionFactor.map(
+      (correctionfactor, index) => (
+        <SetCorrectionFactorOption
+          htmlFor="setcorrectionfactor"
+          name="lunchcorrectionfactor"
+          id={correctionfactor.name}
+          value={correctionfactor.lunchcorrectionfactor}
+          key={index}
+        >
+          <CorrectionFactorOption
+            name="lunchcorrectionfactor"
+            value={correctionfactor.lunchcorrectionfactor}
+          >
+             {correctionfactor.lunchcorrectionfactor}
+          </CorrectionFactorOption>
+        </SetCorrectionFactorOption>
+      )
+    );
+  }
+  else if (currentTime >= 17 && currentTime < 20){
+    userFactorToDisplay = userFactor.map((factor, index) => (
+      <SetDayFactorOption
+        htmlFor="setdayfactor"
         name="eveningfactor"
         id={factor.name}
         value={factor.eveningfactor}
