@@ -44,7 +44,7 @@ export default function Input({ session, factors, correctionfactors, index, user
       calculateUnit: calculateUnits,
       date: date,
     };
-    console.log(date  )
+    
     const response = await fetch('/api/setInsulinDatas', {
       method: 'POST',
       headers: {
