@@ -1,3 +1,4 @@
+
 import styled from 'styled-components';
 import { useState, Fragment } from 'react';
 import Image from 'next/image';
@@ -8,18 +9,20 @@ import blooddrop from '../public/blooddrop.PNG';
 import carbohydrates from '../public/carbohydrates.png';
 import donut from '../public/donut.png';
 import handleInsulinUnit from '../utils/calculate';
+import React from 'react'
 
-export default function Input({ session, factors, correctionfactors }) {
+
+export default function Input({ session, factors, correctionfactors, index }) {
   const [value, setValue] = useState();
-
+  
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
     const bloodsugar = form.bloodsugar.value;
     const carbohydrates = form.carbohydrates.value;
     const insulin = form.setinsulinSelect.value;
-    const daytimeFactor = form.dayfactorSelect.value;
-    const correctionFactor = form.correctionfactorSelect.value;
+    const daytimeFactor = userFactorToDisplay[0].props.value;
+    const correctionFactor =userCorrectionFactorToDisplay[0].props.value;
     const calculateUnits = handleInsulinUnit(
       bloodsugar,
       carbohydrates,
@@ -27,11 +30,10 @@ export default function Input({ session, factors, correctionfactors }) {
       correctionFactor
     );
     const userMail = session.user.email;
-
     setValue(calculateUnits);
-
-    const date = new Date();
-    const newdate = date.toLocaleString();
+    
+    const date = new Date().toLocaleString();
+    
     const cardData = {
       userMail: userMail,
       bloodsugar: bloodsugar,
@@ -40,31 +42,133 @@ export default function Input({ session, factors, correctionfactors }) {
       daytimeFactor: daytimeFactor,
       correctionFactor: correctionFactor,
       calculateUnit: calculateUnits,
-      date: newdate,
+      date: date,
     };
-
+    
     const response = await fetch('/api/setInsulinDatas', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
       },
-
       body: JSON.stringify(cardData),
-    });
-
+    });  
     form.reset();
   }
-
+  
   const options = [
     { value: 'Fiasp', label: 'Fiasp' },
     { value: 'Hum Normal', label: 'Hum Normal' },
   ];
   const userFactor = factors.filter((factors) => {
-    return factors.id === session?.user.email;
+    return factors.id === session?.user.email;  
   });
   const userCorrectionFactor = correctionfactors.filter((correctionfactors) => {
-    return correctionfactors.id === session.user.email;
+    return correctionfactors.id === session.user.email; 
   });
+  const currentTime = new Date().getHours();
+
+  let userFactorToDisplay;
+  let userCorrectionFactorToDisplay  ;  
+  
+  if (currentTime >= 6 && currentTime < 11) {
+    userFactorToDisplay = userFactor.map((factor, index) => (
+      <SetDayFactorOption
+        htmlFor="setdayfactor"
+        name="morningfactor"
+        id={factor.id}
+        value={factor.morningfactor}
+        key={index}
+      >
+        <FactorOption name="morningfactor" value={factor.morningfactor}>
+         {factor.morningfactor}
+        </FactorOption> 
+     
+      </SetDayFactorOption>
+    ));
+
+    userCorrectionFactorToDisplay = userCorrectionFactor.map(
+      (correctionfactor, index) => (
+        <SetCorrectionFactorOption
+          htmlFor="setcorrectionfactor"
+          name="morningcorrectionfactor"
+          id={correctionfactor.name}
+          value={correctionfactor.morningcorrectionfactor}
+          key={index}  
+        >
+          <CorrectionFactorOption>
+             {correctionfactor.morningcorrectionfactor}
+            </CorrectionFactorOption>
+        </SetCorrectionFactorOption>
+      )
+    );
+  } 
+  else if (currentTime >= 11 && currentTime < 17){
+    userFactorToDisplay = userFactor.map((factor, index) => (
+      <SetDayFactorOption
+        htmlFor="setdayfactor"
+        name="eveningfactor"
+        id={factor.name}
+        value={factor.eveningfactor}
+        key={index} 
+      >
+        <FactorOption name="eveningfactor" value={factor.eveningfactor}>
+           {factor.eveningfactor}
+        </FactorOption>
+      </SetDayFactorOption>
+    ));
+    userCorrectionFactorToDisplay = userCorrectionFactor.map(
+      (correctionfactor, index) => (
+        <SetCorrectionFactorOption
+          htmlFor="setcorrectionfactor"
+          name="eveningcorrectionfactor"
+          id={correctionfactor.name}
+          value={correctionfactor.eveningcorrectionfactor}
+          key={index}
+        >
+          <CorrectionFactorOption
+            name="eveningcorrectionfactor"
+            value={correctionfactor.eveningcorrectionfactor}
+          >
+             {correctionfactor.eveningcorrectionfactor}
+          </CorrectionFactorOption>
+        </SetCorrectionFactorOption>
+      )
+    );
+  }
+  else  {
+    userFactorToDisplay = userFactor.map((factor, index) => (
+      <SetDayFactorOption
+        htmlFor="setdayfactor"
+        name="latefactor"
+        id={factor.name}
+        value={factor.latefactor}
+        key={index}
+      >
+        <FactorOption name="latefactor" value={factor.latefactor}>
+          {factor.latefactor}
+        </FactorOption>
+      </SetDayFactorOption>
+    ));
+    userCorrectionFactorToDisplay = userCorrectionFactor.map(
+      (correctionfactor, index) => (
+        <SetCorrectionFactorOption
+          htmlFor="setcorrectionfactor"
+          name="latecorrectionfactor"
+          id="latecorrectionfactor"
+          value={correctionfactor.latecorrectionfactor}
+          key={index}
+          
+        >
+          <CorrectionFactorOption       name="latecorrectionfactor"
+          id="latecorrectionfactor"
+          value={correctionfactor.latecorrectionfactor} >
+            {correctionfactor.latecorrectionfactor}</CorrectionFactorOption>
+          </SetCorrectionFactorOption>
+        
+      )
+    );
+  }
+
   return (
     <>
       <EntryForm
@@ -135,78 +239,51 @@ export default function Input({ session, factors, correctionfactors }) {
             </InsulinSelect>
           </LabelIu>
         </Fragment>
-        <Fragment>
+        
+         <Fragment>
           <LabelFa htmlFor="factor">
-            Welcher Tageszeit <br /> Faktor
-            {userFactor.map((factor, index) => (
+            Tageszeit  Faktor
+            
               <FactorSelect
                 htmlFor="setdayfactor"
-                name="dayfactorSelect"
-                id={FactorOption.name}
-                value={FactorOption.value}
+                name='dayfactorSelect'
+                id={userFactorToDisplay[0].props.name}
+                value={userFactorToDisplay[0].props.value}
                 key={index}
                 options
               >
-                <FactorOption>Faktor wählen</FactorOption>
-                <FactorOption name="morningfactor" value={factor.morningfactor}>
-                  morgens / {factor.morningfactor}
-                </FactorOption>
-                <FactorOption name="lunchfactor" value={factor.lunchfactor}>
-                  mittags / {factor.lunchfactor}
-                </FactorOption>
-                <FactorOption name="eveningfactor" value={factor.eveningfactor}>
-                  abends / {factor.eveningfactor}
-                </FactorOption>
-                <FactorOption name="latefactor" value={factor.latefactor}>
-                  spät / {factor.latefactor}
+                <FactorOption name={userFactorToDisplay[0].props.name}
+                id={userFactorToDisplay}
+                value={userFactorToDisplay[0].props.value}>
+               Insulinfakror {userFactorToDisplay[0].props.value}
                 </FactorOption>
               </FactorSelect>
-            ))}
-            {userCorrectionFactor.map((correctionfactor, index) => (
+            
+            
               <FactorSelect
                 htmlFor="setcorrectionfactor"
-                name="correctionfactorSelect"
-                id={FactorOption.name}
-                value={FactorOption.value}
+                name='correctionfactorSelect'
+                id={userCorrectionFactorToDisplay[0].props.name}
+                value={userCorrectionFactorToDisplay[0].props.value}
                 key={index}
                 options
               >
-                <FactorOption>Korrekturfaktor wählen</FactorOption>
-                <FactorOption
-                  name="morningcorrectionfactor"
-                  value={correctionfactor.morningcorrectionfactor}
-                >
-                  Korrektur morgens / {correctionfactor.morningcorrectionfactor}
-                </FactorOption>
-                <FactorOption
-                  name="lunchcorrectionfactor"
-                  value={correctionfactor.lunchcorrectionfactor}
-                >
-                  Korrektur mittags / {correctionfactor.lunchcorrectionfactor}
-                </FactorOption>
-                <FactorOption
-                  name="eveningcorrectionfactor"
-                  value={correctionfactor.eveningcorrectionfactor}
-                >
-                  Korrektur abends / {correctionfactor.eveningcorrectionfactor}
-                </FactorOption>
-                <FactorOption
-                  name="latecorrectionfactor"
-                  value={correctionfactor.latecorrectionfactor}
-                >
-                  Korrektur spät / {correctionfactor.latecorrectionfactor}
-                </FactorOption>
+              <FactorOption name={userCorrectionFactorToDisplay[0].props.name}
+                id={userCorrectionFactorToDisplay}
+                value={userCorrectionFactorToDisplay[0].props.value}>
+                 Korrektur {userCorrectionFactorToDisplay[0].props.value}
+                  </FactorOption>
               </FactorSelect>
-            ))}
           </LabelFa>
         </Fragment>
         <Button type="submit">bestätigen</Button>
+        
         <InsulinUnits
           htmlFor="insulinunits"
           id="calculateUnits"
           key="calculateUnits"
           name="calculateUnits"
-        >
+          >
           {value} / Einheiten <br /> Insulin spritzen
           <FullInject>
             <Image src={volleSpritze} alt="" />
@@ -218,6 +295,7 @@ export default function Input({ session, factors, correctionfactors }) {
       </EntryForm>
     </>
   );
+  
 }
 
 const Label = styled.label`
@@ -286,7 +364,7 @@ const InsulinOption = styled.option`
   background: transparent;
 `;
 
-const FactorSelect = styled.select`
+const FactorSelect = styled.div`
   background-color: beige;
   border-radius: 8px;
   display: grid;
@@ -295,7 +373,27 @@ const FactorSelect = styled.select`
   color: #364fc9;
 `;
 
-const FactorOption = styled.option`
+const CorrectionFactorOption = styled.div`
+  border-radius: 8px;
+  text-align: center;
+  color: #5c940d;
+  background: transparent;
+`;
+const FactorOption = styled.div`
+  border-radius: 8px;
+  text-align: center;
+  padding-top: 0.4rem;
+  color: #5c940d;
+  background: transparent;
+`;
+
+const SetCorrectionFactorOption = styled.div`
+  border-radius: 8px;
+  text-align: center;
+  color: #5c940d;
+  background: transparent;
+`;
+const SetDayFactorOption = styled.div`
   border-radius: 8px;
   text-align: center;
   color: #5c940d;
@@ -365,3 +463,4 @@ const Donut = styled.span`
   height: 2rem;
   width: 2rem;
 `;
+

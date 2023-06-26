@@ -40,6 +40,18 @@ On the 'Data' page, the entries used on the 'Start' page are saved with the date
 
 The set factor is stored under the item 'Stored factor', each time you set a new factor, the previously set factor is overwritten.
 
+## Update
+
+Juni.26.2023
+
+[DE]
+
+Mit dem update wird die Eingabe der Daten erleichter, da die Faktoren nicht mehr gewählt werden müssen. Diese werden nun anhand der aktuellen Tageszeit automatisch gewählt und gesetzt.
+
+[EN]
+
+The update makes it easier to enter the data, as the factors no longer have to be selected. They are now automatically selected and set based on the current time of day.
+
 ## Tech Stack
 
 | JavaScript | React.js | Next.js MongoDB | Mongoose |
