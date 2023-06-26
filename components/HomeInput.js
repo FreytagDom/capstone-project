@@ -136,7 +136,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
       )
     );
   }
-  else if (currentTime >= 17 && currentTime < 20){
+  else if (currentTime >= 17 && currentTime < 22){
     userFactorToDisplay = userFactor.map((factor, index) => (
       <SetDayFactorOption
         htmlFor="setdayfactor"
