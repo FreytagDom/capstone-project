@@ -4,13 +4,13 @@ export default function handleInsulinUnit(
   daytimeFactor,
   correctionFactor
 ) {
-  const targetValue = 100;
-
-  const calculateUnit = (
-    (bloodsugar - targetValue) / correctionFactor +
-    carbohydrates / daytimeFactor
-  ).toFixed(1);
-  
-
+ 
+  let calculateUnit;
+  if (bloodsugar < 100) { calculateUnit  =  (carbohydrates / daytimeFactor ).toFixed(1); }
+  else { calculateUnit =  ( (bloodsugar - 100) / correctionFactor +
+  carbohydrates / daytimeFactor
+).toFixed(1); }
+ 
   return calculateUnit;
+
 }
