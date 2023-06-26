@@ -10,6 +10,7 @@ import carbohydrates from '../public/carbohydrates.png';
 import donut from '../public/donut.png';
 import handleInsulinUnit from '../utils/calculate';
 import React from 'react'
+import handelCorretion from '../utils/handleCorrectionFactor';
 
 
 export default function Input({ session, factors, correctionfactors, index }) {
@@ -22,7 +23,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
     const carbohydrates = form.carbohydrates.value;
     const insulin = form.setinsulinSelect.value;
     const daytimeFactor = userFactorToDisplay[0].props.value;
-    const correctionFactor =userCorrectionFactorToDisplay[0].props.value;
+    const correctionFactor = handelCorretion(bloodsugar, userCorrectionFactorToDisplay);
     const calculateUnits = handleInsulinUnit(
       bloodsugar,
       carbohydrates,
