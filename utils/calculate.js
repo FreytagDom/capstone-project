@@ -8,10 +8,9 @@ export default function handleInsulinUnit(
 
   const calculateUnit = (
     (bloodsugar - targetValue) / correctionFactor +
-    carbohydrates / daytimeFactor -
-    0.1
+    carbohydrates / daytimeFactor
   ).toFixed(1);
-  console.log(calculateUnit);
+  
 
   return calculateUnit;
 }
