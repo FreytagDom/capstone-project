@@ -11,19 +11,20 @@ import donut from '../public/donut.png';
 import handleInsulinUnit from '../utils/calculate';
 import React from 'react'
 import handelCorretion from '../utils/handleCorrectionFactor';
-
+import handleUserCorrectionFactor from '../handler/getCorrectionFactor';
+import handleUserDayFactor from '../handler/getDayFactor';
 
 export default function Input({ session, factors, correctionfactors, index }) {
   const [value, setValue] = useState();
-  
+
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
     const bloodsugar = form.bloodsugar.value;
     const carbohydrates = form.carbohydrates.value;
     const insulin = form.setinsulinSelect.value;
-    const daytimeFactor = userFactorToDisplay[0].props.value;
-    const correctionFactor = handelCorretion(bloodsugar, userCorrectionFactorToDisplay);
+    const daytimeFactor = handleUserDayFactor(session, factors)[0].props.value;
+    const correctionFactor = handelCorretion(bloodsugar, handleUserCorrectionFactor(session, correctionfactors));
     const calculateUnits = handleInsulinUnit(
       bloodsugar,
       carbohydrates,
@@ -60,148 +61,6 @@ export default function Input({ session, factors, correctionfactors, index }) {
     { value: 'Fiasp', label: 'Fiasp' },
     { value: 'Hum Normal', label: 'Hum Normal' },
   ];
-  const userFactor = factors.filter((factors) => {
-    return factors.id === session?.user.email;  
-  });
-  const userCorrectionFactor = correctionfactors.filter((correctionfactors) => {
-    return correctionfactors.id === session.user.email; 
-  });
-  const currentTime = new Date().getHours();
-
-  let userFactorToDisplay;
-  let userCorrectionFactorToDisplay  ;  
-  
-  if (currentTime >= 6 && currentTime < 11) {
-    userFactorToDisplay = userFactor.map((factor, index) => (
-      <SetDayFactorOption
-        htmlFor="setdayfactor"
-        name="morningfactor"
-        id={factor.id}
-        value={factor.morningfactor}
-        key={index}
-      >
-        <FactorOption name="morningfactor" value={factor.morningfactor}>
-         {factor.morningfactor}
-        </FactorOption> 
-     
-      </SetDayFactorOption>
-    ));
-
-    userCorrectionFactorToDisplay = userCorrectionFactor.map(
-      (correctionfactor, index) => (
-        <SetCorrectionFactorOption
-          htmlFor="setcorrectionfactor"
-          name="morningcorrectionfactor"
-          id={correctionfactor.name}
-          value={correctionfactor.morningcorrectionfactor}
-          key={index}  
-        >
-          <CorrectionFactorOption>
-             {correctionfactor.morningcorrectionfactor}
-            </CorrectionFactorOption>
-        </SetCorrectionFactorOption>
-      )
-    );
-  } 
-  else if (currentTime >= 11 && currentTime < 17){
-    userFactorToDisplay = userFactor.map((factor, index) => (
-      <SetDayFactorOption
-        htmlFor="setdayfactor"
-        name="lunchfactor"
-        id={factor.name}
-        value={factor.lunchfactor}
-        key={index} 
-      >
-        <FactorOption name="lunchfactor" value={factor.lunchfactor}>
-           {factor.lunchfactor}
-        </FactorOption>
-      </SetDayFactorOption>
-    ));
-    userCorrectionFactorToDisplay = userCorrectionFactor.map(
-      (correctionfactor, index) => (
-        <SetCorrectionFactorOption
-          htmlFor="setcorrectionfactor"
-          name="lunchcorrectionfactor"
-          id={correctionfactor.name}
-          value={correctionfactor.lunchcorrectionfactor}
-          key={index}
-        >
-          <CorrectionFactorOption
-            name="lunchcorrectionfactor"
-            value={correctionfactor.lunchcorrectionfactor}
-          >
-             {correctionfactor.lunchcorrectionfactor}
-          </CorrectionFactorOption>
-        </SetCorrectionFactorOption>
-      )
-    );
-  }
-  else if (currentTime >= 17 && currentTime < 22){
-    userFactorToDisplay = userFactor.map((factor, index) => (
-      <SetDayFactorOption
-        htmlFor="setdayfactor"
-        name="eveningfactor"
-        id={factor.name}
-        value={factor.eveningfactor}
-        key={index} 
-      >
-        <FactorOption name="eveningfactor" value={factor.eveningfactor}>
-           {factor.eveningfactor}
-        </FactorOption>
-      </SetDayFactorOption>
-    ));
-    userCorrectionFactorToDisplay = userCorrectionFactor.map(
-      (correctionfactor, index) => (
-        <SetCorrectionFactorOption
-          htmlFor="setcorrectionfactor"
-          name="eveningcorrectionfactor"
-          id={correctionfactor.name}
-          value={correctionfactor.eveningcorrectionfactor}
-          key={index}
-        >
-          <CorrectionFactorOption
-            name="eveningcorrectionfactor"
-            value={correctionfactor.eveningcorrectionfactor}
-          >
-             {correctionfactor.eveningcorrectionfactor}
-          </CorrectionFactorOption>
-        </SetCorrectionFactorOption>
-      )
-    );
-  }
-  else  {
-    userFactorToDisplay = userFactor.map((factor, index) => (
-      <SetDayFactorOption
-        htmlFor="setdayfactor"
-        name="latefactor"
-        id={factor.name}
-        value={factor.latefactor}
-        key={index}
-      >
-        <FactorOption name="latefactor" value={factor.latefactor}>
-          {factor.latefactor}
-        </FactorOption>
-      </SetDayFactorOption>
-    ));
-    userCorrectionFactorToDisplay = userCorrectionFactor.map(
-      (correctionfactor, index) => (
-        <SetCorrectionFactorOption
-          htmlFor="setcorrectionfactor"
-          name="latecorrectionfactor"
-          id="latecorrectionfactor"
-          value={correctionfactor.latecorrectionfactor}
-          key={index}
-          
-        >
-          <CorrectionFactorOption       name="latecorrectionfactor"
-          id="latecorrectionfactor"
-          value={correctionfactor.latecorrectionfactor} >
-            {correctionfactor.latecorrectionfactor}</CorrectionFactorOption>
-          </SetCorrectionFactorOption>
-        
-      )
-    );
-  }
 
   return (
     <>
@@ -281,15 +140,15 @@ export default function Input({ session, factors, correctionfactors, index }) {
               <FactorSelect
                 htmlFor="setdayfactor"
                 name='dayfactorSelect'
-                id={userFactorToDisplay[0].props.name}
-                value={userFactorToDisplay[0].props.value}
+                id={handleUserDayFactor(session, factors)[0].props.name}
+                value={handleUserDayFactor(session, factors)[0].props.value}
                 key={index}
                 options
               >
-                <FactorOption name={userFactorToDisplay[0].props.name}
-                id={userFactorToDisplay}
-                value={userFactorToDisplay[0].props.value}>
-               Insulinfakror {userFactorToDisplay[0].props.value}
+                <FactorOption name={handleUserDayFactor(session, factors)[0].props.name}
+                id={handleUserDayFactor(session, factors)}
+                value={handleUserDayFactor(session, factors)[0].props.value}>
+               Insulinfakror {handleUserDayFactor(session, factors)[0].props.value}
                 </FactorOption>
               </FactorSelect>
             
@@ -297,15 +156,15 @@ export default function Input({ session, factors, correctionfactors, index }) {
               <FactorSelect
                 htmlFor="setcorrectionfactor"
                 name='correctionfactorSelect'
-                id={userCorrectionFactorToDisplay[0].props.name}
-                value={userCorrectionFactorToDisplay[0].props.value}
+                id={handleUserCorrectionFactor(session, correctionfactors)[0].props.name}
+                value={handleUserCorrectionFactor(session, correctionfactors)[0].props.value}
                 key={index}
                 options
               >
-              <FactorOption name={userCorrectionFactorToDisplay[0].props.name}
-                id={userCorrectionFactorToDisplay}
-                value={userCorrectionFactorToDisplay[0].props.value}>
-                 Korrektur {userCorrectionFactorToDisplay[0].props.value}
+              <FactorOption name={handleUserCorrectionFactor(session, correctionfactors)[0].props.name}
+                id={handleUserCorrectionFactor(session, correctionfactors)[0].props}
+                value={handleUserCorrectionFactor(session, correctionfactors)[0].props.value}>
+                 Korrektur {handleUserCorrectionFactor(session, correctionfactors)[0].props.value}
                   </FactorOption>
               </FactorSelect>
           </LabelFa>
@@ -407,29 +266,10 @@ const FactorSelect = styled.div`
   color: #364fc9;
 `;
 
-const CorrectionFactorOption = styled.div`
-  border-radius: 8px;
-  text-align: center;
-  color: #5c940d;
-  background: transparent;
-`;
 const FactorOption = styled.div`
   border-radius: 8px;
   text-align: center;
   padding-top: 0.4rem;
-  color: #5c940d;
-  background: transparent;
-`;
-
-const SetCorrectionFactorOption = styled.div`
-  border-radius: 8px;
-  text-align: center;
-  color: #5c940d;
-  background: transparent;
-`;
-const SetDayFactorOption = styled.div`
-  border-radius: 8px;
-  text-align: center;
   color: #5c940d;
   background: transparent;
 `;
@@ -497,4 +337,3 @@ const Donut = styled.span`
   height: 2rem;
   width: 2rem;
 `;
-
