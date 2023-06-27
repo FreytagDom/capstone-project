@@ -10,4 +10,10 @@ describe(handleInsulinUnit, () => {
   test(handleInsulinUnit, () => {
     expect(handleInsulinUnit(180, 40, 14, 15)).toBe('8.2');
   });
+  test(handleInsulinUnit, () => {
+    expect(handleInsulinUnit(89, 56, 12, 0)).toBe('4.7');
+  })
+  test(handleInsulinUnit, () => {
+    expect(handleInsulinUnit(75, 65, 13, 0)).toBe('5.0');
+  });
 });
