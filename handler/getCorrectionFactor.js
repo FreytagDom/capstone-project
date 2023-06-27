@@ -1,7 +1,7 @@
 import styled from "styled-components";
   
 
-export default function handleUserCorrectionFactor(session, factors, correctionfactors) {
+export default function handleUserCorrectionFactor(session, correctionfactors) {
   
   let userCorrectionFactorToDisplay  ;  
 
