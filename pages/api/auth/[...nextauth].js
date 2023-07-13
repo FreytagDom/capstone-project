@@ -7,7 +7,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 
  const providers = [];
  {   providers.push(    
-   CredentialsProvider({ name: 'credentials', credentials: {       
+   CredentialsProvider({ name: 'Testlogin', credentials: {       
     username: { label: 'Username', type: 'text', placeholder: 'test' },      
     password: { label: 'Password', type: 'password', placeholder: 'test' },
       },       async authorize(credentials, req) {
@@ -27,10 +27,10 @@ email: 'test@example.com', };
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
     }),
-    //  FacebookProvider({
-    //    clientId: process.env.FACEBOOK_CLIENT_ID,
-    //    clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-    //  }),
+      FacebookProvider({
+        clientId: process.env.FACEBOOK_CLIENT_ID,
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+      }),
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
