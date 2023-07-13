@@ -35,7 +35,6 @@ export async function getServerSideProps({ req }) {
 }
 
 export default function Home({ factors, correctionfactors }) {
-  // const isPreview = process.env.VERCEL_ENV === 'preview';
   const { data: session } = useSession();
 
   return (
@@ -60,12 +59,12 @@ export default function Home({ factors, correctionfactors }) {
         ) : (
           <>
             <LoginPage />
-            {/* <a
+          <TestLogin
               href="#"
-              onClick={() => signIn(isPreview ? 'credentials' : 'github')}
+              onClick={() => signIn('credentials')}
             >
-              Anmelden
-            </a> */}
+             Test Anmelden
+            </TestLogin>
           </>
         )}
       </Sign>
@@ -82,8 +81,9 @@ const Wrapper = styled.section`
 
 const Login = styled.span`
   justify-content: center;
-  color: white;
+  color: orange;
   text-decoration: none;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 `;
 
 const Sign = styled.span`
@@ -103,3 +103,10 @@ const Atags = styled.a`
   margin-top: -1rem;
   font-size: 1rem;
 `;
+
+const TestLogin = styled.a`
+font-size: 1rem;
+color: green;
+justify-content: space-evenly;
+
+`
