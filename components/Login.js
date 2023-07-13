@@ -13,23 +13,23 @@ export default function LoginPage() {
       </SingIn>
       <LoginButtons>
         <LoginButton
-          icon={githubSvg}
-          providerName="GitHub"
-          bgColor="#24292e"
-          onClick={() => signIn('github')}
-        />
-        <LoginButton
           icon={googleLogoColor}
           providerName="Google"
           bgColor="#AA5437"
           onClick={() => signIn('google')}
         />
-        {/* <LoginButton
+      <LoginButton
           icon={facebook}
           providerName="Facebook"
           bgColor="#4050B5"
           onClick={() => signIn('facebook')}
-        /> */}
+        /> 
+          <LoginButton
+          icon={githubSvg}
+          providerName="GitHub"
+          bgColor="#24292e"
+          onClick={() => signIn('github')}
+        />
       </LoginButtons>
     </>
   );
