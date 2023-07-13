@@ -18,12 +18,12 @@ export default function LoginPage() {
           bgColor="#AA5437"
           onClick={() => signIn('google')}
         />
-      <LoginButton
+      {/* <LoginButton
           icon={facebook}
           providerName="Facebook"
           bgColor="#4050B5"
           onClick={() => signIn('facebook')}
-        /> 
+        />  */}
           <LoginButton
           icon={githubSvg}
           providerName="GitHub"
