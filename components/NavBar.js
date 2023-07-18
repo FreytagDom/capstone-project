@@ -5,27 +5,23 @@ export const Navbar = () => {
   return (
     <NavbarHead>
       <Navigation>
-        <Link href="/" passHref>
-          <Tags>Start</Tags>
-        </Link>
+        <Links href="/" passHref>
+          Start
+        </Links>
 
-        <Link href="/setInsulinFactor" passHref>
-          <Tags>
+        <Links href="/setInsulinFactor" passHref>
             Insulin <br />
             Faktor
-          </Tags>
-        </Link>
+        </Links>
 
-        <Link href="/setCorrectionFactor" passHref>
-          <Tags>
+        <Links href="/setCorrectionFactor" passHref>
             Korrektur <br />
             Faktor
-          </Tags>
-        </Link>
+        </Links>
 
-        <Link href="/savedInsulinData" passHref>
-          <Tags>Daten</Tags>
-        </Link>
+        <Links href="/savedInsulinData" passHref>
+          Daten
+        </Links>
       </Navigation>
     </NavbarHead>
   );
@@ -63,7 +59,7 @@ const Navigation = styled.nav`
   z-index: 2;
 `;
 
-const Tags = styled.a`
+const Links = styled(Link)`
   text-decoration: none;
   margin: 5px 20px;
   font-size: 1.1rem;

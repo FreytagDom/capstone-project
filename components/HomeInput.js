@@ -69,14 +69,10 @@ export default function Input({ session, factors, correctionfactors, index }) {
         onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
       >
         <LabelBz htmlFor="bloodsugar">
-          <BloodDrop>
-            <Image src={blooddrop} alt="blooddrop" />
-          </BloodDrop>
           Blutzuckerwert <br />
           mg/dl
-          <Blood>
-            <Image src={blood} alt="blood" />
-          </Blood>
+          <BloodDrop src={blooddrop} alt="blooddrop" />
+          <Blood src={blood} alt="blood" />
           <DataInput
             type="number"
             name="bloodsugar"
@@ -90,13 +86,9 @@ export default function Input({ session, factors, correctionfactors, index }) {
         </LabelBz>
 
         <LabelCa htmlFor="carbohydrates">
-          <Carbohydrates>
-            <Image src={carbohydrates} alt="carbohydrates" />
-          </Carbohydrates>
           Kohlenhydrate (Khd) <br /> g (Gramm)
-          <Donut>
-            <Image src={donut} alt="donut" />
-          </Donut>
+          <Carbohydrates src={carbohydrates} alt="carbohydrates" />
+          <Donut src={donut} alt="donut" />
           <DataInput
             type="number"
             name="carbohydrates"
@@ -178,12 +170,8 @@ export default function Input({ session, factors, correctionfactors, index }) {
           name="calculateUnits"
           >
           {value} / Einheiten <br /> Insulin spritzen
-          <FullInject>
-            <Image src={volleSpritze} alt="" />
-          </FullInject>
-          <EmptyInject>
-            <Image src={leereSpritze} alt="" />
-          </EmptyInject>
+          <FullInject src={volleSpritze} alt="" />
+          <EmptyInject src={leereSpritze} alt="" />
         </InsulinUnits>
       </EntryForm>
     </>
@@ -217,6 +205,8 @@ const LabelCa = styled(Label)`
 
 const LabelFa = styled(Label)`
   color: #2b8a3e;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
 `;
 
 const DataInput = styled.input`
@@ -297,25 +287,24 @@ const EntryForm = styled.form`
   padding: 0;
 `;
 
-const EmptyInject = styled.span`
+const EmptyInject = styled(Image)`
   margin-left: 12rem;
   margin-top: -1.2rem;
-`;
+`;  
 
-const FullInject = styled.span`
-  margin-left: -12rem;
+const FullInject = styled(Image)`
+  margin-left: 1rem;
   margin-top: -3rem;
 `;
 
-const BloodDrop = styled.span`
+const BloodDrop = styled(Image)`
   margin-left: 1rem;
-  margin-top: -2rem;
-  padding-top: 1.5rem;
-  height: 1.5rem;
+  margin-top: -3rem;
+  height: 1.8rem;
   width: 1.5rem;
 `;
 
-const Blood = styled.span`
+const Blood = styled(Image)`
   margin-left: 11rem;
   margin-top: -2.2rem;
   padding-right: 0.5rem;
@@ -323,17 +312,16 @@ const Blood = styled.span`
   width: 3rem;
 `;
 
-const Carbohydrates = styled.span`
-  margin-left: 1rem;
-  margin-top: -1.6rem;
-  padding-top: 1.5rem;
+const Carbohydrates = styled(Image)`
+  margin-left: 0.5rem;
+  margin-top: -3rem;
   height: 1.5rem;
   width: 1.5rem;
 `;
 
-const Donut = styled.span`
-  margin-left: 12rem;
-  margin-top: -2rem;
+const Donut = styled(Image)`
+  margin-left: 11.5rem;
+  margin-top: -1rem;
   height: 2rem;
   width: 2rem;
 `;
