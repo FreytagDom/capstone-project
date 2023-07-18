@@ -1,9 +1,12 @@
 import styled, { keyframes } from 'styled-components';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 export const Navbar = () => {
+  const { data: session } = useSession();
   return (
     <NavbarHead>
+    {session ? (
       <Navigation>
         <Links href="/" passHref>
           Start
@@ -23,6 +26,8 @@ export const Navbar = () => {
           Daten
         </Links>
       </Navigation>
+    )
+   : ( null ) }
     </NavbarHead>
   );
 };
