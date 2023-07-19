@@ -3,8 +3,8 @@ import Layout from '../components/Layout';
 import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
 import Loading from '../components/PageLoader';
-import { useEffect, useState } from 'react';
-import Router from "next/router";
+ import { useEffect, useState } from 'react';
+ import Router from "next/router";
 
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }) {
  
@@ -21,12 +21,13 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
 
     return () => {
        window.removeEventListener('load', stopLoading);
-      // Router.events.off('routeChangeStart', startLoading);
+      Router.events.off('routeChangeStart', startLoading);
       Router.events.off('routeChangeComplete', stopLoading);
       Router.events.off('routeChangeError', stopLoading);
     };
   }, []);
-
+  
+  
   return (
     <>
       <Head>
@@ -42,11 +43,12 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
       </Head>
       <SessionProvider session={session} basePath="/api/auth">
         <GlobalStyle />
-      { isLoading ? (   <Loading />  ) : (
         <Layout>
+    {isLoading ?  
+      (<Loading />) : (
           <Component {...pageProps} />
-        </Layout>
-      )}
+          )}
+          </Layout>
       </SessionProvider>
     </>
   );
