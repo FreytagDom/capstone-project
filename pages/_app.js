@@ -22,7 +22,7 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
     // Remove event listeners on cleanup
     return () => {
        window.removeEventListener('load', stopLoading);
-       Router.events.off('routeChangeComplete', stopLoading);
+       Router.events.off('routeChangeStart', stopLoading);
       Router.events.off('routeChangeComplete', stopLoading);
       Router.events.off('routeChangeError', stopLoading);
     };
