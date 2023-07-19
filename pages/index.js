@@ -7,6 +7,7 @@ import { getToken } from 'next-auth/jwt';
 import LoginPage from '../components/Login';
 import { GoSignOut } from 'react-icons/go';
 
+
 export async function getServerSideProps({ req }) {
   const factors = await getAllDayFactors();
   const correctionfactors = await getAllCorrectionFactors();

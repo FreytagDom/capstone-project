@@ -42,14 +42,14 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
         <meta name="theme-color" content="#ffffff" />
       </Head>
     {isLoading ?  
-      (<Loading />) : (
+      (<Loading />) : null}
       <SessionProvider session={session} basePath="/api/auth">
         <GlobalStyle />
         <Layout>
           <Component {...pageProps} />
           </Layout>
       </SessionProvider>
-          )}
+          
     </>
   );
 }
