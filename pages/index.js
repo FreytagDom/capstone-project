@@ -53,7 +53,7 @@ const [isLoading, setLoading] = useState(false);
 
     return () => {
        window.removeEventListener('load', stopLoading);
-      Router.events.off('routeChangeStart', startLoading);
+      Router.events.off('routeChangeStart', stopLoading);
       Router.events.off('routeChangeComplete', stopLoading);
       Router.events.off('routeChangeError', stopLoading);
     };
