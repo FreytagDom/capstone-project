@@ -2,9 +2,8 @@ import CorrectionFactorEntry from '../components/SetCorrectionFactor';
 import { getAllCorrectionFactors } from '../services/correctionFactorsService';
 import SavedCorrectionFactor from '../components/SavedCorrectionFactor';
 import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
-import LoginPage from '../components/Login';
 import styled from 'styled-components';
+import Loading from '../components/PageLoader';
 
 export async function getServerSideProps() {
   const correctionfactors = await getAllCorrectionFactors();
@@ -15,7 +14,7 @@ export async function getServerSideProps() {
   };
 }
 
-export default function CreateCorretionfactor({ correctionfactors }) {
+ export default function CreateCorretionfactor({ correctionfactors }) {
   async function handleSetSubmit(
     morningcorrectionfactor,
     lunchcorrectionfactor,
@@ -38,26 +37,21 @@ export default function CreateCorretionfactor({ correctionfactors }) {
     });
   }
   const router = useRouter();
-  const { data: session } = useSession();
+  
   return (
     <Wrapper>
       <Sign>
         <>
-          {session ? (
-            <>
               <CorrectionFactorEntry
                 onHandleSetCorrectionfactor={handleSetSubmit}
               />
               <SavedCorrectionFactor correctionfactors={correctionfactors} />
-            </>
-          ) : (
-            <LoginPage />
-          )}
         </>
       </Sign>
     </Wrapper>
   );
 }
+
 
 const Wrapper = styled.section`
   display: grid;

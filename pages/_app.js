@@ -7,26 +7,6 @@ import Loading from '../components/PageLoader';
  import Router from "next/router";
 
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }) {
- 
-  const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const startLoading = () => setLoading(true);
-    const stopLoading = () => setLoading(false);
-
-    window.addEventListener('load', startLoading);
-    Router.events.on('routeChangeStart', startLoading);
-    Router.events.on('routeChangeComplete', stopLoading);
-    Router.events.on('routeChangeError', stopLoading);
-
-    return () => {
-       window.removeEventListener('load', stopLoading);
-      Router.events.off('routeChangeStart', startLoading);
-      Router.events.off('routeChangeComplete', stopLoading);
-      Router.events.off('routeChangeError', stopLoading);
-    };
-  }, []);
-  
   
   return (
     <>
@@ -44,10 +24,9 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
       <SessionProvider session={session} basePath="/api/auth">
         <GlobalStyle />
         <Layout>
-    {isLoading ?  
-      (<Loading />) : (
+    {/* {isLoading ?  
+      (<Loading />) : null} */}
           <Component {...pageProps} />
-      )}
           </Layout>
       </SessionProvider>
           

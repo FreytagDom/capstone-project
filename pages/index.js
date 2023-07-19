@@ -6,6 +6,9 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import { getToken } from 'next-auth/jwt';
 import LoginPage from '../components/Login';
 import { GoSignOut } from 'react-icons/go';
+import { useEffect, useState } from 'react';
+import Router from "next/router";
+import Loading from '../components/PageLoader';
 
 
 export async function getServerSideProps({ req }) {
@@ -37,9 +40,31 @@ export async function getServerSideProps({ req }) {
 
 export default function Home({ factors, correctionfactors }) {
   const { data: session } = useSession();
+const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const startLoading = () => setLoading(true);
+    const stopLoading = () => setLoading(false);
+
+    window.addEventListener('load', startLoading);
+    Router.events.on('routeChangeStart', startLoading);
+    Router.events.on('routeChangeComplete', stopLoading);
+    Router.events.on('routeChangeError', stopLoading);
+
+    return () => {
+       window.removeEventListener('load', stopLoading);
+      Router.events.off('routeChangeStart', startLoading);
+      Router.events.off('routeChangeComplete', stopLoading);
+      Router.events.off('routeChangeError', stopLoading);
+    };
+  }, []);
+
 
   return (
     <Wrapper>
+           {isLoading ? (
+          <Loading />
+        ) : (
       <Sign>
         {session ? (
           <>
@@ -59,6 +84,8 @@ export default function Home({ factors, correctionfactors }) {
           </>
         ) : (
           <>
+      
+          
             <LoginPage />
           <TestLogin
               href="#"
@@ -66,9 +93,11 @@ export default function Home({ factors, correctionfactors }) {
             >
              Test Anmelden
             </TestLogin>
+             
           </>
         )}
-      </Sign>
+        </Sign>
+        )}
     </Wrapper>
   );
 }

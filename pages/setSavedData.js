@@ -10,7 +10,7 @@ export async function getServerSideProps() {
   };
 }
 
-export default function CreateData() {
+ export default function CreateData() {
   async function handleSetSubmit(cardData) {
     const response = await fetch('/api/setInsulinDatas', {
       method: 'POST',

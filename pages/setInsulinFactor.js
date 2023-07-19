@@ -2,8 +2,6 @@ import FactorEntry from '../components/SetInsulinFactor';
 import SavedFactor from '../components/SavedInsulinFactor';
 import { getAllDayFactors } from '../services/savedDayFactorService';
 import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
-import LoginPage from '../components/Login';
 import styled from 'styled-components';
 
 export async function getServerSideProps() {
@@ -38,20 +36,12 @@ export default function CreateFactor({ factors }) {
     });
   }
   const router = useRouter();
-  const { data: session } = useSession();
+ 
   return (
     <Wrapper>
       <Sign>
-        {session ? (
-          <>
             <FactorEntry onHandleSetFactor={handleSetSubmit} />
             <SavedFactor factors={factors} />
-          </>
-        ) : (
-          <>
-            <LoginPage />
-          </>
-        )}
       </Sign>
     </Wrapper>
   );
