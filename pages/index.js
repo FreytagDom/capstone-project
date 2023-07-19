@@ -61,10 +61,11 @@ const [isLoading, setLoading] = useState(false);
 
 
   return (
-    <Wrapper>
+    <>
            {isLoading ? (
           <Loading />
         ) : (
+    <Wrapper>
       <Sign>
         {session ? (
           <>
@@ -97,8 +98,9 @@ const [isLoading, setLoading] = useState(false);
           </>
         )}
         </Sign>
-        )}
     </Wrapper>
+        )}
+        </>
   );
 }
 
