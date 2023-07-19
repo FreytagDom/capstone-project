@@ -21,7 +21,7 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
 
     return () => {
        window.removeEventListener('load', stopLoading);
-      Router.events.off('routeChangeStart', startLoading);
+      Router.events.off('routeChangeStart', stopLoading);
       Router.events.off('routeChangeComplete', stopLoading);
       Router.events.off('routeChangeError', stopLoading);
     };
@@ -41,15 +41,15 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
+    {isLoading ?  
+      (<Loading />) : (
       <SessionProvider session={session} basePath="/api/auth">
         <GlobalStyle />
         <Layout>
-    {isLoading ?  
-      (<Loading />) : (
           <Component {...pageProps} />
-          )}
           </Layout>
       </SessionProvider>
+          )}
     </>
   );
 }
