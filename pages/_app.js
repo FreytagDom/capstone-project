@@ -40,14 +40,14 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      { isLoading ? (   <Loading />  ) : (
       <SessionProvider session={session} basePath="/api/auth">
         <GlobalStyle />
+      { isLoading ? (   <Loading />  ) : (
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </SessionProvider>
       )}
+      </SessionProvider>
     </>
   );
 }
