@@ -41,12 +41,13 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-    {isLoading ?  
-      (<Loading />) : null}
       <SessionProvider session={session} basePath="/api/auth">
         <GlobalStyle />
         <Layout>
+    {isLoading ?  
+      (<Loading />) : (
           <Component {...pageProps} />
+      )}
           </Layout>
       </SessionProvider>
           
