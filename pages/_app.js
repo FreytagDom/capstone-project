@@ -29,7 +29,6 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
 
   return (
     <>
-      { isLoading ? (   <Loading />  ) : null}
       <Head>
         <title>Insulin App</title>
         <meta name="description" content="Insulin app" />
@@ -41,13 +40,14 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
+      { isLoading ? (   <Loading />  ) : (
       <SessionProvider session={session} basePath="/api/auth">
         <GlobalStyle />
         <Layout>
           <Component {...pageProps} />
         </Layout>
       </SessionProvider>
-     
+      )}
     </>
   );
 }
