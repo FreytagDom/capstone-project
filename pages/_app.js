@@ -2,8 +2,32 @@ import { GlobalStyle } from '../components/GlobalStyle';
 import Layout from '../components/Layout';
 import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
+import Loading from '../components/PageLoader';
+import { useEffect, useState } from 'react';
+import Router from "next/router";
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+export default function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+ 
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const startLoading = () => setLoading(true);
+    const stopLoading = () => setLoading(false);
+
+    // Add event listeners to show/hide the loader
+    window.addEventListener('load', startLoading);
+    Router.events.on('routeChangeStart', startLoading);
+    Router.events.on('routeChangeComplete', stopLoading);
+    Router.events.on('routeChangeError', stopLoading);
+    // Remove event listeners on cleanup
+    return () => {
+       window.removeEventListener('load', stopLoading);
+       Router.events.off('routeChangeComplete', startLoading);
+      Router.events.off('routeChangeComplete', stopLoading);
+      Router.events.off('routeChangeError', stopLoading);
+    };
+  }, []);
+
   return (
     <>
       <Head>
@@ -17,14 +41,16 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
+      { isLoading ? (   <Loading />  ) :  (
       <SessionProvider session={session} basePath="/api/auth">
         <GlobalStyle />
         <Layout>
           <Component {...pageProps} />
         </Layout>
       </SessionProvider>
+       )}  
     </>
   );
 }
 
-export default MyApp;
+
