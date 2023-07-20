@@ -5,6 +5,7 @@ import bloodsugarvertical from '../public/bloodsugarvertical.jpg';
 import Image from 'next/image';
 import styled from 'styled-components';
 
+
 export default function Layout({ children }) {
   return (
     <>

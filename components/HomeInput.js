@@ -14,6 +14,7 @@ import handelCorretion from '../utils/handleCorrectionFactor';
 import handleUserCorrectionFactor from '../handler/getCorrectionFactor';
 import handleUserDayFactor from '../handler/getDayFactor';
 
+
 export default function Input({ session, factors, correctionfactors, index }) {
   const [value, setValue] = useState();
 

@@ -2,8 +2,31 @@ import { GlobalStyle } from '../components/GlobalStyle';
 import Layout from '../components/Layout';
 import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
+import Loading from '../components/PageLoader';
+ import { useEffect, useState } from 'react';
+ import Router from "next/router";
+ 
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+export default function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const handleRouteChangeStart = () => {
+      setLoading(true);
+    };
+
+    const handleRouteChangeComplete = () => {
+      setLoading(false);
+    };
+
+    Router.events.on('routeChangeStart', handleRouteChangeStart);
+    Router.events.on('routeChangeComplete', handleRouteChangeComplete);
+
+    return () => {
+      Router.events.off('routeChangeStart', handleRouteChangeStart);
+      Router.events.off('routeChangeComplete', handleRouteChangeComplete);
+    };
+  }, []);
   return (
     <>
       <Head>
@@ -20,11 +43,14 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       <SessionProvider session={session} basePath="/api/auth">
         <GlobalStyle />
         <Layout>
+         {isLoading ? ( <Loading /> ) : (
           <Component {...pageProps} />
-        </Layout>
+         )}
+          </Layout>
       </SessionProvider>
+          
     </>
   );
 }
 
-export default MyApp;
+
