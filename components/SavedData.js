@@ -123,6 +123,9 @@ const Saved = styled.li`
 `;
 
 const Summary = styled.summary`
+  &::-webkit-details-marker {
+    display: none;
+  }
   display: grid;
   text-decoration: underline;
   background-color: transparent;

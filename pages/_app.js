@@ -26,7 +26,8 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
       Router.events.off('routeChangeStart', handleRouteChangeStart);
       Router.events.off('routeChangeComplete', handleRouteChangeComplete);
     };
-  }, []);
+  }, []); 
+  
   return (
     <>
       <Head>

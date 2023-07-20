@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { getAllCategories } from '../services/insulinAppDataService';
 import SavedDataInjected from '../components/SavedData';
 import { keyframes } from 'styled-components';
-import Loading from '../components/PageLoader';
 
 
 export async function getServerSideProps() {
