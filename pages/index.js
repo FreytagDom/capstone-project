@@ -40,31 +40,9 @@ export async function getServerSideProps({ req }) {
 
 export default function Home({ factors, correctionfactors }) {
   const { data: session } = useSession();
-const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const startLoading = () => setLoading(true);
-    const stopLoading = () => setLoading(false);
-
-    window.addEventListener('load', startLoading);
-    Router.events.on('routeChangeStart', startLoading);
-    Router.events.on('routeChangeComplete', stopLoading);
-    Router.events.on('routeChangeError', stopLoading);
-
-    return () => {
-       window.removeEventListener('load', stopLoading);
-      Router.events.off('routeChangeStart', stopLoading);
-      Router.events.off('routeChangeComplete', stopLoading);
-      Router.events.off('routeChangeError', stopLoading);
-    };
-  }, []);
-
 
   return (
     <>
-           {isLoading ? (
-          <Loading />
-        ) : (
     <Wrapper>
       <Sign>
         {session ? (
@@ -85,8 +63,6 @@ const [isLoading, setLoading] = useState(false);
           </>
         ) : (
           <>
-      
-          
             <LoginPage />
           <TestLogin
               href="#"
@@ -99,7 +75,6 @@ const [isLoading, setLoading] = useState(false);
         )}
         </Sign>
     </Wrapper>
-        )}
         </>
   );
 }

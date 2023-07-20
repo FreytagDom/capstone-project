@@ -5,9 +5,28 @@ import Head from 'next/head';
 import Loading from '../components/PageLoader';
  import { useEffect, useState } from 'react';
  import Router from "next/router";
+ 
 
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }) {
-  
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const handleRouteChangeStart = () => {
+      setLoading(true);
+    };
+
+    const handleRouteChangeComplete = () => {
+      setLoading(false);
+    };
+
+    Router.events.on('routeChangeStart', handleRouteChangeStart);
+    Router.events.on('routeChangeComplete', handleRouteChangeComplete);
+
+    return () => {
+      Router.events.off('routeChangeStart', handleRouteChangeStart);
+      Router.events.off('routeChangeComplete', handleRouteChangeComplete);
+    };
+  }, []);
   return (
     <>
       <Head>
@@ -24,9 +43,9 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
       <SessionProvider session={session} basePath="/api/auth">
         <GlobalStyle />
         <Layout>
-    {/* {isLoading ?  
-      (<Loading />) : null} */}
+         {isLoading ? ( <Loading /> ) : (
           <Component {...pageProps} />
+         )}
           </Layout>
       </SessionProvider>
           

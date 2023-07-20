@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { useEffect, useState } from 'react';
-import Router from "next/router";
+
 
 export default function Loading() {
 
