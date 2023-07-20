@@ -214,15 +214,12 @@ const DataInput = styled.input`
   border-radius: 8px;
   text-align: center;
   border-style: groove;
-  /* -webkit-outer-spin-button: none;
-  -webkit-inner-spin-button: none;
-  -webkit-appearance: none; */
   appearance: none;
   -moz-appearance: textfield;
   &::-webkit-inner-spin-button,
 &::-webkit-outer-spin-button {
-  -webkit-appearance: none; /* Chrome, Safari, Edge */
-  margin: 0; /* Firefox */
+  -webkit-appearance: none;
+  margin: 0;
 }
 `;
 
