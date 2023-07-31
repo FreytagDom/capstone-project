@@ -66,7 +66,6 @@ export default function Home({ factors, correctionfactors }) {
             >
              Test Anmelden
             </TestLogin>
-             
           </>
         )}
         </Sign>
