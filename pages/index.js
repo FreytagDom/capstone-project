@@ -6,10 +6,6 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import { getToken } from 'next-auth/jwt';
 import LoginPage from '../components/Login';
 import { GoSignOut } from 'react-icons/go';
-import { useEffect, useState } from 'react';
-import Router from "next/router";
-import Loading from '../components/PageLoader';
-
 
 export async function getServerSideProps({ req }) {
   const factors = await getAllDayFactors();

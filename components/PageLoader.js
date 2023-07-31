@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-
 export default function Loading() {
 
     return(

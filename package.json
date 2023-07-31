@@ -11,16 +11,16 @@
     "test": "npx jest --watch"
   },
   "dependencies": {
-    "mongoose": "^7.3.4",
+    "mongoose": "^7.4.1",
     "nanoid": "^4.0.2",
-    "next": "^13.4.10",
+    "next": "^13.4.12",
     "next-auth": "^4.22.1",
     "react": "18.2.0",
     "react-accessible-dropdown-menu-hook": "^4.0.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
     "react-select": "^5.7.4",
-    "styled-components": "^6.0.4"
+    "styled-components": "^6.0.5"
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.26",

@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 import { useState, Fragment } from 'react';
 import Image from 'next/image';
@@ -13,7 +12,6 @@ import React from 'react'
 import handelCorretion from '../utils/handleCorrectionFactor';
 import handleUserCorrectionFactor from '../handler/getCorrectionFactor';
 import handleUserDayFactor from '../handler/getDayFactor';
-
 
 export default function Input({ session, factors, correctionfactors, index }) {
   const [value, setValue] = useState();
@@ -144,7 +142,6 @@ export default function Input({ session, factors, correctionfactors, index }) {
                Insulinfakror {handleUserDayFactor(session, factors)[0].props.value}
                 </FactorOption>
               </FactorSelect>
-            
             
               <FactorSelect
                 htmlFor="setcorrectionfactor"

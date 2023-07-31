@@ -3,7 +3,6 @@ import { getAllCategories } from '../services/insulinAppDataService';
 import SavedDataInjected from '../components/SavedData';
 import { keyframes } from 'styled-components';
 
-
 export async function getServerSideProps() {
   const cardData = await getAllCategories();
 

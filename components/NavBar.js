@@ -27,7 +27,6 @@ export const Navbar = () => {
           Daten
         </Links>
       </Navigation>
-    
     </NavbarHead>
    ): ( null ) }
    </>
