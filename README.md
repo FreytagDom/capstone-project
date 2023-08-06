@@ -14,14 +14,13 @@ Die App soll beim berechnen der zu spritzenden Insulineinheiten helfen. Das bunt
 
 ### Bedienung
 
-- Zu erst speichert man den Tageszeitfaktor unter 'Faktor' ab
-- Im nächsten Schritt gibt man auf der 'Start' Seite, den aktuell gemessenen Blutzuckerert und die Kohlenhydrate die man zu sich nehmen möchte, ein
-- Nun wählt man nur noch das Insulin und den entsprechenden Tageszeitfaktor aus
+- Zu erst speichert man den Insulin- und Korrekturfaktor ab
+- Im nächsten Schritt gibt man auf der 'Start' Seite, den aktuell gemessenen Blutzuckerert und die Kohlenhydrate die man zu sich nehmen möchte ein
 - Tippt / klickt auf bestätigen und bekommt sofort angezeigt wieviel Insulin man spritzen muss
 
 Auf der Seite 'Daten' werden die benutzten Eingaben der 'Start' Seite mit Datum gespeichert, so das man sie jederzeit abrufen kann um eine gute Übersicht zu haben.
 
-Der gesetzte Faktor wird unter dem Punkt 'Gespeicherter Faktor' hinterlegt, jedes mal wenn man ihn neun setzt, wird der zuvor gesetzte Faktor überschrieben.
+Die eingegeben Faktoren werden gespeichert und müssen so nicht jedesmal neu eingegeben werden.
 
 [EN]
 
@@ -31,14 +30,13 @@ The app is intended to help them calculate the insulin units they need to inject
 
 ### Operation
 
-- First you save the time of day factor under 'Factor'.
-- In the next step, you enter the currently measured blood sugar value and the carbohydrates you want to eat on the 'Start' page.
-- Now you only have to select the insulin and the corresponding time of day factor.
+- First you save the insulin and correction factor
+- In the next step, on the 'Start' page, enter the currently measured blood glucose value and the carbohydrates you would like to consume.
 - Tap / click on confirm and you will immediately see how much insulin you need to inject.
 
 On the 'Data' page, the entries used on the 'Start' page are saved with the date, so that you can call them up at any time to have a good overview.
 
-The set factor is stored under the item 'Stored factor', each time you set a new factor, the previously set factor is overwritten.
+The factors entered are saved and do not have to be entered each time.
 
 ## Update
 
@@ -54,7 +52,7 @@ The update makes it easier to enter the data, as the factors no longer have to b
 
 ## Tech Stack
 
-| JavaScript | React.js | Next.js MongoDB | Mongoose |
+| JavaScript | React.js | Next.js | Next-Auth | MongoDB | Mongoose |
 
 ## Project Setup
 
