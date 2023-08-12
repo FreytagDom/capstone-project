@@ -12,6 +12,7 @@ import React from 'react'
 import handelCorretion from '../utils/handleCorrectionFactor';
 import handleUserCorrectionFactor from '../handler/getCorrectionFactor';
 import handleUserDayFactor from '../handler/getDayFactor';
+import DeleteUserDataButton from './DeleteUserData';
 
 export default function Input({ session, factors, correctionfactors, index }) {
   const [value, setValue] = useState();
@@ -63,6 +64,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
 
   return (
     <>
+    <DeleteUserDataButton />
       <EntryForm
         onSubmit={handleSubmit}
         onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
