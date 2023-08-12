@@ -5,7 +5,6 @@ export default async function handler(req, res, session) {
   if (req.method !== 'DELETE') {
     return res.status(405).end();
   }
-
   try {
     const { db } = await dbConnect();
 

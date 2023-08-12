@@ -31,4 +31,3 @@ export default function DeleteUserDataButton() {
     <button onClick={handleDelete}>Delete User Data</button>
   );
 };
-

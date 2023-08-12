@@ -36,7 +36,7 @@ export default function SavedDataInjected({ cardData }) {
     });
     const pdf = new jsPDF();
     const date = new Date().toLocaleString();
-    pdf.text('Gespeicherte Daten', 10, 10); // Überschrift
+    pdf.text(`Gespeicherte Daten von ${session.user.name}`, 10, 10); // Überschrift
     pdf.setFont('Helvetica');
     pdf.setFontSize(10); 
     pdf.text(`Erestellt am: ${date}`, 10, 20);

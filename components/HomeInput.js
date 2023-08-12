@@ -85,7 +85,6 @@ export default function Input({ session, factors, correctionfactors, index }) {
             required
           />
         </LabelBz>
-
         <LabelCa htmlFor="carbohydrates">
           Kohlenhydrate (Khd) <br /> g (Gramm)
           <Carbohydrates src={carbohydrates} alt="carbohydrates" />
@@ -101,7 +100,6 @@ export default function Input({ session, factors, correctionfactors, index }) {
             required
           />
         </LabelCa>
-
         <Fragment>
           <LabelIu htmlFor="insulin">
             Welches Insulin <br /> wird genommen
@@ -125,11 +123,9 @@ export default function Input({ session, factors, correctionfactors, index }) {
             </InsulinSelect>
           </LabelIu>
         </Fragment>
-        
          <Fragment>
           <LabelFa htmlFor="factor">
             Tageszeit  Faktor
-            
               <FactorSelect
                 htmlFor="setdayfactor"
                 name='dayfactorSelect'
@@ -144,7 +140,6 @@ export default function Input({ session, factors, correctionfactors, index }) {
                Insulinfakror {handleUserDayFactor(session, factors).props.value}
                 </FactorOption>
               </FactorSelect>
-            
               <FactorSelect
                 htmlFor="setcorrectionfactor"
                 name='correctionfactorSelect'
@@ -154,7 +149,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
                 options
               >
               <FactorOption name={handleUserCorrectionFactor(session, correctionfactors).props.name}
-                id={handleUserCorrectionFactor(session, correctionfactors)}
+                id={handleUserCorrectionFactor(session, correctionfactors).props}
                 value={handleUserCorrectionFactor(session, correctionfactors).props.value}>
                  Korrektur {handleUserCorrectionFactor(session, correctionfactors).props.value}
                   </FactorOption>
@@ -162,7 +157,6 @@ export default function Input({ session, factors, correctionfactors, index }) {
           </LabelFa>
         </Fragment>
         <Button type="submit">bestätigen</Button>
-        
         <InsulinUnits
           htmlFor="insulinunits"
           id="calculateUnits"
@@ -327,3 +321,4 @@ const Donut = styled(Image)`
   height: 2rem;
   width: 2rem;
 `;
+

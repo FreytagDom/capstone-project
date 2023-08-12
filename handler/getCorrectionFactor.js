@@ -1,6 +1,5 @@
 import styled from "styled-components";
   
-
 export default function handleUserCorrectionFactor(session, correctionfactors) {
   
   let userCorrectionFactorToDisplay  ;  
@@ -11,6 +10,7 @@ export default function handleUserCorrectionFactor(session, correctionfactors) {
 
   const currentTime = new Date().getHours();
   const correctionFactorLength = userCorrectionFactor.length;
+
  if (correctionFactorLength === 0) {
   userCorrectionFactorToDisplay = (
       <SetCorrectionFactorOption htmlFor="setcorrectionfactor"
@@ -19,8 +19,6 @@ export default function handleUserCorrectionFactor(session, correctionfactors) {
       </SetCorrectionFactorOption>
     );
     } else if (currentTime >= 6 && currentTime < 11) {
-    // userCorrectionFactorToDisplay = userCorrectionFactor.map(
-      // (correctionfactor, index) => (
         userCorrectionFactorToDisplay = (
         <SetCorrectionFactorOption
           htmlFor="setcorrectionfactor"
@@ -34,11 +32,8 @@ export default function handleUserCorrectionFactor(session, correctionfactors) {
             </CorrectionFactorOption>
         </SetCorrectionFactorOption>
        )
-    // );
   } 
   else if (currentTime >= 11 && currentTime < 17){
-    // userCorrectionFactorToDisplay = userCorrectionFactor.map(
-      // (correctionfactor, index) => (
         userCorrectionFactorToDisplay = (
         <SetCorrectionFactorOption
           htmlFor="setcorrectionfactor"
@@ -55,11 +50,8 @@ export default function handleUserCorrectionFactor(session, correctionfactors) {
           </CorrectionFactorOption>
         </SetCorrectionFactorOption>
        )
-    // );
   }
   else if (currentTime >= 17 && currentTime < 22){
-    // userCorrectionFactorToDisplay = userCorrectionFactor.map(
-      // (correctionfactor, index) => (
         userCorrectionFactorToDisplay = (
         <SetCorrectionFactorOption
           htmlFor="setcorrectionfactor"
@@ -76,11 +68,8 @@ export default function handleUserCorrectionFactor(session, correctionfactors) {
           </CorrectionFactorOption>
         </SetCorrectionFactorOption>
        )
-    // );
   }
   else  {
-    // userCorrectionFactorToDisplay = userCorrectionFactor.map(
-    //   (correctionfactor, index) => (
       userCorrectionFactorToDisplay = (
         <SetCorrectionFactorOption
           htmlFor="setcorrectionfactor"
@@ -95,15 +84,11 @@ export default function handleUserCorrectionFactor(session, correctionfactors) {
           value={userCorrectionFactor[0].latecorrectionfactor} >
             {userCorrectionFactor[0].latecorrectionfactor}</CorrectionFactorOption>
           </SetCorrectionFactorOption>
-        
-      )
-    // );
+         )
   }
  
   return userCorrectionFactorToDisplay;
 }
-
-
 
 const CorrectionFactorOption = styled.div`
   border-radius: 8px;
