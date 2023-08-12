@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { RiDeleteBinLine, RiLineHeight } from 'react-icons/ri';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
+import jsPDF from 'jspdf';
 
 export default function SavedDataInjected({ cardData }) {
   const { data: session } = useSession();
@@ -14,7 +15,6 @@ export default function SavedDataInjected({ cardData }) {
     const response = await fetch('/api/savedInsulinData/' + id, {
       method: 'DELETE',
     });
-
     setNewCardData(
       newCardData.filter((userCardData) => {
         return userCardData.id !== id;
@@ -30,12 +30,51 @@ export default function SavedDataInjected({ cardData }) {
     item.date.toLowerCase().includes(search.toLowerCase())
   );
 
+  async function exportToPDF() {
+    const userCardData = cardData.filter((cardData) => {
+      return cardData.userMail === session.user.email;
+    });
+    const pdf = new jsPDF();
+    const date = new Date().toLocaleString();
+    pdf.text('Gespeicherte Daten', 10, 10); // Überschrift
+    pdf.setFont('Helvetica');
+    pdf.setFontSize(10); 
+    pdf.text(`Erestellt am: ${date}`, 10, 20);
+    
+    let yOffset = 30;
+    let xOffset = 10; // Startposition für die x-Koordinate
+    const dataPerRow = 2;
+  userCardData.forEach((item, index) => {
+    // Prüfen, ob genügend Platz für die nächsten Daten nebenan ist
+    if (xOffset + 100 < pdf.internal.pageSize.width) {
+      pdf.rect(xOffset - 5, yOffset - 6, 75, 70, 'S'); // Rechteck mit Rahmen
+      pdf.text(`Datum: ${item.date}`, xOffset, yOffset);
+      pdf.text(`Blutzuckerwert: ${item.bloodsugar} mg/dl`, xOffset, yOffset + 10);
+      pdf.text(`Kohlenhydrate: ${item.carbohydrates} g`, xOffset, yOffset + 20);
+      pdf.text(`Verwendetes Insulin: ${item.insulin}`, xOffset, yOffset + 30);
+      pdf.text(`Insulin Faktor: ${item.daytimeFactor}`, xOffset, yOffset + 40);
+      pdf.text(`Korrektur Faktor: ${item.correctionFactor}`, xOffset, yOffset + 50);
+      pdf.text(`Gespritzte Insulin Menge: ${item.calculateUnit}`, xOffset, yOffset + 60);
+      xOffset += 100; 
+      if ((index + 1) % dataPerRow === 0) {
+        xOffset = 10;
+        yOffset += 90; 
+      }
+    } else {
+      xOffset = 10;
+      yOffset += 90; 
+    }
+  });
+    pdf.save(`gespeicherte_daten_${session.user.name}`); // Speichere PDF-Datei
+  }
+
   return (
     <WrapperSaved>
       <SearchData>
         <DataInput type="text" placeholder="Suche" onChange={handleChange} />
       </SearchData>
-      <CardGrid>
+      <ExportButton onClick={exportToPDF}>Export als PDF</ExportButton>
+      <CardGrid id="pdf-content">
         {filteredData.map((item) => {
           return (
             <Details key={item.id}>
@@ -80,6 +119,23 @@ export default function SavedDataInjected({ cardData }) {
   );
 }
 
+const ExportButton = styled.button`
+  background-color: #fe4b13;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  height: 1.8rem;
+  margin-left: 0.4rem;
+  margin-right: 0.4rem;
+  width: auto;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #d63200;
+  }
+`;
+
 const IconWrapper = styled.span`
   display: flex;
   justify-content: end;
@@ -91,7 +147,7 @@ const IconWrapper = styled.span`
 
 const WrapperSaved = styled.section`
   display: grid;
-  grid-template-rows: min-content auto 48px;
+  /* grid-template-rows: min-content auto 48px; */
   height: inherit;
   justify-content: center;
   z-index: 1;
