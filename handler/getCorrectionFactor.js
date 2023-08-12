@@ -6,87 +6,98 @@ export default function handleUserCorrectionFactor(session, correctionfactors) {
   let userCorrectionFactorToDisplay  ;  
 
   const userCorrectionFactor = correctionfactors.filter((correctionfactor) => {
-    return correctionfactor.id === session.user.email; 
+    return correctionfactor.id === session?.user.email; 
   });
 
   const currentTime = new Date().getHours();
- 
-  if (currentTime >= 6 && currentTime < 11) {
-    userCorrectionFactorToDisplay = userCorrectionFactor.map(
-      (correctionfactor, index) => (
+  const correctionFactorLength = userCorrectionFactor.length;
+ if (correctionFactorLength === 0) {
+  userCorrectionFactorToDisplay = (
+      <SetCorrectionFactorOption htmlFor="setcorrectionfactor"
+      name="no data" value={0} >
+        <CorrectionFactorOption>0</CorrectionFactorOption>
+      </SetCorrectionFactorOption>
+    );
+    } else if (currentTime >= 6 && currentTime < 11) {
+    // userCorrectionFactorToDisplay = userCorrectionFactor.map(
+      // (correctionfactor, index) => (
+        userCorrectionFactorToDisplay = (
         <SetCorrectionFactorOption
           htmlFor="setcorrectionfactor"
           name="morningcorrectionfactor"
-          id={correctionfactor.name}
-          value={correctionfactor.morningcorrectionfactor}
-          key={index}  
+          id={userCorrectionFactor[0].name}
+          value={userCorrectionFactor[0].morningcorrectionfactor}
+          key={userCorrectionFactor[0].id}  
         >
           <CorrectionFactorOption>
-             {correctionfactor.morningcorrectionfactor}
+             {userCorrectionFactor[0].morningcorrectionfactor}
             </CorrectionFactorOption>
         </SetCorrectionFactorOption>
-      )
-    );
+       )
+    // );
   } 
   else if (currentTime >= 11 && currentTime < 17){
-    userCorrectionFactorToDisplay = userCorrectionFactor.map(
-      (correctionfactor, index) => (
+    // userCorrectionFactorToDisplay = userCorrectionFactor.map(
+      // (correctionfactor, index) => (
+        userCorrectionFactorToDisplay = (
         <SetCorrectionFactorOption
           htmlFor="setcorrectionfactor"
           name="lunchcorrectionfactor"
-          id={correctionfactor.name}
-          value={correctionfactor.lunchcorrectionfactor}
-          key={index}
+          id={userCorrectionFactor[0].name}
+          value={userCorrectionFactor[0].lunchcorrectionfactor}
+          key={userCorrectionFactor[0].id}
         >
           <CorrectionFactorOption
             name="lunchcorrectionfactor"
-            value={correctionfactor.lunchcorrectionfactor}
+            value={userCorrectionFactor[0].lunchcorrectionfactor}
           >
-             {correctionfactor.lunchcorrectionfactor}
+             {userCorrectionFactor[0].lunchcorrectionfactor}
           </CorrectionFactorOption>
         </SetCorrectionFactorOption>
-      )
-    );
+       )
+    // );
   }
   else if (currentTime >= 17 && currentTime < 22){
-    userCorrectionFactorToDisplay = userCorrectionFactor.map(
-      (correctionfactor, index) => (
+    // userCorrectionFactorToDisplay = userCorrectionFactor.map(
+      // (correctionfactor, index) => (
+        userCorrectionFactorToDisplay = (
         <SetCorrectionFactorOption
           htmlFor="setcorrectionfactor"
           name="eveningcorrectionfactor"
-          id={correctionfactor.name}
-          value={correctionfactor.eveningcorrectionfactor}
-          key={index}
+          id={userCorrectionFactor[0].name}
+          value={userCorrectionFactor[0].eveningcorrectionfactor}
+          key={userCorrectionFactor[0].id}
         >
           <CorrectionFactorOption
             name="eveningcorrectionfactor"
-            value={correctionfactor.eveningcorrectionfactor}
+            value={userCorrectionFactor[0].eveningcorrectionfactor}
           >
-             {correctionfactor.eveningcorrectionfactor}
+             {userCorrectionFactor[0].eveningcorrectionfactor}
           </CorrectionFactorOption>
         </SetCorrectionFactorOption>
-      )
-    );
+       )
+    // );
   }
   else  {
-    userCorrectionFactorToDisplay = userCorrectionFactor.map(
-      (correctionfactor, index) => (
+    // userCorrectionFactorToDisplay = userCorrectionFactor.map(
+    //   (correctionfactor, index) => (
+      userCorrectionFactorToDisplay = (
         <SetCorrectionFactorOption
           htmlFor="setcorrectionfactor"
           name="latecorrectionfactor"
-          id="latecorrectionfactor"
-          value={correctionfactor.latecorrectionfactor}
-          key={index}
+          id={userCorrectionFactor[0].name}
+          value={userCorrectionFactor[0].latecorrectionfactor}
+          key={userCorrectionFactor[0].id}
           
         >
           <CorrectionFactorOption       name="latecorrectionfactor"
-          id="latecorrectionfactor"
-          value={correctionfactor.latecorrectionfactor} >
-            {correctionfactor.latecorrectionfactor}</CorrectionFactorOption>
+          id={userCorrectionFactor[0].name}
+          value={userCorrectionFactor[0].latecorrectionfactor} >
+            {userCorrectionFactor[0].latecorrectionfactor}</CorrectionFactorOption>
           </SetCorrectionFactorOption>
         
       )
-    );
+    // );
   }
  
   return userCorrectionFactorToDisplay;

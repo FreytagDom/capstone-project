@@ -7,7 +7,7 @@ export default function DeleteUserDataButton() {
   const _id = session.user.email;
   async function handleDelete()  {
     try {
-      const response = await fetch(`/api/savedInsulinDatas/savedInsulinDatas?userMail=${userMail}`, {
+      const response = await fetch(`/api/savedInsulinDatas/[id]?userMail=${userMail}`, {
         method: 'DELETE',
       });
       await fetch('/api/insulinFactor/' + _id, {

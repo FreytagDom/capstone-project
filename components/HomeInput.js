@@ -23,7 +23,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
     const bloodsugar = form.bloodsugar.value;
     const carbohydrates = form.carbohydrates.value;
     const insulin = form.setinsulinSelect.value;
-    const daytimeFactor = handleUserDayFactor(session, factors)[0].props.value;
+    const daytimeFactor = handleUserDayFactor(session, factors).props.value;
     const correctionFactor = handelCorretion(bloodsugar, handleUserCorrectionFactor(session, correctionfactors));
     const calculateUnits = handleInsulinUnit(
       bloodsugar,
@@ -133,30 +133,30 @@ export default function Input({ session, factors, correctionfactors, index }) {
               <FactorSelect
                 htmlFor="setdayfactor"
                 name='dayfactorSelect'
-                id={handleUserDayFactor(session, factors)[0].props.name}
-                value={handleUserDayFactor(session, factors)[0].props.value}
+                id={handleUserDayFactor(session, factors).props.name}
+                value={handleUserDayFactor(session, factors).props.value}
                 key={index}
                 options
               >
-                <FactorOption name={handleUserDayFactor(session, factors)[0].props.name}
+                <FactorOption name={handleUserDayFactor(session, factors).props.name}
                 id={handleUserDayFactor(session, factors)}
-                value={handleUserDayFactor(session, factors)[0].props.value}>
-               Insulinfakror {handleUserDayFactor(session, factors)[0].props.value}
+                value={handleUserDayFactor(session, factors).props.value}>
+               Insulinfakror {handleUserDayFactor(session, factors).props.value}
                 </FactorOption>
               </FactorSelect>
             
               <FactorSelect
                 htmlFor="setcorrectionfactor"
                 name='correctionfactorSelect'
-                id={handleUserCorrectionFactor(session, correctionfactors)[0].props.name}
-                value={handleUserCorrectionFactor(session, correctionfactors)[0].props.value}
+                id={handleUserCorrectionFactor(session, correctionfactors).props.name}
+                value={handleUserCorrectionFactor(session, correctionfactors).props.value}
                 key={index}
                 options
               >
-              <FactorOption name={handleUserCorrectionFactor(session, correctionfactors)[0].props.name}
-                id={handleUserCorrectionFactor(session, correctionfactors)[0].props}
-                value={handleUserCorrectionFactor(session, correctionfactors)[0].props.value}>
-                 Korrektur {handleUserCorrectionFactor(session, correctionfactors)[0].props.value}
+              <FactorOption name={handleUserCorrectionFactor(session, correctionfactors).props.name}
+                id={handleUserCorrectionFactor(session, correctionfactors)}
+                value={handleUserCorrectionFactor(session, correctionfactors).props.value}>
+                 Korrektur {handleUserCorrectionFactor(session, correctionfactors).props.value}
                   </FactorOption>
               </FactorSelect>
           </LabelFa>
