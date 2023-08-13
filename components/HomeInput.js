@@ -64,7 +64,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
 
   return (
     <>
-    <DeleteUserDataButton />
+    {/* <DeleteUserDataButton /> */}
       <EntryForm
         onSubmit={handleSubmit}
         onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
