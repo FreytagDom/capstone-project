@@ -6,6 +6,7 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import { getToken } from 'next-auth/jwt';
 import LoginPage from '../components/Login';
 import { GoSignOut } from 'react-icons/go';
+import DeleteUserDataButton from '../components/DeleteUserData';
 
 export async function getServerSideProps({ req }) {
   const factors = await getAllDayFactors();
@@ -44,8 +45,9 @@ export default function Home({ factors, correctionfactors }) {
         {session ? (
           <>
             <Login>
+            <DeleteUserDataButton />
               Hallo {'  '}
-              <Login> {session.user.name}</Login>
+             {session.user.name}
             </Login>{' '}
             {'  '}
             <Atags href="#" onClick={signOut}>
@@ -82,7 +84,9 @@ const Wrapper = styled.section`
 `;
 
 const Login = styled.span`
+display: flex;
   justify-content: center;
+  align-items: baseline;
   color: orange;
   text-decoration: none;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -104,6 +108,7 @@ const Atags = styled.a`
   text-align: center;
   margin-top: -1rem;
   font-size: 1rem;
+  margin-bottom: 0.2rem;
 `;
 
 const TestLogin = styled.a`

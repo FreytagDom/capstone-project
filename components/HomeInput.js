@@ -12,6 +12,7 @@ import React from 'react'
 import handelCorretion from '../utils/handleCorrectionFactor';
 import handleUserCorrectionFactor from '../handler/getCorrectionFactor';
 import handleUserDayFactor from '../handler/getDayFactor';
+import DeleteUserDataButton from './DeleteUserData';
 
 export default function Input({ session, factors, correctionfactors, index }) {
   const [value, setValue] = useState();
@@ -22,7 +23,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
     const bloodsugar = form.bloodsugar.value;
     const carbohydrates = form.carbohydrates.value;
     const insulin = form.setinsulinSelect.value;
-    const daytimeFactor = handleUserDayFactor(session, factors)[0].props.value;
+    const daytimeFactor = handleUserDayFactor(session, factors).props.value;
     const correctionFactor = handelCorretion(bloodsugar, handleUserCorrectionFactor(session, correctionfactors));
     const calculateUnits = handleInsulinUnit(
       bloodsugar,
@@ -63,6 +64,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
 
   return (
     <>
+    {/* <DeleteUserDataButton /> */}
       <EntryForm
         onSubmit={handleSubmit}
         onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
@@ -83,7 +85,6 @@ export default function Input({ session, factors, correctionfactors, index }) {
             required
           />
         </LabelBz>
-
         <LabelCa htmlFor="carbohydrates">
           Kohlenhydrate (Khd) <br /> g (Gramm)
           <Carbohydrates src={carbohydrates} alt="carbohydrates" />
@@ -99,7 +100,6 @@ export default function Input({ session, factors, correctionfactors, index }) {
             required
           />
         </LabelCa>
-
         <Fragment>
           <LabelIu htmlFor="insulin">
             Welches Insulin <br /> wird genommen
@@ -123,44 +123,40 @@ export default function Input({ session, factors, correctionfactors, index }) {
             </InsulinSelect>
           </LabelIu>
         </Fragment>
-        
          <Fragment>
           <LabelFa htmlFor="factor">
             Tageszeit  Faktor
-            
               <FactorSelect
                 htmlFor="setdayfactor"
                 name='dayfactorSelect'
-                id={handleUserDayFactor(session, factors)[0].props.name}
-                value={handleUserDayFactor(session, factors)[0].props.value}
+                id={handleUserDayFactor(session, factors).props.name}
+                value={handleUserDayFactor(session, factors).props.value}
                 key={index}
                 options
               >
-                <FactorOption name={handleUserDayFactor(session, factors)[0].props.name}
+                <FactorOption name={handleUserDayFactor(session, factors).props.name}
                 id={handleUserDayFactor(session, factors)}
-                value={handleUserDayFactor(session, factors)[0].props.value}>
-               Insulinfakror {handleUserDayFactor(session, factors)[0].props.value}
+                value={handleUserDayFactor(session, factors).props.value}>
+               Insulinfakror {handleUserDayFactor(session, factors).props.value}
                 </FactorOption>
               </FactorSelect>
-            
               <FactorSelect
                 htmlFor="setcorrectionfactor"
                 name='correctionfactorSelect'
-                id={handleUserCorrectionFactor(session, correctionfactors)[0].props.name}
-                value={handleUserCorrectionFactor(session, correctionfactors)[0].props.value}
+                id={handleUserCorrectionFactor(session, correctionfactors).props.name}
+                value={handleUserCorrectionFactor(session, correctionfactors).props.value}
                 key={index}
                 options
               >
-              <FactorOption name={handleUserCorrectionFactor(session, correctionfactors)[0].props.name}
-                id={handleUserCorrectionFactor(session, correctionfactors)[0].props}
-                value={handleUserCorrectionFactor(session, correctionfactors)[0].props.value}>
-                 Korrektur {handleUserCorrectionFactor(session, correctionfactors)[0].props.value}
+              <FactorOption name={handleUserCorrectionFactor(session, correctionfactors).props.name}
+                id={handleUserCorrectionFactor(session, correctionfactors).props}
+                value={handleUserCorrectionFactor(session, correctionfactors).props.value}>
+                 Korrektur {handleUserCorrectionFactor(session, correctionfactors).props.value}
                   </FactorOption>
               </FactorSelect>
           </LabelFa>
         </Fragment>
         <Button type="submit">bestätigen</Button>
-        
         <InsulinUnits
           htmlFor="insulinunits"
           id="calculateUnits"
@@ -325,3 +321,4 @@ const Donut = styled(Image)`
   height: 2rem;
   width: 2rem;
 `;
+
