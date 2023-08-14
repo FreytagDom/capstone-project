@@ -38,8 +38,6 @@ export default function DeleteUserDataButton() {
       console.error('Fehler beim Löschen der Daten:', error);
     }
     setModalOpen(false);
- 
-
 };
 
 const handleCancel = () => {
@@ -48,9 +46,9 @@ const handleCancel = () => {
 
   return (
     <PopupWrapper>
-   <DeleteButton onClick={() => setModalOpen(true)}>
-<UserDeleteIcon src={userDeleteIcon} alt='UserDeleteIcon'/>
-   </DeleteButton>
+     <DeleteButton onClick={() => setModalOpen(true)}>
+      <UserDeleteIcon src={userDeleteIcon} alt='UserDeleteIcon'/>
+    </DeleteButton>
       {modalOpen && (
         <PopupModal onClose={handleCancel} onConfirm={handleDelete} />
       )}
