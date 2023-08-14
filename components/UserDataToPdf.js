@@ -3,8 +3,6 @@ import { pdf, Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/r
 import { useSession } from 'next-auth/react';
 import styled from 'styled-components';
 
-
-
 export default function UserDataToPdf({ cardData }) {
 const { data: session } = useSession();
 const userCardData = cardData.filter((cardData) => {
@@ -137,7 +135,7 @@ const ExportButton = styled.button`
       flexDirection: 'row',
       flexWrap: 'wrap',
       justifyContent: 'space-between',
-      marginTop: 10,
+      marginTop: 60,
     },
     card: {
       width: '40%',
