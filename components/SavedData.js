@@ -40,13 +40,17 @@ export default function SavedDataInjected({ cardData }) {
     pdf.setFont('Helvetica');
     pdf.setFontSize(10); 
     pdf.text(`Erestellt am: ${date}`, 10, 20);
+ 
+ 
     
     let yOffset = 30;
     let xOffset = 10; // Startposition für die x-Koordinate
     const dataPerRow = 2;
+    
   userCardData.forEach((item, index) => {
-    // Prüfen, ob genügend Platz für die nächsten Daten nebenan ist
+    //Prüfen, ob genügend Platz für die nächsten Daten nebenan ist
     if (xOffset + 100 < pdf.internal.pageSize.width) {
+
       pdf.rect(xOffset - 5, yOffset - 6, 75, 70, 'S'); // Rechteck mit Rahmen
       pdf.text(`Datum: ${item.date}`, xOffset, yOffset);
       pdf.text(`Blutzuckerwert: ${item.bloodsugar} mg/dl`, xOffset, yOffset + 10);
@@ -59,14 +63,20 @@ export default function SavedDataInjected({ cardData }) {
       if ((index + 1) % dataPerRow === 0) {
         xOffset = 10;
         yOffset += 90; 
+        if (yOffset + 10 > pdf.internal.pageSize.height) {
+          pdf.addPage(); // Neue Seite erstellen
+          yOffset = 30; // Zurücksetzen der y-Position
+        }
       }
     } else {
       xOffset = 10;
       yOffset += 90; 
+      
     }
-  });
+  });  
     pdf.save(`gespeicherte_daten_${session.user.name}`); // Speichere PDF-Datei
   }
+
 
   return (
     <WrapperSaved>
