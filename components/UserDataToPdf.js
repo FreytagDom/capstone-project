@@ -60,16 +60,36 @@ const userCardData = cardData.filter((cardData) => {
       const blob = await pdf(doc).toBlob();
       return blob;
     });
-  
-    const blobs = await Promise.all(blobPromises);
-  
-    const pdfDoc = new Blob(blobs, { type: 'application/pdf' });
-    const url = URL.createObjectURL(pdfDoc);
+  const blobs = await Promise.all(blobPromises);
+
+  const pdfDoc = new Blob(blobs, { type: 'application/pdf' });
+  const url = URL.createObjectURL(pdfDoc);
+
+  // Prompt the user with a choice
+  const userChoice = window.confirm('Do you want to open the PDF in a new tab?');
+
+  // Open the PDF in a new tab if the user chooses to
+  if (userChoice) {
+    const win = window.open();
+    win.location.href = url;
+  } else {
+    // Attempt to trigger a download
     const link = document.createElement('a');
     link.href = url;
     link.download = `gespeicherte_daten_${session.user.name}.pdf`;
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
     URL.revokeObjectURL(url);
+    //const blobs = await Promise.all(blobPromises);
+  
+    //const pdfDoc = new Blob(blobs, { type: 'application/pdf' });
+    //const url = URL.createObjectURL(pdfDoc);
+    //const link = document.createElement('a');
+    //link.href = url;
+    //link.download = `gespeicherte_daten_${session.user.name}.pdf`;
+    //link.click();
+    //URL.revokeObjectURL(url);
   }
   return <ExportButton onClick={exportToPDF}>Export als PDF</ExportButton>
 }
