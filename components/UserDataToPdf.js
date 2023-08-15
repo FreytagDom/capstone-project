@@ -75,7 +75,7 @@ const blobs = await Promise.all(blobPromises);
     const userChoice = window.confirm('Do you want to open the PDF in a new tab?');
 
     if (userChoice) {
-      window.open(url, '_blank');
+      window.open(url);
     } else {
       // Trigger the download
       const link = document.createElement('a');
