@@ -60,16 +60,34 @@ const userCardData = cardData.filter((cardData) => {
       const blob = await pdf(doc).toBlob();
       return blob;
     });
-  
     const blobs = await Promise.all(blobPromises);
-  
+
     const pdfDoc = new Blob(blobs, { type: 'application/pdf' });
     const url = URL.createObjectURL(pdfDoc);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `gespeicherte_daten_${session.user.name}.pdf`;
-    link.click();
-    URL.revokeObjectURL(url);
+  
+    // Open the PDF in a new tab
+    const newWindow = window.open(url);
+  
+    // Trigger a download after a short delay
+    setTimeout(() => {
+      newWindow.location = url;
+    }, 1000); // Adjust the delay as needed
+    // const blobs = await Promise.all(blobPromises);
+
+    // const pdfDoc = new Blob(blobs, { type: 'application/pdf' });
+    // const url = URL.createObjectURL(pdfDoc);
+  
+    // // Instead, open the PDF in a new window
+    // window.open(url);
+    // // const blobs = await Promise.all(blobPromises);
+  
+    // // const pdfDoc = new Blob(blobs, { type: 'application/pdf' });
+    // // const url = URL.createObjectURL(pdfDoc);
+    // // const link = document.createElement('a');
+    // // link.href = url;
+    // // link.download = `gespeicherte_daten_${session.user.name}.pdf`;
+    // // link.click();
+    // // URL.revokeObjectURL(url);
   }
   return <ExportButton onClick={exportToPDF}>Export als PDF</ExportButton>
 }
