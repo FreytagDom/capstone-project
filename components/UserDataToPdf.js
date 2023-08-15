@@ -80,7 +80,7 @@ const userCardData = cardData.filter((cardData) => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(url);}
     //const blobs = await Promise.all(blobPromises);
   
     //const pdfDoc = new Blob(blobs, { type: 'application/pdf' });
