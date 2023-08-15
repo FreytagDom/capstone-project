@@ -96,7 +96,7 @@ const userCardData = cardData.filter((cardData) => {
     // // link.click();
     // // URL.revokeObjectURL(url);
   }
-  return <ExportButton  onClick={exportToPDF}>Export als PDF</ExportButton>
+  return <ExportButton as="a" href="#" onClick={exportToPDF}>Export als PDF</ExportButton>
 }
 
 const ExportButton = styled.button`
