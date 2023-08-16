@@ -96,7 +96,7 @@ const ExportButton = styled.button`
   margin-right: 0.4rem;
   width: auto;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.4s ease;
   &:hover {
     background-color: #d63200;
   }
