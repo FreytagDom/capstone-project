@@ -69,7 +69,7 @@ const userCardData = cardData.filter((cardData) => {
   if (isIOS) {
     // On iOS Safari, trigger download using window.location.href
     window.open(url);
-    window.link.download = `gespeicherte_daten_${session.user.name}.pdf` ;
+    link.download = `gespeicherte_daten_${session.user.name}.pdf` ;
   } else {
     window.open(url);
   link.href = url;
