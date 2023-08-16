@@ -1,4 +1,4 @@
-import FactorEntry from '../../components/SetInsulinFactor';
+import FactorEntry from '../../components/SetInsulinFactor/SetInsulinFactor';
 import { getFactorById } from '../../services/dayTimeFactorsService';
 
 export async function getServerSideProps(context) {
