@@ -60,30 +60,21 @@ const userCardData = cardData.filter((cardData) => {
       const blob = await pdf(doc).toBlob();
       return blob;
     });
-const blobs = await Promise.all(blobPromises);
 
+  const blobs = await Promise.all(blobPromises);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
   const pdfDoc = new Blob(blobs, { type: 'application/pdf' });
   const url = URL.createObjectURL(pdfDoc);
-
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-
+  const link = document.createElement('a');
   if (isIOS) {
     // On iOS Safari, trigger download using window.location.href
-    window.location.href = url;
+    window.open(url);
   } else {
-    // For other devices, prompt the user with a choice
-    const userChoice = window.confirm('Do you want to open the PDF in a new tab?');
-
-    if (userChoice) {
-      window.open(url);
-    } else {
-      // Trigger the download
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `gespeicherte_daten_${session.user.name}.pdf`;
-      link.click();
-      URL.revokeObjectURL(url);
-    }
+    window.open(url);
+  link.href = url;
+  link.download = `gespeicherte_daten_${session.user.name}.pdf`;
+  link.click();
+  URL.revokeObjectURL(url);
   }
     //const blobs = await Promise.all(blobPromises);
   
