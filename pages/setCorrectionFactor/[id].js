@@ -1,4 +1,4 @@
-import CorrectionFactorEntry from '../../components/SetCorrectionFactor';
+import CorrectionFactorEntry from '../../components/SetCorrectionFactor/SetCorrectionFactor';
 import { getCorrectionFactorsById } from '../../services/correctionFactorsService';
 
 export async function getServerSideProps(context) {

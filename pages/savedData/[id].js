@@ -1,4 +1,4 @@
-import Input from '../../components/HomeInput';
+import Input from '../../components/HomeInput/HomeInput';
 import { getCategoryById } from '../../services/insulinAppDataService';
 
 export async function getServerSideProps(context) {

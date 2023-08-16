@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { signIn } from 'next-auth/react';
-import LoginButton from '../components/Button';
-import githubSvg from '../assets/github.svg';
-import googleLogoColor from '../assets/googleLogoColor.svg';
-import facebook from '../assets/facebook.svg';
+import LoginButton from '../Button/Button'
+import githubSvg from '../../assets/github.svg';
+import googleLogoColor from '../../assets/googleLogoColor.svg';
+import facebook from '../../assets/facebook.svg';
 
 export default function LoginPage() {
   return (

@@ -1,37 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
-
-export const Navbar = () => {
-  const { data: session } = useSession();
-  return (
-    <>
-    {session ? (
-    <NavbarHead>
-      <Navigation>
-        <Links href="/" passHref>
-          Start
-        </Links>
-
-        <Links href="/setInsulinFactor" passHref>
-            Insulin <br />
-            Faktor
-        </Links>
-
-        <Links href="/setCorrectionFactor" passHref>
-            Korrektur <br />
-            Faktor
-        </Links>
-
-        <Links href="/savedInsulinData" passHref>
-          Daten
-        </Links>
-      </Navigation>
-    </NavbarHead>
-   ): ( null ) }
-   </>
-  );
-};
 
 const hue = keyframes`
  from {
@@ -42,7 +10,7 @@ const hue = keyframes`
  }
 `;
 
-const NavbarHead = styled.section`
+export const NavbarHead = styled.section`
   justify-content: space-evenly;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-align: center;
@@ -57,7 +25,7 @@ const NavbarHead = styled.section`
   z-index: 2;
 `;
 
-const Navigation = styled.nav`
+export const Navigation = styled.nav`
   display: flex;
   font-size: 1.1rem;
   color: darkcyan;
@@ -65,7 +33,7 @@ const Navigation = styled.nav`
   z-index: 2;
 `;
 
-const Links = styled(Link)`
+export const Links = styled(Link)`
   text-decoration: none;
   margin: 5px 20px;
   font-size: 1.1rem;

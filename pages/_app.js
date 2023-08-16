@@ -1,10 +1,10 @@
-import { GlobalStyle } from '../components/GlobalStyle';
-import Layout from '../components/Layout';
 import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
-import Loading from '../components/PageLoader';
- import { useEffect, useState } from 'react';
- import Router from "next/router";
+import { useEffect, useState } from 'react';
+import Router from "next/router";
+import { GlobalStyle } from '../components/GlobalStyle';
+import Layout from '../components/Layout';
+import Loading from '../components/PageLoader/PageLoader';
  
 
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }) {

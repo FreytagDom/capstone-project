@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { styled } from 'styled-components';
-import PopupModal from './PopupModal';
 import Image from 'next/image';
-import userDeleteIcon from '../public/userDeleteIcon.png'
+import PopupModal from '../PopupModal/PopupModal';
+import userDeleteIcon from '../../public/userDeleteIcon.png'
 
 export default function DeleteUserDataButton() {
   const { data: session } = useSession();
