@@ -69,6 +69,7 @@ const userCardData = cardData.filter((cardData) => {
   if (isIOS) {
     // On iOS Safari, trigger download using window.location.href
     window.open(url);
+    window.location.href;
   } else {
     window.open(url);
   link.href = url;
@@ -93,6 +94,8 @@ const ExportButton = styled.button`
   background-color: #fe4b13;
   color: white;
   border: none;
+  text-decoration: none;
+  text-align: center;
   border-radius: 8px;
   padding: 0.5rem 1rem;
   height: 1.8rem;
