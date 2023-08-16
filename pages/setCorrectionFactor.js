@@ -1,8 +1,8 @@
-import CorrectionFactorEntry from '../components/SetCorrectionFactor';
-import { getAllCorrectionFactors } from '../services/correctionFactorsService';
-import SavedCorrectionFactor from '../components/SavedCorrectionFactor';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import CorrectionFactorEntry from '../components/SetCorrectionFactor/SetCorrectionFactor';
+import { getAllCorrectionFactors } from '../services/correctionFactorsService';
+import SavedCorrectionFactor from '../components/SavedCorrectionFactor/SavedCorrectionFactor';
 
 export async function getServerSideProps() {
   const correctionfactors = await getAllCorrectionFactors();

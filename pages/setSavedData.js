@@ -1,4 +1,4 @@
-import SavedDataInjected from '../components/SavedData';
+import SavedDataInjected from '../components/SavedData/SavedData';
 import { getAllCategories } from '../services/insulinAppDataService';
 
 export async function getServerSideProps() {

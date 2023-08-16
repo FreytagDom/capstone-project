@@ -1,8 +1,8 @@
-import FactorEntry from '../components/SetInsulinFactor';
-import SavedFactor from '../components/SavedInsulinFactor';
-import { getAllDayFactors } from '../services/savedDayFactorService';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import FactorEntry from '../components/SetInsulinFactor/SetInsulinFactor';
+import SavedFactor from '../components/SavedInsulinFactor/SavedInsulinFactor';
+import { getAllDayFactors } from '../services/savedDayFactorService';
 
 export async function getServerSideProps() {
   const factors = await getAllDayFactors();

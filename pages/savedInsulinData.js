@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { getAllCategories } from '../services/insulinAppDataService';
-import SavedDataInjected from '../components/SavedData';
 import { keyframes } from 'styled-components';
+import { getAllCategories } from '../services/insulinAppDataService';
+import SavedDataInjected from '../components/SavedData/SavedData';
 
 export async function getServerSideProps() {
   const cardData = await getAllCategories();
@@ -28,15 +28,6 @@ const WrapperSaved = styled.section`
   grid-template-rows: min-content auto 48px;
   height: inherit;
   justify-content: center;
-`;
-
-const Sign = styled.span`
-  color: white;
-  text-decoration: none;
-  justify-content: center;
-  text-align: center;
-  font-size: 1rem;
-  z-index: 2;
 `;
 
 const hue = keyframes`

@@ -1,12 +1,12 @@
-import Input from '../components/HomeInput';
 import styled from 'styled-components';
 import { getAllDayFactors } from '../services/savedDayFactorService';
 import { getAllCorrectionFactors } from '../services/correctionFactorsService';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { getToken } from 'next-auth/jwt';
-import LoginPage from '../components/Login';
 import { GoSignOut } from 'react-icons/go';
-import DeleteUserDataButton from '../components/DeleteUserData';
+import Input from '../components/HomeInput/HomeInput';
+import LoginPage from '../components/Login/Login';
+import DeleteUserDataButton from '../components/DeleteUserData/DeleteUserData';
 
 export async function getServerSideProps({ req }) {
   const factors = await getAllDayFactors();
