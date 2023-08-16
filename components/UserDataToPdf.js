@@ -62,21 +62,32 @@ const userCardData = cardData.filter((cardData) => {
     });
   
     const blobs = await Promise.all(blobPromises);
-  
-    const pdfDoc = new Blob(blobs, { type: 'application/pdf' });
-    const url = URL.createObjectURL(pdfDoc);
-    const link = document.createElement('a');
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const pdfDoc = new Blob(blobs, { type: 'application/pdf' });
+  const url = URL.createObjectURL(pdfDoc);
+  const link = document.createElement('a');
+  if (isIOS) {
+    window.open(url);
     link.href = url;
-    link.download = `gespeicherte_daten_${session.user.name}.pdf`;
-    link.click();
-    URL.revokeObjectURL(url);
+  link.download = `gespeicherte_daten_${session.user.name}.pdf`;
+  link.click();
+  URL.revokeObjectURL(url);
+  } else {
+    window.open(url);
+  link.href = url;
+  link.download = `gespeicherte_daten_${session.user.name}.pdf`;
+  link.click();
+  URL.revokeObjectURL(url);
   }
-  return <ExportButton onClick={exportToPDF}>Export als PDF</ExportButton>
+  }
+  return <ExportButton as="a" href="#" onClick={exportToPDF}>Export als PDF</ExportButton>
 }
 
 const ExportButton = styled.button`
   background-color: #fe4b13;
   color: white;
+  text-decoration: none;
+  text-align: center;
   border: none;
   border-radius: 8px;
   padding: 0.5rem 1rem;
