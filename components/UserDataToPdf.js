@@ -68,10 +68,6 @@ const userCardData = cardData.filter((cardData) => {
   const link = document.createElement('a');
   if (isIOS) {
     window.open(url);
-    link.href = url;
-  link.download = `gespeicherte_daten_${session.user.name}.pdf`;
-  link.click();
-  URL.revokeObjectURL(url);
   } else {
     window.open(url);
   link.href = url;
@@ -80,14 +76,12 @@ const userCardData = cardData.filter((cardData) => {
   URL.revokeObjectURL(url);
   }
   }
-  return <ExportButton as="a" href="#" onClick={exportToPDF}>Export als PDF</ExportButton>
+  return <ExportButton onClick={exportToPDF}>Export als PDF</ExportButton>
 }
 
 const ExportButton = styled.button`
   background-color: #fe4b13;
   color: white;
-  text-decoration: none;
-  text-align: center;
   border: none;
   border-radius: 8px;
   padding: 0.5rem 1rem;
