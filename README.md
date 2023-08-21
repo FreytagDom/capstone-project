@@ -36,9 +36,10 @@ The factors entered are saved and do not have to be entered each time.
 
 August.21.2023
 
+<img src="./public/TestUserPDF.png" width="150px" style="; float:right "/>
+
 [DE]
 
-<img src="./public/TestUserPDF.png" width="150px" style="; float:right "/>
 Mit diesen update ist es jetzt möglich seine gespeicherten Daten als PDF zu exportieren.
 Zu dem gibt es jetzt die Möglichkeit, durch einen klick auf ![img](./public/userDeleteIcon.png), seine gesammten Daten zu löschen .
 
