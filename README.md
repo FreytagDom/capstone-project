@@ -1,10 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Capstone Project
-
-This is my Capstone Project from my Bootcamp by [neuefische](https://www.neuefische.de/)
-
-# Insulin App
+# Insulin App <img src="./public/logo.png" width="30px" style="border-radius:50%; float:right "   >
 
 [DE]
 
@@ -40,6 +34,22 @@ The factors entered are saved and do not have to be entered each time.
 
 ## Update
 
+August.21.2023
+
+[DE]
+
+<img src="./public/TestUserPDF.png" width="150px" style="; float:right "/>
+Mit diesen update ist es jetzt möglich seine gespeicherten Daten als PDF zu exportieren.
+Zu dem gibt es jetzt die Möglichkeit, durch einen klick auf ![img](./public/userDeleteIcon.png), seine gesammten Daten zu löschen .
+
+</br>
+
+[EN]
+</br>
+
+With this update it is now possible to export your saved data as a PDF.
+In addition, it is now possible to delete all data by clicking on ![img](./public/userDeleteIcon.png).
+
 Juni.26.2023
 
 [DE]
@@ -64,3 +74,9 @@ The update makes it easier to enter the data, as the factors no longer have to b
   Usually something like this: `MONGODB_URL='mongodb://127.0.0.1:27017/<name-of-db>'`
 - Make sure to add the name of your database to the url!
 - Run app in development mode via `npm run dev`
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Capstone Project
+
+This is my Capstone Project from my Bootcamp by [neuefische](https://www.neuefische.de/)
