@@ -36,7 +36,13 @@ The factors entered are saved and do not have to be entered each time.
 
 August.21.2023
 
-<img src="./public/TestUserPDF.png" width="150px" style="; float:right "/>
+<style>
+  .div:hover {
+    transform: scale(1.8); /* Ändert die Skalierung beim Hover */
+    transition: transform 0.5s; /* Fügt eine sanfte Animation hinzu */
+  }
+</style>
+<img class="div" src="./public/TestUserPDF.png" width="150px" style=" float:right"/>
 
 [DE]
 
@@ -44,7 +50,6 @@ Mit diesen update ist es jetzt möglich seine gespeicherten Daten als PDF zu exp
 Zu dem gibt es jetzt die Möglichkeit, durch einen klick auf ![img](./public/userDeleteIcon.png), seine gesammten Daten zu löschen .
 
 [EN]
-
 
 With this update it is now possible to export your saved data as a PDF.
 In addition, it is now possible to delete all data by clicking on ![img](./public/userDeleteIcon.png).
@@ -60,8 +65,6 @@ Mit dem update wird die Eingabe der Daten erleichter, da die Faktoren nicht mehr
 [EN]
 
 The update makes it easier to enter the data, as the factors no longer have to be selected. They are now automatically selected and set based on the current time of day.
-
-
 
 ## Tech Stack
 
