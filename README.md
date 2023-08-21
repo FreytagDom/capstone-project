@@ -44,12 +44,12 @@ Mit diesen update ist es jetzt möglich seine gespeicherten Daten als PDF zu exp
 Zu dem gibt es jetzt die Möglichkeit, durch einen klick auf ![img](./public/userDeleteIcon.png), seine gesammten Daten zu löschen .
 
 [EN]
-</br>
+
 
 With this update it is now possible to export your saved data as a PDF.
 In addition, it is now possible to delete all data by clicking on ![img](./public/userDeleteIcon.png).
 
-
+</br>
 
 Juni.26.2023
 
