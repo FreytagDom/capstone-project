@@ -43,8 +43,6 @@ August.21.2023
 Mit diesen update ist es jetzt möglich seine gespeicherten Daten als PDF zu exportieren.
 Zu dem gibt es jetzt die Möglichkeit, durch einen klick auf ![img](./public/userDeleteIcon.png), seine gesammten Daten zu löschen .
 
-</br>
-
 [EN]
 </br>
 
