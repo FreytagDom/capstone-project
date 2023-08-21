@@ -1,4 +1,4 @@
-# Insulin App <img src="./public/logo.png" width="30px" style="border-radius:50%; float:right "   >
+# Insulin App <img src="./public/logo.png" width="40px" style="border-radius:50%; float:right "/>
 
 [DE]
 
@@ -36,13 +36,8 @@ The factors entered are saved and do not have to be entered each time.
 
 August.21.2023
 
-<style>
-  .div:hover {
-    transform: scale(1.8); /* Ändert die Skalierung beim Hover */
-    transition: transform 0.5s; /* Fügt eine sanfte Animation hinzu */
-  }
-</style>
-<img class="div" src="./public/TestUserPDF.png" width="150px" style=" float:right"/>
+
+<img src="./public/TestUserPDF.png" width="150px" style="float:right" align="right" />
 
 [DE]
 
