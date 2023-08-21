@@ -1,4 +1,4 @@
-# Insulin App <img src="./public/logo.png" width="40px" style="border-radius:50%; float:right "/>
+# Insulin App <img src="./public/logo.png" width="40px" style="border-radius:50%; float:right " align="right"/>
 
 [DE]
 
