@@ -49,6 +49,8 @@ Zu dem gibt es jetzt die Möglichkeit, durch einen klick auf ![img](./public/use
 With this update it is now possible to export your saved data as a PDF.
 In addition, it is now possible to delete all data by clicking on ![img](./public/userDeleteIcon.png).
 
+
+
 Juni.26.2023
 
 [DE]
@@ -58,6 +60,8 @@ Mit dem update wird die Eingabe der Daten erleichter, da die Faktoren nicht mehr
 [EN]
 
 The update makes it easier to enter the data, as the factors no longer have to be selected. They are now automatically selected and set based on the current time of day.
+
+
 
 ## Tech Stack
 
