@@ -22,15 +22,15 @@ export default function InfoButton() {
       </Button>
       {isOpen && (
         <InfoCard>
-          Unter "Insulin Faktor" und "Korrektur Faktor" müssen erst die
+          Unter `Insulin Faktor` und `Korrektur Faktor` müssen erst die
           jeweiligen Faktoren angelegt werden. Im nächsten Schritt kann jetzt
-          unter "Start" mit der Eingabe des aktuellen Blutzuckerwertes und der
+          unter `Start` mit der Eingabe des aktuellen Blutzuckerwertes und der
           Kohlenhydrate, die man zu sich nehmen möchte, begonnen werden. Im
-          Anschluss klickt man nur noch auf "Bestätigen" und man bekommt die zu
+          Anschluss klickt man nur noch auf `Bestätigen` und man bekommt die zu
           spritzende Insulin Menge angezeigt. Die Berechnung erfolgt automatisch
           unter Einbezug der Tageszeit und wählt so den entsprechenden Faktor.
-          Im Bereich "Daten" kann man sich die verwendeten und gespeicherten
-          Daten anzeigen lassen und auch als "PDF" exportieren.
+          Im Bereich `Daten` kann man sich die verwendeten und gespeicherten
+          Daten anzeigen lassen und auch als `PDF` exportieren.
         </InfoCard>
       )}
     </InfoButtonContainer>
