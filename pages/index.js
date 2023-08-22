@@ -84,7 +84,7 @@ const Wrapper = styled.section`
 
 const Login = styled.span`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: baseline;
   color: orange;
   text-decoration: none;
