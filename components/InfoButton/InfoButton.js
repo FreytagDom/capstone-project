@@ -43,7 +43,7 @@ const InfoButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 9;
-  margin-bottom: -1.5rem;
+  margin-bottom: -1rem;
 `;
 
 const Button = styled.button`
