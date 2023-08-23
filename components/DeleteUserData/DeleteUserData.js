@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/react';
 import { styled } from 'styled-components';
 import Image from 'next/image';
 import PopupModal from '../PopupModal/PopupModal';
-import userDeleteIcon from '../../public/userDeleteIcon.png'
+import userDeleteIcon from '../../public/userDeleteIcon.png';
 
 export default function DeleteUserDataButton() {
   const { data: session } = useSession();
@@ -27,51 +27,50 @@ export default function DeleteUserDataButton() {
         method: 'DELETE',
       });
       if (response.ok) {
- 
         console.log('Daten wurden erfolgreich gelöscht.');
       } else {
-    
         console.error('Fehler beim Löschen der Daten.');
       }
-      closeModal(); 
+      closeModal();
     } catch (error) {
       console.error('Fehler beim Löschen der Daten:', error);
     }
     setModalOpen(false);
-};
+  }
 
-const handleCancel = () => {
-  setModalOpen(false);
-};
+  const handleCancel = () => {
+    setModalOpen(false);
+  };
 
   return (
     <PopupWrapper>
-     <DeleteButton onClick={() => setModalOpen(true)}>
-      <UserDeleteIcon src={userDeleteIcon} alt='UserDeleteIcon'/>
-    </DeleteButton>
+      <DeleteButton onClick={() => setModalOpen(true)}>
+        <UserDeleteIcon src={userDeleteIcon} alt="UserDeleteIcon" />
+      </DeleteButton>
       {modalOpen && (
         <PopupModal onClose={handleCancel} onConfirm={handleDelete} />
       )}
     </PopupWrapper>
   );
-};
+}
 
 const PopupWrapper = styled.div`
-display: grid;
-justify-content: end;
-width: 2rem;
-margin-left: -1rem;
+  display: grid;
+  justify-content: end;
+  /* width: 2rem; */
+  margin-left: -0.5rem;
 `;
 
 const DeleteButton = styled.button`
-background: none;
-border: none;
-border-radius: 5px;
-width: 3rem;
-color: black;
-cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 5px;
+  width: 3rem;
+  color: black;
+
+  cursor: pointer;
 `;
 
 const UserDeleteIcon = styled(Image)`
-background: transparent;
+  background: transparent;
 `;

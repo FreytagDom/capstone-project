@@ -30,6 +30,7 @@ const StyledButton = styled.button`
   color: #fff;
   font-size: 1.5rem;
   margin-top: 1.5rem;
+  cursor: pointer;
 `;
 
 const Textstyling = styled.p`

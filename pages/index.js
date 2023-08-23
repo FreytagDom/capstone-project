@@ -7,6 +7,7 @@ import { GoSignOut } from 'react-icons/go';
 import Input from '../components/HomeInput/HomeInput';
 import LoginPage from '../components/Login/Login';
 import DeleteUserDataButton from '../components/DeleteUserData/DeleteUserData';
+import InfoButton from '../components/InfoButton/InfoButton';
 
 export async function getServerSideProps({ req }) {
   const factors = await getAllDayFactors();
@@ -40,39 +41,37 @@ export default function Home({ factors, correctionfactors }) {
 
   return (
     <>
-    <Wrapper>
-      <Sign>
-        {session ? (
-          <>
-            <Login>
-            <DeleteUserDataButton />
-              Hallo {'  '}
-             {session.user.name}
-            </Login>{' '}
-            {'  '}
-            <Atags href="#" onClick={signOut}>
-              <GoSignOut />
-            </Atags>
-            <Input
-              session={session}
-              factors={factors}
-              correctionfactors={correctionfactors}
-            />
-          </>
-        ) : (
-          <>
-            <LoginPage />
-          <TestLogin
-              href="#"
-              onClick={() => signIn('credentials')}
-            >
-             Test Anmelden
-            </TestLogin>
-          </>
-        )}
+      <Wrapper>
+        <InfoButton />
+        <Sign>
+          {session ? (
+            <>
+              <Login>
+                <DeleteUserDataButton />
+                Hallo {'  '}
+                {session.user.name}
+              </Login>{' '}
+              {'  '}
+              <Atags href="#" onClick={signOut}>
+                <GoSignOut />
+              </Atags>
+              <Input
+                session={session}
+                factors={factors}
+                correctionfactors={correctionfactors}
+              />
+            </>
+          ) : (
+            <>
+              <LoginPage />
+              <TestLogin href="#" onClick={() => signIn('credentials')}>
+                Test Anmelden
+              </TestLogin>
+            </>
+          )}
         </Sign>
-    </Wrapper>
-        </>
+      </Wrapper>
+    </>
   );
 }
 
@@ -84,12 +83,13 @@ const Wrapper = styled.section`
 `;
 
 const Login = styled.span`
-display: flex;
-  justify-content: center;
+  display: flex;
+  justify-content: flex-start;
   align-items: baseline;
   color: orange;
   text-decoration: none;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
 `;
 
 const Sign = styled.span`
@@ -112,8 +112,7 @@ const Atags = styled.a`
 `;
 
 const TestLogin = styled.a`
-font-size: 1rem;
-color: green;
-justify-content: space-evenly;
-
-`
+  font-size: 1.3rem;
+  color: green;
+  justify-content: space-evenly;
+`;

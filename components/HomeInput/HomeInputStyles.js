@@ -47,8 +47,8 @@ export const DataInput = styled.input`
 export const Button = styled.button`
   background-color: skyblue;
   color: darkblue;
-  margin-top: 1rem;
-  margin-bottom: 0.3rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   border-radius: 15px;
   height: 20px;
   z-index: 1;

@@ -142,6 +142,17 @@ export default function Input({ session, factors, correctionfactors, index }) {
             </InsulinSelect>
           </LabelIu>
         </Fragment>
+        <Button type="submit">bestätigen</Button>
+        <InsulinUnits
+          htmlFor="insulinunits"
+          id="calculateUnits"
+          key="calculateUnits"
+          name="calculateUnits"
+        >
+          {value} / Einheiten <br /> Insulin spritzen
+          <FullInject src={volleSpritze} alt="" />
+          <EmptyInject src={leereSpritze} alt="" />
+        </InsulinUnits>
         <Fragment>
           <LabelFa htmlFor="factor">
             Tageszeit Faktor
@@ -198,17 +209,6 @@ export default function Input({ session, factors, correctionfactors, index }) {
             </FactorSelect>
           </LabelFa>
         </Fragment>
-        <Button type="submit">bestätigen</Button>
-        <InsulinUnits
-          htmlFor="insulinunits"
-          id="calculateUnits"
-          key="calculateUnits"
-          name="calculateUnits"
-        >
-          {value} / Einheiten <br /> Insulin spritzen
-          <FullInject src={volleSpritze} alt="" />
-          <EmptyInject src={leereSpritze} alt="" />
-        </InsulinUnits>
       </EntryForm>
     </>
   );
