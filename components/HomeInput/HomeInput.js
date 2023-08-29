@@ -101,6 +101,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
             id="bloodsugar"
             min="0"
             key="bloodsugar"
+            inputMode="numeric"
             maxLength={3}
             required
           />
