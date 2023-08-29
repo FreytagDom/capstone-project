@@ -46,7 +46,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
           <LabelFa htmlFor="factor" id="insulinfactor">
             {t('daytimefactor')} <br /> {t('enter')}
             <DataInputMorning
-              type="decimal"
+              type="number"
               name="setedmorningfactor"
               placeholder={t('factormorning')}
               id="setedmorningfactor"
@@ -58,7 +58,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
               }}
             />
             <DataInput
-              type="decimal"
+              type="number"
               name="setedlunchfactor"
               placeholder={t('factornoon')}
               id="setedlunchfactor"
@@ -70,7 +70,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
               }}
             />
             <DataInput
-              type="decimal"
+              type="number"
               name="seteveningfactor"
               placeholder={t('factorevening')}
               id="seteveningfactor"
@@ -82,7 +82,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
               }}
             />
             <DataInputLate
-              type="decimal"
+              type="number"
               name="latefactor"
               placeholder={t('factorlate')}
               id="latefactor"

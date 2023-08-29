@@ -58,7 +58,7 @@ export default function CorrectionFactorEntry({
           <LabelFa htmlFor="correctionfactor" id="correctionfactor">
             {t('correctionfactor')} <br /> {t('enter')}
             <DataInputMorning
-              type="decimal"
+              type="number"
               name="setcorrectionmorningfactor"
               placeholder={t('correctionfactormorning')}
               id="setcorrectiomorningfactor"
@@ -70,7 +70,7 @@ export default function CorrectionFactorEntry({
               }}
             />
             <DataInput
-              type="decimal"
+              type="number"
               name="setcorrectiolunchfactor"
               placeholder={t('correctionfactornoon')}
               id="setcorrectiolunchfactor"
@@ -82,7 +82,7 @@ export default function CorrectionFactorEntry({
               }}
             />
             <DataInput
-              type="decimal"
+              type="number"
               name="setcorrectioeveningfactor"
               placeholder={t('correctionfactorevening')}
               id="setcorrectioeveningfactor"
@@ -94,7 +94,7 @@ export default function CorrectionFactorEntry({
               }}
             />
             <DataInputLate
-              type="decimal"
+              type="number"
               name="setlatecorrectiofactor"
               placeholder={t('correctionfactorlate')}
               id="setcorrectiolatefactor"
