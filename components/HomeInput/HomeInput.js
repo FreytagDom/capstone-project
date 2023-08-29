@@ -95,7 +95,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
           <BloodDrop src={blooddrop} alt="blooddrop" />
           <Blood src={blood} alt="blood" />
           <DataInput
-            type="number"
+            type="decimal"
             name="bloodsugar"
             placeholder={t('currentbloodglucosevalue')}
             id="bloodsugar"
@@ -110,7 +110,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
           <Carbohydrates src={carbohydrates} alt="carbohydrates" />
           <Donut src={donut} alt="donut" />
           <DataInput
-            type="number"
+            type="decimal"
             name="carbohydrates"
             placeholder={t('howmanyKhd65g')}
             id="carbohydrates"
