@@ -42,8 +42,8 @@ export default function UserDataToPdf({ cardData }) {
               <View style={Styles.cardContainer}>
                 {row.map((item, itemIndex) => (
                   <View key={itemIndex} style={Styles.card}>
-                    <Text>
-                      {t('bloodsugarlevel')}: {item.date}
+                    <Text style={{ color: '#008080' }}>
+                      {t('date')}: {item.date}
                     </Text>
                     <Text style={{ color: '#c92a2a' }}>
                       {t('bloodsugarlevel')}: {item.bloodsugar} mg/dl
@@ -51,7 +51,7 @@ export default function UserDataToPdf({ cardData }) {
                     <Text style={{ color: '#e67700' }}>
                       {t('carbohydrates')}: {item.carbohydrates} g
                     </Text>
-                    <Text>
+                    <Text style={{ color: '#5c940d' }}>
                       {t('usedinsulin')}: {item.insulin}
                     </Text>
                     <Text style={{ color: '#2b8a3e' }}>
