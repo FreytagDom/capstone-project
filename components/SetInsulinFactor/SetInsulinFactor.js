@@ -52,6 +52,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
               id="setedmorningfactor"
               maxLength={'3'}
               min="0"
+              inputMode="numeric"
               required
               onChange={(event) => {
                 setMorningfactor(event.target.value);
@@ -64,6 +65,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
               id="setedlunchfactor"
               maxLength={'3'}
               min="0"
+              inputMode="numeric"
               required
               onChange={(event) => {
                 setLunchfactor(event.target.value);
@@ -76,6 +78,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
               id="seteveningfactor"
               maxLength={'3'}
               min="0"
+              inputMode="numeric"
               required
               onChange={(event) => {
                 setEveningfactor(event.target.value);
@@ -88,13 +91,13 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
               id="latefactor"
               maxLength={'3'}
               min="0"
+              inputMode="numeric"
               required
               onChange={(event) => {
                 setLatefactor(event.target.value);
               }}
             />
           </LabelFa>
-
           <Button type="submit">{t('save')}</Button>
         </EntryForm>
       </Wrapper>

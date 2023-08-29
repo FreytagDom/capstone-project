@@ -118,6 +118,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
             maxLength={'3'}
             key="carbohydrates"
             min="0"
+            inputMode="numeric"
             required
           />
         </LabelCa>
