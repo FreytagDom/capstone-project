@@ -9,6 +9,7 @@ import {
   Button,
 } from './SetInsulinFactorStyles';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
   const [morningfactor, setMorningfactor] = useState(
@@ -31,22 +32,23 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
     setLatefactor('');
     event.target.reset();
   }
+  const { t } = useTranslation();
 
   return (
     <>
       <Wrapper>
-        <InsulinFactor>Insulinfaktor anlegen</InsulinFactor>
+        <InsulinFactor>{t('createinsulinfactor')}</InsulinFactor>
         <EntryForm
           onSubmit={handleSetFactor}
           id="insulinfactor"
           onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
         >
           <LabelFa htmlFor="factor" id="insulinfactor">
-            Welcher Tageszeit <br /> Faktor
+            {t('daytimefactor')} <br /> {t('enter')}
             <DataInputMorning
               type="decimal"
               name="setedmorningfactor"
-              placeholder="Faktor morgens"
+              placeholder={t('factormorning')}
               id="setedmorningfactor"
               maxLength={'3'}
               min="0"
@@ -58,7 +60,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
             <DataInput
               type="decimal"
               name="setedlunchfactor"
-              placeholder="Faktor mittags"
+              placeholder={t('factornoon')}
               id="setedlunchfactor"
               maxLength={'3'}
               min="0"
@@ -70,7 +72,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
             <DataInput
               type="decimal"
               name="seteveningfactor"
-              placeholder="Faktor abends"
+              placeholder={t('factorevening')}
               id="seteveningfactor"
               maxLength={'3'}
               min="0"
@@ -82,7 +84,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
             <DataInputLate
               type="decimal"
               name="latefactor"
-              placeholder="Faktor spät"
+              placeholder={t('factorlate')}
               id="latefactor"
               maxLength={'3'}
               min="0"
@@ -93,7 +95,7 @@ export default function FactorEntry({ DayTimeFactor, onHandleSetFactor }) {
             />
           </LabelFa>
 
-          <Button type="submit">bestätigen</Button>
+          <Button type="submit">{t('save')}</Button>
         </EntryForm>
       </Wrapper>
     </>

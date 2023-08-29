@@ -8,6 +8,9 @@ import Input from '../components/HomeInput/HomeInput';
 import LoginPage from '../components/Login/Login';
 import DeleteUserDataButton from '../components/DeleteUserData/DeleteUserData';
 import InfoButton from '../components/InfoButton/InfoButton';
+import LanguageSwitchButton from '../components/LanguageSwitcher/LanguageSwitcherButton';
+import i18n from '../components/LanguageSwitcher/i18n';
+import { useState } from 'react';
 
 export async function getServerSideProps({ req }) {
   const factors = await getAllDayFactors();
@@ -36,13 +39,24 @@ export async function getServerSideProps({ req }) {
   };
 }
 
-export default function Home({ factors, correctionfactors }) {
+export default function Home({ t, factors, correctionfactors }) {
   const { data: session } = useSession();
+  const [currentLanguage, setCurrentLanguage] = useState('en');
+
+  const handleChangeLanguage = () => {
+    const newLanguage = currentLanguage === 'en' ? 'de' : 'en';
+    setCurrentLanguage(newLanguage);
+    i18n.changeLanguage(newLanguage);
+  };
 
   return (
     <>
       <Wrapper>
         <InfoButton />
+        {/* <LanguageSwitchButton
+          currentLanguage={currentLanguage}
+          onChangeLanguage={handleChangeLanguage}
+        /> */}
         <Sign>
           {session ? (
             <>
@@ -106,9 +120,9 @@ const Atags = styled.a`
   color: sandybrown;
   justify-content: end;
   text-align: center;
-  margin-top: -1rem;
+  margin: -1.3rem 0.2rem 0.3rem 0.1rem;
+  padding: 0.3rem 0.1rem 0rem 0.3rem;
   font-size: 1rem;
-  margin-bottom: 0.2rem;
 `;
 
 const TestLogin = styled.a`

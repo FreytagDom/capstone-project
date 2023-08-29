@@ -1,29 +1,31 @@
 import { NavbarHead, Navigation, Links } from './NavBarStyles';
 import { useSession } from 'next-auth/react';
+import { useTranslation } from 'react-i18next';
 
 export const Navbar = () => {
   const { data: session } = useSession();
+  const { t } = useTranslation();
   return (
     <>
       {session ? (
         <NavbarHead>
           <Navigation>
             <Links href="/" passHref>
-              Start
+              {t('start')}
             </Links>
 
             <Links href="/setInsulinFactor" passHref>
-              Insulin <br />
-              Faktor
+              {t('insulin')} <br />
+              {t('factor')}
             </Links>
 
             <Links href="/setCorrectionFactor" passHref>
-              Korrektur <br />
-              Faktor
+              {t('correction')} <br />
+              {t('factor')}
             </Links>
 
             <Links href="/savedInsulinData" passHref>
-              Daten
+              {t('data')}
             </Links>
           </Navigation>
         </NavbarHead>

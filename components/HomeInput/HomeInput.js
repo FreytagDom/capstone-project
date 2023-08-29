@@ -30,6 +30,7 @@ import handleInsulinUnit from '../../utils/calculate';
 import handelCorretion from '../../utils/handleCorrectionFactor';
 import handleUserCorrectionFactor from '../../handler/getCorrectionFactor';
 import handleUserDayFactor from '../../handler/getDayFactor';
+import { useTranslation } from 'react-i18next';
 
 export default function Input({ session, factors, correctionfactors, index }) {
   const [value, setValue] = useState();
@@ -81,7 +82,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
     { value: 'Fiasp', label: 'Fiasp' },
     { value: 'Hum Normal', label: 'Hum Normal' },
   ];
-
+  const { t } = useTranslation();
   return (
     <>
       <EntryForm
@@ -89,14 +90,14 @@ export default function Input({ session, factors, correctionfactors, index }) {
         onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
       >
         <LabelBz htmlFor="bloodsugar">
-          Blutzuckerwert <br />
+          {t('bloodsugar')} <br />
           mg/dl
           <BloodDrop src={blooddrop} alt="blooddrop" />
           <Blood src={blood} alt="blood" />
           <DataInput
             type="number"
             name="bloodsugar"
-            placeholder="aktueller Blutzuckerwert"
+            placeholder={t('currentbloodglucosevalue')}
             id="bloodsugar"
             min="0"
             key="bloodsugar"
@@ -105,13 +106,13 @@ export default function Input({ session, factors, correctionfactors, index }) {
           />
         </LabelBz>
         <LabelCa htmlFor="carbohydrates">
-          Kohlenhydrate (Khd) <br /> g (Gramm)
+          {t('carbohydrates')} (Khd) <br /> g (Gramm)
           <Carbohydrates src={carbohydrates} alt="carbohydrates" />
           <Donut src={donut} alt="donut" />
           <DataInput
             type="number"
             name="carbohydrates"
-            placeholder="wieviele Khd 65g"
+            placeholder={t('howmanyKhd65g')}
             id="carbohydrates"
             maxLength={'3'}
             key="carbohydrates"
@@ -121,14 +122,14 @@ export default function Input({ session, factors, correctionfactors, index }) {
         </LabelCa>
         <Fragment>
           <LabelIu htmlFor="insulin">
-            Welches Insulin <br /> wird genommen
+            {t('whichinsulin1')} <br /> {t('whichinsulin2')}
             <InsulinSelect
               htmlFor="setinsulin"
               name="setinsulinSelect"
               id={InsulinOption.id}
             >
-              <InsulinOption placeholder="Insulin wählen">
-                Insulin wählen
+              <InsulinOption placeholder={t('chooseinsulin')}>
+                {t('chooseinsulin')}
               </InsulinOption>
               {options.map((option) => (
                 <InsulinOption
@@ -142,20 +143,20 @@ export default function Input({ session, factors, correctionfactors, index }) {
             </InsulinSelect>
           </LabelIu>
         </Fragment>
-        <Button type="submit">bestätigen</Button>
+        <Button type="submit">{t('confirm')}</Button>
         <InsulinUnits
           htmlFor="insulinunits"
           id="calculateUnits"
           key="calculateUnits"
           name="calculateUnits"
         >
-          {value} / Einheiten <br /> Insulin spritzen
+          {value} / {t('injectunits')} <br /> {t('ofinsulin')}
           <FullInject src={volleSpritze} alt="" />
           <EmptyInject src={leereSpritze} alt="" />
         </InsulinUnits>
         <Fragment>
           <LabelFa htmlFor="factor">
-            Tageszeit Faktor
+            {t('daytimefactor')}
             <FactorSelect
               htmlFor="setdayfactor"
               name="dayfactorSelect"
@@ -169,7 +170,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
                 id={handleUserDayFactor(session, factors)}
                 value={handleUserDayFactor(session, factors).props.value}
               >
-                Insulinfakror{' '}
+                {t('insulinfactor')}{' '}
                 {handleUserDayFactor(session, factors).props.value}
               </FactorOption>
             </FactorSelect>
@@ -200,7 +201,7 @@ export default function Input({ session, factors, correctionfactors, index }) {
                     .value
                 }
               >
-                Korrektur{' '}
+                {t('correction')}{' '}
                 {
                   handleUserCorrectionFactor(session, correctionfactors).props
                     .value

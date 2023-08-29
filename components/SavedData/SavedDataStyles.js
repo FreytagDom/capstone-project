@@ -1,5 +1,5 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
+import { keyframes } from 'styled-components';
 
 export const IconWrapper = styled.span`
   display: flex;
@@ -113,4 +113,24 @@ export const DataInput = styled.input`
   color: black;
   border: none;
   opacity: 0.85;
+`;
+
+const hue = keyframes`
+ from {
+   -webkit-filter: hue-rotate(180deg);
+ }
+ to {
+   -webkit-filter: hue-rotate(-180deg);
+ }
+`;
+
+export const SavedData = styled.h2`
+  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: ${hue} 10s infinite linear;
+  color: purple;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: center;
+  z-index: 1;
 `;
