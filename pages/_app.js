@@ -32,6 +32,7 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
     <>
       <Head>
         <title>Insulin App</title>
+        <meta name="viewport" content="width=device-width">
         <meta name="description" content="Insulin app" />
         <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
