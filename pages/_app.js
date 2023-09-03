@@ -1,13 +1,15 @@
 import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import Router from "next/router";
+import Router from 'next/router';
 import { GlobalStyle } from '../components/GlobalStyle';
 import Layout from '../components/Layout';
 import Loading from '../components/PageLoader/PageLoader';
- 
 
-export default function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+export default function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -26,12 +28,13 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
       Router.events.off('routeChangeStart', handleRouteChangeStart);
       Router.events.off('routeChangeComplete', handleRouteChangeComplete);
     };
-  }, []); 
-  
+  }, []);
+
   return (
     <>
       <Head>
         <title>Insulin App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Insulin app" />
         <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
@@ -44,14 +47,9 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
       <SessionProvider session={session} basePath="/api/auth">
         <GlobalStyle />
         <Layout>
-         {isLoading ? ( <Loading /> ) : (
-          <Component {...pageProps} />
-         )}
-          </Layout>
+          {isLoading ? <Loading /> : <Component {...pageProps} />}
+        </Layout>
       </SessionProvider>
-          
     </>
   );
 }
-
-

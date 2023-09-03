@@ -13,11 +13,13 @@ import {
   Insulin,
   Factor,
   InsulinUnits,
+  SavedData,
 } from './SavedDataStyles';
 import { RiDeleteBinLine, RiLineHeight } from 'react-icons/ri';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import UserDataToPdf from '../UserDataToPdf/UserDataToPdf';
+import { useTranslation } from 'react-i18next';
 
 export default function SavedDataInjected({ cardData }) {
   const { data: session } = useSession();
@@ -44,11 +46,17 @@ export default function SavedDataInjected({ cardData }) {
   const filteredData = newCardData.filter((item) =>
     item.date.toLowerCase().includes(search.toLowerCase())
   );
+  const { t } = useTranslation();
 
   return (
     <WrapperSaved>
+      <SavedData> {t('storedvalues')}</SavedData>
       <SearchData>
-        <DataInput type="text" placeholder="Suche" onChange={handleChange} />
+        <DataInput
+          type="text"
+          placeholder={t('search')}
+          onChange={handleChange}
+        />
       </SearchData>
       <UserDataToPdf cardData={cardData} />
       <CardGrid id="pdf-content">
@@ -66,26 +74,27 @@ export default function SavedDataInjected({ cardData }) {
                   <RiDeleteBinLine onClick={() => removeCard(item.id)} />
                 </IconWrapper>
                 <BloodSugar>
-                  Blutzuckerwert: <br /> {item.bloodsugar} mg/dl
+                  {t('bloodsugarlevel')}: <br /> {item.bloodsugar} mg/dl
                 </BloodSugar>
                 <br />
                 <Carbohydrates>
-                  Kohlenhydrate: <br /> {item.carbohydrates} g (Gramm)
+                  {t('carbohydrates')}: <br /> {item.carbohydrates} g (Gramm)
                 </Carbohydrates>
                 <br />
                 <Insulin>
-                  Verwendetes Insulin: <br /> {item.insulin}
+                  {t('usedinsulin')}: <br /> {item.insulin}
                 </Insulin>
                 <br />
                 <Factor>
-                  Insulin Faktor: <br /> {item.daytimeFactor}
+                  {t('insulinfactor')}: <br /> {item.daytimeFactor}
                 </Factor>
                 <Factor>
-                  Korrektur Faktor: <br />
+                  {t('correctionfactor')}: <br />
                   {item.correctionFactor}
                 </Factor>
                 <InsulinUnits>
-                  gespritzte Insulin <br /> Menge: {item.calculateUnit}
+                  {t('injectedinsulin')}
+                  <br /> {t('quantity')}: {item.calculateUnit}
                 </InsulinUnits>
               </Saved>
             </Details>

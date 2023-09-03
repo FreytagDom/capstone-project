@@ -9,36 +9,38 @@ import {
   LateFactor,
 } from './SavedInsulinFactorStyels';
 import { useSession } from 'next-auth/react';
+import { useTranslation } from 'react-i18next';
 
 export default function SavedFactor({ factors }) {
   const { data: session } = useSession();
   const userFactor = factors.filter((factors) => {
     return factors.id === session.user.email;
   });
+  const { t } = useTranslation();
 
   return (
     <Wrapper>
       <SavedFactorTitel>
-        Gespeicherter <br /> Insulinfaktor
+        {t('saved')} <br /> {t('insulinfactor')}
       </SavedFactorTitel>
       <CardGrid>
         {userFactor.map((items) => {
           return (
             <Saved key={items.id}>
               <MorningFactor>
-                Faktor morgens: <br /> {items.morningfactor}
+                {t('factormorning')}: <br /> {items.morningfactor}
               </MorningFactor>
               <br />
               <LunchFactor>
-                Faktor mittags: <br /> {items.lunchfactor}
+                {t('factornoon')}: <br /> {items.lunchfactor}
               </LunchFactor>
               <br />
               <EveningFactor>
-                Faktor abends: <br /> {items.eveningfactor}
+                {t('factorevening')}: <br /> {items.eveningfactor}
               </EveningFactor>
               <br />
               <LateFactor>
-                Faktor spät: <br /> {items.latefactor}
+                {t('factorlate')}: <br /> {items.latefactor}
               </LateFactor>
             </Saved>
           );

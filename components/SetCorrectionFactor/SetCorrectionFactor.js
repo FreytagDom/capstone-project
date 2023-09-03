@@ -9,6 +9,7 @@ import {
   Button,
 } from './SetCorrectionFactorStyles';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function CorrectionFactorEntry({
   CorrectionFactor,
@@ -41,25 +42,29 @@ export default function CorrectionFactorEntry({
     setLatecorrectionfactor('');
     event.target.reset();
   }
+  const { t } = useTranslation();
 
   return (
     <>
       <Wrapper>
-        <CorrectionFactorTitel>Korrekturfaktor anlegen</CorrectionFactorTitel>
+        <CorrectionFactorTitel>
+          {t('createcorrectionfactor')}
+        </CorrectionFactorTitel>
         <EntryForm
           onSubmit={handleSetCorrectionFactor}
           id="correctionfactor"
           onKeyPress={(e) => !/[0-9]/.test(e.key) && e.preventDefault()}
         >
           <LabelFa htmlFor="correctionfactor" id="correctionfactor">
-            Welcher Tageszeit <br /> Korrekturaktor
+            {t('correctionfactor')} <br /> {t('enter')}
             <DataInputMorning
               type="decimal"
               name="setcorrectionmorningfactor"
-              placeholder="Korrekturfaktor morgens"
+              placeholder={t('correctionfactormorning')}
               id="setcorrectiomorningfactor"
               maxLength={'3'}
               min="0"
+              inputMode="numeric"
               required
               onChange={(event) => {
                 setMorningcorrectionfactor(event.target.value);
@@ -68,10 +73,11 @@ export default function CorrectionFactorEntry({
             <DataInput
               type="decimal"
               name="setcorrectiolunchfactor"
-              placeholder="Korrekturfaktor mittags"
+              placeholder={t('correctionfactornoon')}
               id="setcorrectiolunchfactor"
               maxLength={'3'}
               min="0"
+              inputMode="numeric"
               required
               onChange={(event) => {
                 setLunchcorrectionfactor(event.target.value);
@@ -80,10 +86,11 @@ export default function CorrectionFactorEntry({
             <DataInput
               type="decimal"
               name="setcorrectioeveningfactor"
-              placeholder="Korrekturfaktor abends"
+              placeholder={t('correctionfactorevening')}
               id="setcorrectioeveningfactor"
               maxLength={'3'}
               min="0"
+              inputMode="numeric"
               required
               onChange={(event) => {
                 setEveningcorrectionfactor(event.target.value);
@@ -92,18 +99,18 @@ export default function CorrectionFactorEntry({
             <DataInputLate
               type="decimal"
               name="setlatecorrectiofactor"
-              placeholder="Korrekturfaktor spät"
+              placeholder={t('correctionfactorlate')}
               id="setcorrectiolatefactor"
               maxLength={'3'}
               min="0"
+              inputMode="numeric"
               required
               onChange={(event) => {
                 setLatecorrectionfactor(event.target.value);
               }}
             />
           </LabelFa>
-
-          <Button type="submit">bestätigen</Button>
+          <Button type="submit">{t('save')}</Button>
         </EntryForm>
       </Wrapper>
     </>

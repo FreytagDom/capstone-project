@@ -2,12 +2,15 @@ import React from 'react';
 import { pdf, Page, Text, View, Document, Image } from '@react-pdf/renderer';
 import { useSession } from 'next-auth/react';
 import { ExportButton, Styles } from './UserDataToPdfStyles';
+import { useTranslation } from 'react-i18next';
 
 export default function UserDataToPdf({ cardData }) {
   const { data: session } = useSession();
   const userCardData = cardData.filter((cardData) => {
     return cardData.userMail === session.user.email;
   });
+  const { t } = useTranslation();
+
   async function exportToPDF() {
     const itemsPerPage = 1000;
     const itemsPerRow = 10;
@@ -30,31 +33,36 @@ export default function UserDataToPdf({ cardData }) {
             <Page key={rowIndex} size="A4" style={Styles.page}>
               <View style={Styles.header}>
                 <Text style={Styles.title}>
-                  Gespeicherte Daten von {session.user.name}
+                  {t('saveddatafrom')} {session.user.name}
                 </Text>
                 <Text style={Styles.subtitle}>
-                  Erstellt am: {new Date().toLocaleString()}
+                  {t('createdon')}: {new Date().toLocaleString()}
                 </Text>
               </View>
               <View style={Styles.cardContainer}>
                 {row.map((item, itemIndex) => (
                   <View key={itemIndex} style={Styles.card}>
-                    <Text>Date: {item.date}</Text>
+                    <Text style={{ color: '#008080' }}>
+                      {t('date')}: {item.date}
+                    </Text>
                     <Text style={{ color: '#c92a2a' }}>
-                      Blutzuckerwert: {item.bloodsugar} mg/dl
+                      {t('bloodsugarlevel')}: {item.bloodsugar} mg/dl
                     </Text>
                     <Text style={{ color: '#e67700' }}>
-                      Kohlenhydrate: {item.carbohydrates} g
+                      {t('carbohydrates')}: {item.carbohydrates} g
                     </Text>
-                    <Text>Verwendetes Insulin: {item.insulin}</Text>
-                    <Text style={{ color: '#2b8a3e' }}>
-                      Insulin Faktor: {item.daytimeFactor}
+                    <Text style={{ color: '#5c940d' }}>
+                      {t('usedinsulin')}: {item.insulin}
                     </Text>
                     <Text style={{ color: '#2b8a3e' }}>
-                      Korrektur Faktor: {item.correctionFactor}
+                      {t('insulinfactor')}: {item.daytimeFactor}
+                    </Text>
+                    <Text style={{ color: '#2b8a3e' }}>
+                      {t('correctionfactor')}: {item.correctionFactor}
                     </Text>
                     <Text style={{ color: '#364fc7' }}>
-                      Gespritzte Insulin Menge: {item.calculateUnit}
+                      {t('injectedinsulin')} {t('quantity')}:{' '}
+                      {item.calculateUnit}
                     </Text>
                   </View>
                 ))}
@@ -95,5 +103,5 @@ export default function UserDataToPdf({ cardData }) {
       URL.revokeObjectURL(url);
     }
   }
-  return <ExportButton onClick={exportToPDF}>Export als PDF</ExportButton>;
+  return <ExportButton onClick={exportToPDF}>{t('export')}</ExportButton>;
 }

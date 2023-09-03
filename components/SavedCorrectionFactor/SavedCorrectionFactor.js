@@ -9,36 +9,41 @@ import {
   LateCorrectionFactor,
 } from './SavedCorrectionFactorStyles';
 import { useSession } from 'next-auth/react';
+import { useTranslation } from 'react-i18next';
 
 export default function SavedCorrectionFactor({ correctionfactors }) {
   const { data: session } = useSession();
   const userCorrectionFactor = correctionfactors.filter((correctionfactors) => {
     return correctionfactors.id === session.user.email;
   });
+  const { t } = useTranslation();
 
   return (
     <Wrapper>
       <SavedCorrectionFactorTitel>
-        Gespeicherter <br /> Korrekturfaktor
+        {t('saved')} <br /> {t('correctionfactor')}
       </SavedCorrectionFactorTitel>
       <CardGrid>
         {userCorrectionFactor.map((items) => {
           return (
             <Saved key={items.id}>
               <MorningCorrectionFactor>
-                Korrekturfaktor morgens: <br /> {items.morningcorrectionfactor}
+                {t('correctionfactormorning')}: <br />{' '}
+                {items.morningcorrectionfactor}
               </MorningCorrectionFactor>
               <br />
               <LunchCorrectionFactor>
-                Korrekturfaktor mittags: <br /> {items.lunchcorrectionfactor}
+                {t('correctionfactornoon')}: <br />{' '}
+                {items.lunchcorrectionfactor}
               </LunchCorrectionFactor>
               <br />
               <EveningCorrectionFactor>
-                Korrekturfakror abends: <br /> {items.eveningcorrectionfactor}
+                {t('correctionfactorevening')}: <br />{' '}
+                {items.eveningcorrectionfactor}
               </EveningCorrectionFactor>
               <br />
               <LateCorrectionFactor>
-                Korrekturfakror spät: <br /> {items.latecorrectionfactor}
+                {t('correctionfactorlate')}: <br /> {items.latecorrectionfactor}
               </LateCorrectionFactor>
             </Saved>
           );
