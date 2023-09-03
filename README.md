@@ -34,8 +34,19 @@ The factors entered are saved and do not have to be entered each time.
 
 ## Update
 
-August.21.2023
+September.03.2023
 
+[DE]
+
+Mit diesem Update kommt ein Info-Button, der die Bedienung der App erklärt. Zu dem gibt es jetzt die Möglichkeit zwischen Deutsch und Englisch zu wechseln.
+
+[EN]
+
+With this update comes an info button that explains how to use the app. In addition, it is now possible to switch between German and English.
+
+</br>
+
+August.21.2023
 
 <img src="./public/TestUserPDF.png" width="150px" style="float:right" align="right" />
 
