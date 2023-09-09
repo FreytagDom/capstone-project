@@ -18,6 +18,7 @@ export const WrapperSaved = styled.section`
   z-index: 1;
   opacity: 0.75;
   background-attachment: scroll;
+  margin-bottom: 2rem;
 `;
 
 export const CardGrid = styled.ul`
