@@ -39,6 +39,7 @@ export default function SavedDataInjected({ cardData }) {
     );
   }
   const [search, setSearch] = useState('');
+
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
@@ -46,6 +47,11 @@ export default function SavedDataInjected({ cardData }) {
   const filteredData = newCardData.filter((item) =>
     item.date.toLowerCase().includes(search.toLowerCase())
   );
+
+  const sortedData = filteredData
+    .sort((a, b) => new Date(a.date) - new Date(b.date))
+    .reverse();
+
   const { t } = useTranslation();
 
   return (
@@ -60,7 +66,7 @@ export default function SavedDataInjected({ cardData }) {
       </SearchData>
       <UserDataToPdf cardData={cardData} />
       <CardGrid id="pdf-content">
-        {filteredData.map((item) => {
+        {sortedData.map((item) => {
           return (
             <Details key={item.id}>
               <Summary>
