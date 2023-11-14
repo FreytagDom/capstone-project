@@ -7,7 +7,6 @@ export const InfoButtonContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   z-index: 9;
-  /* margin-bottom: -1rem; */
 `;
 
 export const Button = styled.button`
@@ -15,7 +14,6 @@ export const Button = styled.button`
   border: none;
   text-decoration: none;
   cursor: pointer;
-  /* margin: 5px; */
 `;
 
 export const InfoCard = styled.div`
