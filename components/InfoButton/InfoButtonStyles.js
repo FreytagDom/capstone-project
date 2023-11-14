@@ -21,6 +21,7 @@ export const Button = styled.button`
 export const InfoCard = styled.div`
   position: absolute;
   display: flex;
+  flex-direction: column;
   top: 100%;
   left: 0;
   background: linear-gradient(58deg, #09203f, #537895);
@@ -45,4 +46,35 @@ export const InfoList = styled.ul`
 
 export const List = styled.li`
   padding-bottom: 0.3rem;
+`;
+
+export const EmailButton = styled.button`
+  background: transparent;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: none;
+  outline: none !important;
+  cursor: pointer;
+  bottom: 2rem;
+  color: aliceblue;
+`;
+
+export const Email = styled(Image)`
+  z-index: 3;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 5px;
+`;
+
+export const ContacWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 2fr);
+  max-width: 25rem;
+  align-content: center;
+  padding-left: 2rem;
+  align-items: center;
+  justify-items: center;
 `;

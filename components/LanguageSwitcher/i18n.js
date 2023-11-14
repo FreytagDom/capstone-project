@@ -55,6 +55,7 @@ i18n.use(initReactI18next).init({
         date: 'Date',
         export: 'Export as PDF',
         storedvalues: 'Stored values',
+        contact: 'contact',
       },
     },
     de: {
@@ -110,6 +111,7 @@ i18n.use(initReactI18next).init({
         date: 'Datum',
         export: 'Export als PDF',
         storedvalues: 'Gespeicherte Werte',
+        contact: 'Kontakt',
       },
     },
   },
